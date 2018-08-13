@@ -12,7 +12,7 @@
 	    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	    <c:url var="cssHref" value="/site.css" />
 		<link rel="stylesheet" type="text/css" href="${cssHref}">
-		
+		<link rel="stylesheet" href="homepage.css">
 		<script type="text/javascript">
 			$(document).ready(function() {
 				$("time.timeago").timeago();
@@ -31,6 +31,7 @@
 		
 	</head>
 	<body>
+	<div class="headerDiv">
 		<header>
 	
 			<c:url var="homePageHref" value="/" />
@@ -38,6 +39,7 @@
 			<%-- <img src="${homePageHref}img/Foxtrotlogofinal1.png"> --%>
 			<a href="${homePageHref}"><img src="${imgSrc}" class="img-responsive" /></a>
 		</header>
+		</div>
 		<nav class="navbar navbar-default">
 			<div class="container-fluid">
 				<ul class="nav navbar-nav">
