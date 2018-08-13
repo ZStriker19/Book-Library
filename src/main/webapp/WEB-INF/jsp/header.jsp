@@ -2,6 +2,7 @@
 
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<title>FoxtrotPublicLibrary</title>
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -10,7 +11,7 @@
 	    <script src="http://cdn.jsdelivr.net/jquery.validation/1.15.0/additional-methods.js "></script>
 	    <script src="https://cdn.jsdelivr.net/jquery.timeago/1.4.1/jquery.timeago.min.js"></script>
 	    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-	    <c:url var="cssHref" value="/site.css" />
+	    <c:url var="cssHref" value="css/homepage.css" />
 		<link rel="stylesheet" type="text/css" href="${cssHref}">
 		
 		<script type="text/javascript">
@@ -31,12 +32,16 @@
 		
 	</head>
 	<body>
+	
+	<div class="headerDiv">
 		<header>
-		<img src="img/Foxtrotlogofinal1.png">
+	
 			<c:url var="homePageHref" value="/" />
-			<c:url var="imgSrc" value="/img/logo.png" />
+			<c:url var="imgSrc" value="/img/Foxtrotlogofinal1.png" />
+			<%-- <img src="${homePageHref}img/Foxtrotlogofinal1.png"> --%>
 			<a href="${homePageHref}"><img src="${imgSrc}" class="img-responsive" /></a>
 		</header>
+		</div>
 		<nav class="navbar navbar-default">
 			<div class="container-fluid">
 				<ul class="nav navbar-nav">
