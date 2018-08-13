@@ -85,10 +85,18 @@ public class JDBCBookDAO implements BookDAO{
 	private List<Book> mapBookToSqlRowSet(SqlRowSet sqlRowSet, List<Book> books) {
 		long book_id = sqlRowSet.getLong("book_id");
 		for (int j = 0; j < books.size(); j++) {
-			if (book_id == books.get(0).getBookId()) {
-				if (!books.get(0).getAuthorFirstNames().contains(sqlRowSet.getString("author_first_name")) && !books.get(j).getAuthorLastNames().contains(sqlRowSet.getString("author_last_name"))) {
-					
-					
+			if (book_id == books.get(j).getBookId()) {
+				if (!books.get(j).getAuthorFirstNames().contains(sqlRowSet.getString("author_first_name")) && !books.get(j).getAuthorLastNames().contains(sqlRowSet.getString("author_last_name"))) {
+					books.get(j).getAuthorFirstNames().add(sqlRowSet.getString("author_first_name"));
+					books.get(j).getAuthorLastNames().add(sqlRowSet.getString("author_last_name"));
+				}
+				if (!books.get(j).getCharacterFirstNames().contains(sqlRowSet.getString("character_first_name")) && !books.get(j).getCharacterLastNames().contains(sqlRowSet.getString("character_last_name"))) {
+					books.get(j).getCharacterFirstNames().add(sqlRowSet.getString("character_first_name"));
+					books.get(j).getCharacterLastNames().add(sqlRowSet.getString("character_last_name"));
+				}
+				if (!books.get(j).getKeywords().contains(sqlRowSet.getString("character_first_name")) && !books.get(j).getCharacterLastNames().contains(sqlRowSet.getString("character_last_name"))) {
+					books.get(j).getCharacterFirstNames().add(sqlRowSet.getString("character_first_name"));
+					books.get(j).getCharacterLastNames().add(sqlRowSet.getString("character_last_name"));
 				}
 			}
 		}
