@@ -43,8 +43,7 @@ CREATE TABLE character (
 
 CREATE TABLE location (
   location_id SERIAL PRIMARY KEY,
-  city varchar(150) NOT NULL,
-  district varchar(150) NOT NULL, 
+  city varchar(150) NOT NULL, 
   country varchar(150) NOT NULL 
 );
 
