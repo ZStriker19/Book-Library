@@ -32,6 +32,7 @@
 	</head>
 	<body>
 		<header>
+		<img src="img/Foxtrotlogofinal1.png">
 			<c:url var="homePageHref" value="/" />
 			<c:url var="imgSrc" value="/img/logo.png" />
 			<a href="${homePageHref}"><img src="${imgSrc}" class="img-responsive" /></a>
