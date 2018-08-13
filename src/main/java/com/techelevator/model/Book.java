@@ -1,15 +1,17 @@
 package com.techelevator.model;
 
+import java.util.List;
+
 public class Book {
 	private long bookId;
 	private String title;
 	private String city;
 	private String country;
 	private String keyword;
-	private String characterFirstName;
-	private String characterLastName;
-	private String authorFirstName;
-	private String authorLastName;
+	private String characterFirstNames;
+	private List<String> characterLastNames;
+	private List<String> authorFirstNames;
+	private String authorLastNames;
 	
 	
 	public long getBookId() {
@@ -42,29 +44,29 @@ public class Book {
 	public void setKeyword(String keyword) {
 		this.keyword = keyword;
 	}
-	public String getCharacterFName() {
-		return characterFirstName;
+	public String getCharacterFirstName() {
+		return characterFirstNames;
 	}
-	public void setCharacterFName(String characterFName) {
-		this.characterFirstName = characterFName;
+	public void setCharacterFirstName(String characterFirstNames) {
+		this.characterFirstNames = characterFirstNames;
 	}
-	public String getCharacterLName() {
-		return characterLastName;
+	public List<String> getCharacterLastNames() {
+		return characterLastNames;
 	}
-	public void setCharacterLName(String characterLName) {
-		this.characterLastName = characterLName;
+	public void setCharacterLastNames(List<String> characterLastNames) {
+		this.characterLastNames = characterLastNames;
 	}
-	public String getAuthorFName() {
-		return authorFirstName;
+	public List<String> getAuthorFirstNames() {
+		return authorFirstNames;
 	}
-	public void setAuthorFName(String authorFName) {
-		this.authorFirstName = authorFName;
+	public void setAuthorFirstNames(List<String> authorFirstNames) {
+		this.authorFirstNames = authorFirstNames;
 	}
-	public String getAuthorLName() {
-		return authorLastName;
+	public String getAuthorLastNames() {
+		return authorLastNames;
 	}
-	public void setAuthorLName(String authorLName) {
-		this.authorLastName = authorLName;
+	public void setAuthorLastNames(String authorLastNames) {
+		this.authorLastNames = authorLastNames;
 	}
 	
 	
