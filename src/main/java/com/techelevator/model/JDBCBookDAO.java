@@ -26,14 +26,17 @@ public class JDBCBookDAO implements BookDAO{
 	}
 
 	public List<Book> searchForBooksInAllTables(String queryString) {
+		List<Book> allBooksFromQueries = new ArrayList<Book>();
 		
-		List<Book> booksBasedOnAuthor = searchForBooksBasedOnAuthor(queryString);
-		List<Book> booksBasedOnKeyword = searchForBooksBasedOnKeyword(queryString);
-		List<Book> booksBasedOnPublishingLocation = searchForBooksBasedOnPublishingLocation(queryString);
-		List<Book> booksBasedOnCharacter = searchForBooksBasedOnCharacter(queryString);
-		List<Book> booksBasedOnTitle = searchForBooksBasedOnTitle(queryString);
+		allBooksFromQueries.addAll(searchForBooksBasedOnAuthor(queryString));
+		allBooksFromQueries.addAll(searchForBooksBasedOnKeyword(queryString));
+		allBooksFromQueries.addAll(searchForBooksBasedOnPublishingLocation(queryString));
+		allBooksFromQueries.addAll(searchForBooksBasedOnCharacter(queryString));
+		allBooksFromQueries.addAll(searchForBooksBasedOnTitle(queryString));
+		
+		List<Book> booksWithoutDuplicates = deleteDuplicateBooks(allBooksFromQueries);
 	
-		return null;
+		return booksWithoutDuplicates;
 	}
 
 	
@@ -83,8 +86,10 @@ public class JDBCBookDAO implements BookDAO{
 	}
 	
 	private List<Book> mapBookToSqlRowSet(SqlRowSet sqlRowSet, List<Book> books) {
+		boolean isNewBook = true;
 		long book_id = sqlRowSet.getLong("book_id");
 		for (int j = 0; j < books.size(); j++) {
+			isNewBook = false;
 			if (book_id == books.get(j).getBookId()) {
 				if (!books.get(j).getAuthorFirstNames().contains(sqlRowSet.getString("author_first_name")) && !books.get(j).getAuthorLastNames().contains(sqlRowSet.getString("author_last_name"))) {
 					books.get(j).getAuthorFirstNames().add(sqlRowSet.getString("author_first_name"));
@@ -94,15 +99,50 @@ public class JDBCBookDAO implements BookDAO{
 					books.get(j).getCharacterFirstNames().add(sqlRowSet.getString("character_first_name"));
 					books.get(j).getCharacterLastNames().add(sqlRowSet.getString("character_last_name"));
 				}
-				if (!books.get(j).getKeywords().contains(sqlRowSet.getString("character_first_name")) && !books.get(j).getCharacterLastNames().contains(sqlRowSet.getString("character_last_name"))) {
-					books.get(j).getCharacterFirstNames().add(sqlRowSet.getString("character_first_name"));
-					books.get(j).getCharacterLastNames().add(sqlRowSet.getString("character_last_name"));
+				if (!books.get(j).getKeywords().contains(sqlRowSet.getString("word"))) {
+					books.get(j).getKeywords().add(sqlRowSet.getString("word"));
 				}
+				
 			}
 		}
-		Book book = new Book();
+		
+		
+		if (isNewBook) {
+			Book book = new Book();
+			List<String> authorFirstNames = new ArrayList<String>();
+			authorFirstNames.add(sqlRowSet.getString("author_first_name"));
+			book.setAuthorFirstNames(authorFirstNames);
+			
+			List<String> authorLastNames = new ArrayList<String>();
+			authorLastNames.add(sqlRowSet.getString("author_last_name"));
+			book.setAuthorLastNames(authorLastNames);
+			
+			List<String> characterFirstNames = new ArrayList<String>();
+			characterFirstNames.add(sqlRowSet.getString("character_first_name"));
+			book.setAuthorFirstNames(authorFirstNames);
+			
+			List<String> characterLastNames = new ArrayList<String>();
+			characterLastNames.add(sqlRowSet.getString("character_last_name"));
+			book.setCharacterLastNames(authorLastNames);
+			
+			List<String> keywords = new ArrayList<String>();
+			keywords.add(sqlRowSet.getString("word"));
+			book.setKeywords(keywords);
+			
+			book.setBook_id(book_id);
+			book.setTitle(sqlRowSet.getString("title"));
+			book.setCity(sqlRowSet.getString("city"));
+			book.setCountry(sqlRowSet.getString("country"));
+			books.add(book);
+		}
 		
 		return books;
+	}
+	
+	private List<Book> deleteDuplicateBooks(List<Book> books) {
+		
+		return books;
+		
 	}
 	
 	
