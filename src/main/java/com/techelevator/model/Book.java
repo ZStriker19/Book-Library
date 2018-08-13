@@ -77,4 +77,10 @@ public class Book {
 		} 
 		return false;
 	}
+	
+	public int hashCode() {
+        return (int) this.bookId;
+    }
+	
+	
 }
