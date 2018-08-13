@@ -6,17 +6,17 @@ public interface BookDAO {
 
 	public void saveBook(Book book);
 
-	public List<Book> searchForBookInAllTables(String queryString);
+	public List<Book> searchForBooksInAllTables(String queryString);
 	
-	public List<Book> searchForBookBasedOnAuthor(String author);
+	public List<Book> searchForBooksBasedOnAuthor(String author);
 	
-	public List<Book> searchForBookBasedOnKeyword(String keyword);
+	public List<Book> searchForBooksBasedOnKeyword(String keyword);
 	
-	public List<Book> searchForBookBasedOnPublishingLocation(String location);
+	public List<Book> searchForBooksBasedOnPublishingLocation(String location);
 	
-	public List<Book> searchForBookBasedOnCharacter(String character);
+	public List<Book> searchForBooksBasedOnCharacter(String character);
 	
-	public List<Book> searchForBookBasedOnTitle(String title);
+	public List<Book> searchForBooksBasedOnTitle(String title);
 	
 	
 	
