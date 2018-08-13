@@ -70,4 +70,11 @@ public class Book {
 	public void setAuthorLastNames(List<String> authorLastNames) {
 		this.authorLastNames = authorLastNames;
 	}
+	
+	public boolean equals(Book otherBook) {
+		if (otherBook.getBookId() == this.bookId) {
+			return true;
+		} 
+		return false;
+	}
 }
