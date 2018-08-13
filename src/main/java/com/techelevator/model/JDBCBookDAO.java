@@ -2,6 +2,7 @@ package com.techelevator.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.sql.DataSource;
 
@@ -35,14 +36,14 @@ public class JDBCBookDAO implements BookDAO{
 		allBooksFromQueries.addAll(searchForBooksBasedOnTitle(queryString));
 		
 		List<Book> booksWithoutDuplicates = deleteDuplicateBooks(allBooksFromQueries);
-	
 		return booksWithoutDuplicates;
 	}
 
 	
 	public List<Book> searchForBooksBasedOnAuthor(String author) {
 		List<Book> books = new ArrayList<Book>();
-		String sqlQueryForAuthor = "SELECT book.book_id, book.title, author.f_name, author.l_name, character.f_name, character.l_name, location.city, location.country, keyword.word" 
+		String sqlQueryForAuthor = "SELECT book.book_id, book.title, author.f_name AS author_first_name, author.l_name AS author_last_name,"
+				+ " character.f_name AS character_first_name, character.l_name AS character_last_name, location.city, location.country, keyword.word" 
 				+ " FROM author "
 				+ " JOIN book_author ON book_author.author_id = author.author_id"
 				+ " JOIN book ON book.book_id = book_author.book_id" 
@@ -52,9 +53,9 @@ public class JDBCBookDAO implements BookDAO{
 				+ " JOIN location ON location.location_id = book_location.location_id"
 				+ " JOIN book_keyword ON book.book_id = book_keyword.book_id"
 				+ " JOIN keyword ON keyword.keyword_id = book_keyword.keyword_id"   
-				+ " WHERE author.f_name = 'j.k.' OR author.l_name = 'fitzgerald' ";
+				+ " WHERE author.f_name = ? OR author.l_name = ? ";
 		
-		SqlRowSet  result = jdbcTemplate.queryForRowSet(sqlQueryForAuthor);
+		SqlRowSet  result = jdbcTemplate.queryForRowSet(sqlQueryForAuthor, author, author);
 		if(result.next()) {
 			books = mapBookToSqlRowSet(result, books);
 		}
@@ -63,26 +64,92 @@ public class JDBCBookDAO implements BookDAO{
 
 	
 	public List<Book> searchForBooksBasedOnKeyword(String keyword) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Book> books = new ArrayList<Book>();
+		String sqlQueryForKeyword = "SELECT book.book_id, book.title, author.f_name AS author_first_name, author.l_name AS author_last_name,"
+				+ " character.f_name AS character_first_name, character.l_name AS character_last_name, location.city, location.country, keyword.word" 
+				+" FROM keyword" 
+				+" JOIN book_keyword ON keyword.keyword_id = book_keyword.keyword_id" 
+				+" JOIN book ON book.book_id = book_keyword.book_id" 
+				+" JOIN book_author ON book.book_id = book_author.book_id" 
+				+" JOIN author ON book_author.author_id = author.author_id"
+				+" JOIN book_character ON book.book_id = book_character.book_id"
+				+" JOIN character ON book_character.character_id = character.character_id"
+				+" JOIN book_location ON book.book_id = book_location.book_id"
+				+" JOIN location ON location.location_id = book_location.location_id"
+				+" WHERE keyword.word = ?";
+		SqlRowSet  result = jdbcTemplate.queryForRowSet(sqlQueryForKeyword, keyword);
+		if(result.next()) {
+			books = mapBookToSqlRowSet(result, books);
+		}
+		return books;
 	}
 
 	
 	public List<Book> searchForBooksBasedOnPublishingLocation(String location) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Book> books = new ArrayList<Book>();
+		String sqlQueryForLocation = "SELECT book.book_id, book.title, author.f_name AS author_first_name, author.l_name AS author_last_name,"
+				+ " character.f_name AS character_first_name, character.l_name AS character_last_name, location.city, location.country, keyword.word" 
+				+" FROM location"
+				+" JOIN book_location ON location.location_id = book_location.location_id"
+				+" JOIN book ON book.book_id = book_location.book_id" 
+				+" JOIN book_keyword ON book.book_id = book_keyword.book_id" 
+				+" JOIN keyword ON keyword.keyword_id = book_keyword.keyword_id"  
+				+" JOIN book_author ON book.book_id = book_author.book_id"  
+				+" JOIN author ON book_author.author_id = author.author_id" 
+				+" JOIN book_character ON book.book_id = book_character.book_id" 
+				+" JOIN character ON book_character.character_id = character.character_id" 
+				+" WHERE location.city = ? OR location.country = ?";
+		
+		SqlRowSet  result = jdbcTemplate.queryForRowSet(sqlQueryForLocation, location);
+		if(result.next()) {
+			books = mapBookToSqlRowSet(result, books);
+		}
+		return books;
 	}
 
 	
 	public List<Book> searchForBooksBasedOnCharacter(String character) {
-		// TODO Auto-generated method stub
-		return null;
+		String sqlQueryForCharacter = "SELECT book.book_id, book.title, author.f_name AS author_first_name, author.l_name AS author_last_name,"
+				+ " character.f_name AS character_first_name, character.l_name AS character_last_name, location.city, location.country, keyword.word" 
+				+" FROM character"
+				+" JOIN book_character ON character.character_id = book_character.character_id" 
+				+" JOIN book ON book_character.book_id = book.book_id"
+				+" JOIN book_location ON book.book_id = book_location.book_id"
+				+" JOIN location ON location.location_id = book_location.location_id"
+				+" JOIN book_keyword ON book.book_id = book_keyword.book_id"
+				+" JOIN keyword ON keyword.keyword_id = book_keyword.keyword_id" 
+				+" JOIN book_author ON book.book_id = book_author.book_id" 
+				+" JOIN author ON book_author.author_id = author.author_id"
+				+" WHERE character.f_name = ? OR character.l_name = ?";
+		List<Book> books = new ArrayList<Book>();
+		SqlRowSet  result = jdbcTemplate.queryForRowSet(sqlQueryForCharacter, character);
+		if(result.next()) {
+			books = mapBookToSqlRowSet(result, books);
+		}
+		return books;
 	}
 
 	
 	public List<Book> searchForBooksBasedOnTitle(String title) {
-		// TODO Auto-generated method stub
-		return null;
+		String sqlQueryForTitle = "SELECT book.book_id, book.title, author.f_name AS author_first_name, author.l_name AS author_last_name,"
+				+ " character.f_name AS character_first_name, character.l_name AS character_last_name, location.city, location.country, keyword.word" 
+				+"FROM book"
+				+" JOIN book_character ON book.book_id = book_character.book_id" 
+				+" JOIN character ON book_character.character_id = character.character_id"
+				+" JOIN book_location ON book.book_id = book_location.book_id"
+				+" JOIN location ON location.location_id = book_location.location_id"
+				+" JOIN book_keyword ON book.book_id = book_keyword.book_id"
+				+" JOIN keyword ON keyword.keyword_id = book_keyword.keyword_id" 
+				+" JOIN book_author ON book.book_id = book_author.book_id" 
+				+" JOIN author ON book_author.author_id = author.author_id"
+				+" WHERE book.title LIKE ? OR book.title = ? ";
+		
+		List<Book> books = new ArrayList<Book>();
+		SqlRowSet  result = jdbcTemplate.queryForRowSet(sqlQueryForTitle, title);
+		if(result.next()) {
+			books = mapBookToSqlRowSet(result, books);
+		}
+		return books;
 	}
 	
 	private List<Book> mapBookToSqlRowSet(SqlRowSet sqlRowSet, List<Book> books) {
@@ -105,8 +172,6 @@ public class JDBCBookDAO implements BookDAO{
 				
 			}
 		}
-		
-		
 		if (isNewBook) {
 			Book book = new Book();
 			List<String> authorFirstNames = new ArrayList<String>();
@@ -140,9 +205,8 @@ public class JDBCBookDAO implements BookDAO{
 	}
 	
 	private List<Book> deleteDuplicateBooks(List<Book> books) {
-		
-		return books;
-		
+		List<Book> booksWithoutDuplicates = books.stream().distinct().collect(Collectors.toList());
+		return booksWithoutDuplicates;
 	}
 	
 	
