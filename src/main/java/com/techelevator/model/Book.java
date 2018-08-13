@@ -2,6 +2,8 @@ package com.techelevator.model;
 
 import java.util.List;
 
+import org.apache.commons.text.WordUtils;
+
 public class Book {
 	private long bookId;
 	private String title;
@@ -21,19 +23,19 @@ public class Book {
 		this.bookId = book_id;
 	}
 	public String getTitle() {
-		return title;
+		return WordUtils.capitalize(title);
 	}	
 	public void setTitle(String title) {
 		this.title = title;
 	}
 	public String getCity() {
-		return city;
+		return WordUtils.capitalize(city);
 	}
 	public void setCity(String city) {
 		this.city = city;
 	}
 	public String getCountry() {
-		return country;
+		return WordUtils.capitalize(country);
 	}
 	public void setCountry(String country) {
 		this.country = country;
@@ -68,7 +70,4 @@ public class Book {
 	public void setAuthorLastNames(List<String> authorLastNames) {
 		this.authorLastNames = authorLastNames;
 	}
-	
-	
-
 }
