@@ -1,6 +1,5 @@
 package com.techelevator.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.text.WordUtils;
@@ -48,24 +47,36 @@ public class Book {
 		this.keywords = keywords;
 	}
 	public List<String> getCharacterFirstNames() {
+		for(int i = 0; i < characterFirstNames.size(); i++) {
+	        characterFirstNames.set(i, WordUtils.capitalize(characterFirstNames.get(i)));
+	      }
 		return characterFirstNames;
 	}
 	public void setCharacterFirstNames(List<String> characterFirstNames) {
 		this.characterFirstNames = characterFirstNames;
 	}
 	public List<String> getCharacterLastNames() {
+		for(int i = 0; i < characterLastNames.size(); i++) {
+	        characterLastNames.set(i, WordUtils.capitalize(characterLastNames.get(i)));
+	      }
 		return characterLastNames;
 	}
 	public void setCharacterLastNames(List<String> characterLastNames) {
 		this.characterLastNames = characterLastNames;
 	}
 	public List<String> getAuthorFirstNames() {
+		for(int i = 0; i < authorFirstNames.size(); i++) {
+	        authorFirstNames.set(i, WordUtils.capitalize(authorFirstNames.get(i)));
+	      }
 		return authorFirstNames;
 	}
 	public void setAuthorFirstNames(List<String> authorFirstNames) {
 		this.authorFirstNames = authorFirstNames;
 	}
 	public List<String> getAuthorLastNames() {
+		for(int i = 0; i < authorLastNames.size(); i++) {
+	        authorLastNames.set(i, WordUtils.capitalize(authorLastNames.get(i)));
+	      }
 		return authorLastNames;
 	}
 	public void setAuthorLastNames(List<String> authorLastNames) {
