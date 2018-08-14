@@ -84,14 +84,17 @@ public class Book {
 	}
 	
 	public boolean equals(Book otherBook) {
+		
 		if (otherBook.getBookId() == this.bookId) {
 			return true;
 		} 
 		return false;
 	}
 	
+	
 	public int hashCode() {
-        return (int) this.bookId;
+		int bookIdInt = (int) this.bookId;
+        return bookIdInt;
     }
 	
 	

@@ -22,12 +22,12 @@ public class HomeController {
 	return "homepage";
 	}
 	
-	@RequestMapping(path=("/"), method=RequestMethod.POST)
+	@RequestMapping(path=("/search"), method=RequestMethod.GET)
 	public String searchBookResults(HttpServletRequest request) {
 		String book = request.getParameter("queryString");
 		List<Book> bookSearch = bookDAO.searchForBooks(book);
 		request.setAttribute("book", bookSearch);
-		return "redirect:/"; //links to JSP page
+		return "homepage"; //links to JSP page
 	}
 	
 }

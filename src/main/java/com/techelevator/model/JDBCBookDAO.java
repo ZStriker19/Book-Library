@@ -9,6 +9,9 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Component;
+
+@Component
 
 public class JDBCBookDAO implements BookDAO{
 	
@@ -52,9 +55,10 @@ public class JDBCBookDAO implements BookDAO{
 				+ " JOIN keyword ON keyword.keyword_id = book_keyword.keyword_id"   
 				+ " WHERE author.f_name = ? OR author.l_name = ? ";
 		
-		SqlRowSet  result = jdbcTemplate.queryForRowSet(sqlQueryForAuthor, author, author);
-		if(result.next()) {
-			books = mapBookToSqlRowSet(result, books);
+		SqlRowSet  results = jdbcTemplate.queryForRowSet(sqlQueryForAuthor, author, author);
+		
+		while(results.next()) {
+			books = mapBookToSqlRowSet(results, books);
 		}
 		return books;
 	}
@@ -75,7 +79,7 @@ public class JDBCBookDAO implements BookDAO{
 				+" JOIN location ON location.location_id = book_location.location_id"
 				+" WHERE keyword.word = ?";
 		SqlRowSet  result = jdbcTemplate.queryForRowSet(sqlQueryForKeyword, keyword);
-		if(result.next()) {
+		while(result.next()) {
 			books = mapBookToSqlRowSet(result, books);
 		}
 		return books;
@@ -97,8 +101,8 @@ public class JDBCBookDAO implements BookDAO{
 				+" JOIN character ON book_character.character_id = character.character_id" 
 				+" WHERE location.city = ? OR location.country = ?";
 		
-		SqlRowSet  result = jdbcTemplate.queryForRowSet(sqlQueryForLocation, location);
-		if(result.next()) {
+		SqlRowSet  result = jdbcTemplate.queryForRowSet(sqlQueryForLocation, location, location);
+		while(result.next()) {
 			books = mapBookToSqlRowSet(result, books);
 		}
 		return books;
@@ -119,8 +123,8 @@ public class JDBCBookDAO implements BookDAO{
 				+" JOIN author ON book_author.author_id = author.author_id"
 				+" WHERE character.f_name = ? OR character.l_name = ?";
 		List<Book> books = new ArrayList<Book>();
-		SqlRowSet  result = jdbcTemplate.queryForRowSet(sqlQueryForCharacter, character);
-		if(result.next()) {
+		SqlRowSet  result = jdbcTemplate.queryForRowSet(sqlQueryForCharacter, character, character);
+		while(result.next()) {
 			books = mapBookToSqlRowSet(result, books);
 		}
 		return books;
@@ -130,7 +134,7 @@ public class JDBCBookDAO implements BookDAO{
 	public List<Book> searchForBooksBasedOnTitle(String title) {
 		String sqlQueryForTitle = "SELECT book.book_id, book.title, author.f_name AS author_first_name, author.l_name AS author_last_name,"
 				+ " character.f_name AS character_first_name, character.l_name AS character_last_name, location.city, location.country, keyword.word" 
-				+"FROM book"
+				+" FROM book"
 				+" JOIN book_character ON book.book_id = book_character.book_id" 
 				+" JOIN character ON book_character.character_id = character.character_id"
 				+" JOIN book_location ON book.book_id = book_location.book_id"
@@ -140,10 +144,9 @@ public class JDBCBookDAO implements BookDAO{
 				+" JOIN book_author ON book.book_id = book_author.book_id" 
 				+" JOIN author ON book_author.author_id = author.author_id"
 				+" WHERE book.title LIKE ? OR book.title = ? ";
-		
 		List<Book> books = new ArrayList<Book>();
-		SqlRowSet  result = jdbcTemplate.queryForRowSet(sqlQueryForTitle, title);
-		if(result.next()) {
+		SqlRowSet  result = jdbcTemplate.queryForRowSet(sqlQueryForTitle, "%" + title + "%", title);
+		while(result.next()) {
 			books = mapBookToSqlRowSet(result, books);
 		}
 		return books;
@@ -155,28 +158,23 @@ public class JDBCBookDAO implements BookDAO{
 	}
 	
 	private List<Book> mapBookToSqlRowSet(SqlRowSet sqlRowSet, List<Book> books) {
-		boolean isNewBook = true;
-		for (int j = 0; j < books.size(); j++) {
-			if (bookAlreadyOnList(sqlRowSet, books, j)) {
-				
-				isNewBook = false;
-				
-				if (authorNotAlreadyInBook(sqlRowSet, books, j)) {
-					books.get(j).getAuthorFirstNames().add(sqlRowSet.getString("author_first_name"));
-					books.get(j).getAuthorLastNames().add(sqlRowSet.getString("author_last_name"));
+		Book newBook = createNewBook(sqlRowSet);
+		if (containsBook(newBook, books)) {
+			for (int j = 0; j < books.size(); j++) {
+				if (authorNotAlreadyInBook(newBook, books, j)) {
+					books.get(j).getAuthorFirstNames().add(newBook.getAuthorFirstNames().get(0));
+					books.get(j).getAuthorLastNames().add(newBook.getAuthorLastNames().get(0));
 				}
-				if (characterNotAlreadyInBook(sqlRowSet, books, j)) {
-					books.get(j).getCharacterFirstNames().add(sqlRowSet.getString("character_first_name"));
-					books.get(j).getCharacterLastNames().add(sqlRowSet.getString("character_last_name"));
+				if (characterNotAlreadyInBook(newBook, books, j)) {
+					books.get(j).getCharacterFirstNames().add(newBook.getCharacterFirstNames().get(0));
+					books.get(j).getCharacterLastNames().add(newBook.getCharacterLastNames().get(0));
 				}
-				if (keywordNotAlreadyInBook(sqlRowSet, books, j)) {
-					books.get(j).getKeywords().add(sqlRowSet.getString("word"));
+				if (keywordNotAlreadyInBook(newBook, books, j)) {
+					books.get(j).getKeywords().add(newBook.getKeywords().get(0));
 				}
-				
+			
 			}
-		}
-		if (isNewBook) {
-			Book newBook = createNewBook(sqlRowSet);
+		} else {
 			books.add(newBook);
 		}
 		return books;
@@ -194,7 +192,7 @@ public class JDBCBookDAO implements BookDAO{
 		
 		List<String> characterFirstNames = new ArrayList<String>();
 		characterFirstNames.add(sqlRowSet.getString("character_first_name"));
-		book.setAuthorFirstNames(authorFirstNames);
+		book.setCharacterFirstNames(authorFirstNames);
 		
 		List<String> characterLastNames = new ArrayList<String>();
 		characterLastNames.add(sqlRowSet.getString("character_last_name"));
@@ -213,26 +211,33 @@ public class JDBCBookDAO implements BookDAO{
 		
 	}
 	
-	private boolean authorNotAlreadyInBook(SqlRowSet sqlRowSet,List<Book> books, int j) {
-		return (!books.get(j).getAuthorFirstNames().contains(sqlRowSet.getString("author_first_name")) && 
-				!books.get(j).getAuthorLastNames().contains(sqlRowSet.getString("author_last_name")));
+	private boolean bookAlreadyOnList(Book newBook, List<Book> books) {
+		return (books.contains(newBook));
 	}
 	
-	private boolean bookAlreadyOnList(SqlRowSet sqlRowSet,List<Book> books, int j) {
-		return (sqlRowSet.getLong("book_id") == books.get(j).getBookId());
+	private boolean authorNotAlreadyInBook(Book newBook, List<Book> books, int j) {
+		return (!books.get(j).getAuthorFirstNames().contains(newBook.getAuthorFirstNames().get(0)) && 
+				!books.get(j).getAuthorLastNames().contains(newBook.getAuthorLastNames().get(0)));
 	}
 	
-	private boolean characterNotAlreadyInBook(SqlRowSet sqlRowSet,List<Book> books, int j) {
-		return (!books.get(j).getCharacterFirstNames().contains(sqlRowSet.getString("character_first_name")) && 
-				!books.get(j)
-				.getCharacterLastNames()
-				.contains(sqlRowSet.getString("character_last_name")));
+	
+	private boolean characterNotAlreadyInBook(Book newBook,List<Book> books, int j) {
+		return (!books.get(j).getCharacterFirstNames().contains(newBook.getCharacterFirstNames().get(0)) && 
+				!books.get(j).getCharacterLastNames().contains(newBook.getCharacterLastNames().get(0)));
 	}
 	
-	private boolean keywordNotAlreadyInBook(SqlRowSet sqlRowSet,List<Book> books, int j) {
-		return (!books.get(j).getKeywords().contains(sqlRowSet.getString("word")));
+	private boolean keywordNotAlreadyInBook(Book newBook,List<Book> books, int j) {
+		return (!books.get(j).getKeywords().contains(newBook.getKeywords().get(0)));
 	}
 	
+	private boolean containsBook(Book newBook, List<Book> books) {
+		for (Book book : books) {
+			if (book.equals(newBook)) {
+				return true;
+			}
+		}
+		return false;
+	}
 	
 	
 }
