@@ -11,7 +11,7 @@
 	    <script src="http://cdn.jsdelivr.net/jquery.validation/1.15.0/additional-methods.js "></script>
 	    <script src="https://cdn.jsdelivr.net/jquery.timeago/1.4.1/jquery.timeago.min.js"></script>
 	    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-	    <c:url var="cssHref" value="css/homepage.css" />
+	    <c:url var="cssHref" value="/css/homepage.css" />
 		<link rel="stylesheet" type="text/css" href="${cssHref}">
 		
 		<script type="text/javascript">
@@ -47,7 +47,8 @@
 				<ul class="nav navbar-nav">
 					<c:url var="homePageHref" value="/" />
 					<li><a href="${homePageHref}">Home</a></li>
-					<li><a href="${homePageHref}">Add Book</a></li>
+					<c:url var="addBookHref" value="/addBook" />
+					<li><a href="${addBookHref}">Add Book</a></li>
 					
 					
 					<c:if test="${not empty currentUser}">
