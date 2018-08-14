@@ -9,8 +9,9 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Component;
 
-
+@Component
 public class JDBCBookDAO implements BookDAO{
 	
 	private JdbcTemplate jdbcTemplate;
@@ -54,10 +55,16 @@ public class JDBCBookDAO implements BookDAO{
 				+ " JOIN book_keyword ON book.book_id = book_keyword.book_id"
 				+ " JOIN keyword ON keyword.keyword_id = book_keyword.keyword_id"   
 				+ " WHERE author.f_name = ? OR author.l_name = ? ";
+		int c = 0;
+		SqlRowSet  results = jdbcTemplate.queryForRowSet(sqlQueryForAuthor, author, author);
 		
-		SqlRowSet  result = jdbcTemplate.queryForRowSet(sqlQueryForAuthor, author, author);
-		if(result.next()) {
-			books = mapBookToSqlRowSet(result, books);
+		System.out.println("in search for books based on author");
+		while(results.next()) {
+			
+			System.out.println("inside .next");
+			System.out.println("this is c " + c);
+			c++;
+			books = mapBookToSqlRowSet(results, books);
 		}
 		return books;
 	}
@@ -78,7 +85,7 @@ public class JDBCBookDAO implements BookDAO{
 				+" JOIN location ON location.location_id = book_location.location_id"
 				+" WHERE keyword.word = ?";
 		SqlRowSet  result = jdbcTemplate.queryForRowSet(sqlQueryForKeyword, keyword);
-		if(result.next()) {
+		while(result.next()) {
 			books = mapBookToSqlRowSet(result, books);
 		}
 		return books;
@@ -101,7 +108,7 @@ public class JDBCBookDAO implements BookDAO{
 				+" WHERE location.city = ? OR location.country = ?";
 		
 		SqlRowSet  result = jdbcTemplate.queryForRowSet(sqlQueryForLocation, location);
-		if(result.next()) {
+		while(result.next()) {
 			books = mapBookToSqlRowSet(result, books);
 		}
 		return books;
@@ -122,8 +129,8 @@ public class JDBCBookDAO implements BookDAO{
 				+" JOIN author ON book_author.author_id = author.author_id"
 				+" WHERE character.f_name = ? OR character.l_name = ?";
 		List<Book> books = new ArrayList<Book>();
-		SqlRowSet  result = jdbcTemplate.queryForRowSet(sqlQueryForCharacter, character);
-		if(result.next()) {
+		SqlRowSet  result = jdbcTemplate.queryForRowSet(sqlQueryForCharacter, character, character);
+		while(result.next()) {
 			books = mapBookToSqlRowSet(result, books);
 		}
 		return books;
@@ -143,10 +150,9 @@ public class JDBCBookDAO implements BookDAO{
 				+" JOIN book_author ON book.book_id = book_author.book_id" 
 				+" JOIN author ON book_author.author_id = author.author_id"
 				+" WHERE book.title LIKE ? OR book.title = ? ";
-		
 		List<Book> books = new ArrayList<Book>();
 		SqlRowSet  result = jdbcTemplate.queryForRowSet(sqlQueryForTitle, title);
-		if(result.next()) {
+		while(result.next()) {
 			books = mapBookToSqlRowSet(result, books);
 		}
 		return books;
