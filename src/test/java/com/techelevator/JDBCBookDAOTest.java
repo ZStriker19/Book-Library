@@ -63,7 +63,7 @@ public class JDBCBookDAOTest extends DAOIntegrationTest {
 	
 	@Test
 	public void get_books_from_search_for_books() throws SQLException {
-		String queryString = "j.k.";
+		String queryString = "harry";
 		List<Book> books = bookDao.searchForBooks(queryString);
 		Assert.assertNotNull(books);
 		
