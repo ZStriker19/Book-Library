@@ -31,6 +31,7 @@
 	
 	<c:out value="${books.authorLastNames}"></c:out>
 	 </td> 
+	
   </tr>
   </c:forEach>
 </table>
