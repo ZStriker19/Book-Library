@@ -6,7 +6,7 @@ public interface BookDAO {
 
 	public void saveBook(Book book);
 
-	public List<Book> searchForBooksInAllTables(String queryString);
+	public List<Book> searchForBooks(String queryString);
 	
 	public List<Book> searchForBooksBasedOnAuthor(String author);
 	

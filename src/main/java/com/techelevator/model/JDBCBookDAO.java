@@ -26,7 +26,7 @@ public class JDBCBookDAO implements BookDAO{
 		
 	}
 
-	public List<Book> searchForBooksInAllTables(String queryString) {
+	public List<Book> searchForBooks(String queryString) {
 		List<Book> allBooksFromQueries = new ArrayList<Book>();
 		
 		allBooksFromQueries.addAll(searchForBooksBasedOnAuthor(queryString));
@@ -226,7 +226,8 @@ public class JDBCBookDAO implements BookDAO{
 	}
 	
 	private boolean characterNotAlreadyInBook(SqlRowSet sqlRowSet,List<Book> books, int j) {
-		return (!books.get(j).getCharacterFirstNames().contains(sqlRowSet.getString("character_first_name")) && !books.get(j)
+		return (!books.get(j).getCharacterFirstNames().contains(sqlRowSet.getString("character_first_name")) && 
+				!books.get(j)
 				.getCharacterLastNames()
 				.contains(sqlRowSet.getString("character_last_name")));
 	}
