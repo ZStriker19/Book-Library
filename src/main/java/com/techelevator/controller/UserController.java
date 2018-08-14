@@ -24,12 +24,11 @@ public class UserController {
 
 	private UserDAO userDAO;
 	private BookDAO bookDAO;
+	
 	@Autowired
 	public UserController(UserDAO userDAO) {
 		this.userDAO = userDAO;
 	}
-//	@Autowired
-//	private BookDAO bookDAO;
 
 	@RequestMapping(path=("/"), method=RequestMethod.GET)
 	public String showHomepage() {
