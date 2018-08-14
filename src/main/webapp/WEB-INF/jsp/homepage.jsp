@@ -3,8 +3,8 @@
 <c:import url="/WEB-INF/jsp/header.jsp"/>
 
 <h1>Please search for a book by: Title, Author, Character, Keyword, or Location </h1>
-<c:url var="formAction" value="/"/>
-<form class="form-inline" method="POST" action="${formAction}">
+<c:url var="formAction" value="/search"/>
+<form class="form-inline" method="GET" action="${formAction}">
 <div>
 	<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
     <i class="fa fa-search" aria-hidden="true"></i>
@@ -20,20 +20,16 @@
     <th>Book Title</th>
     <th>Author</th>
   </tr>
-  <c:forEach items="${books}" var="book">
+  <c:forEach items="${book}" var="books">
   <tr>
-
-    <td>${book.title}</td>
    <td>
-
-   <td>
-   <c:out value="${book.title}"/>
+   <c:out value="${books.title}"/>
    </td>
    <td>
 
-     <c:out value="${book.authorFirstNames}"></c:out>
+     <c:out value="${books.authorFirstNames}"></c:out>
 	
-	 <c:out value="${book.authorLastNames}"></c:out>
+	<c:out value="${books.authorLastNames}"></c:out>
 	 </td> 
   </tr>
   </c:forEach>
