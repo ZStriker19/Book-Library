@@ -29,22 +29,6 @@ public class UserController {
 		this.userDAO = userDAO;
 	}
 
-<<<<<<< HEAD
-	@RequestMapping(path=("/"), method=RequestMethod.GET)
-	public String showHomepage() {
-	return "homepage";
-	}
-	
-	@RequestMapping(path=("/"), method=RequestMethod.POST)
-	public String searchBookResults(HttpServletRequest request) {
-		String book = request.getParameter("queryString");
-		List<Book> bookSearch = bookDAO.searchForBooks(book);
-		request.setAttribute("book", bookSearch);
-		return "redirect:/"; //links to JSP page
-	}
-	
-=======
->>>>>>> 1bb9e5eba68786be64c2e18802238fbbd66d697b
 	@RequestMapping(path="/users/new", method=RequestMethod.GET)
 	public String displayNewUserForm(ModelMap modelHolder) {
 		if( ! modelHolder.containsAttribute("user")) {
