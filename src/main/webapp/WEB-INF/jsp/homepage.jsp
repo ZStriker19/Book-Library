@@ -21,11 +21,11 @@
   </tr>
   <tr>
     <td>${book.title}</td>
-   <td>
+   <%-- <td>
      <c:out value="${book.authorFirstNames}"></c:out>
 	
 	 <c:out value="${book.authorLastNames}"></c:out>
-	 </td>
+	 </td> --%>
   </tr>
 </table>
 

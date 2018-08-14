@@ -39,7 +39,7 @@ public class UserController {
 	@RequestMapping(path=("/"), method=RequestMethod.POST)
 	public String searchBookResults(HttpServletRequest request) {
 		String book = request.getParameter("queryString");
-		List<Book> bookSearch = bookDAO.searchForBooksInAllTables(book);
+		List<Book> bookSearch = bookDAO.searchForBooks(book);
 		request.setAttribute("book", bookSearch);
 		return "redirect:/"; //links to JSP page
 	}
