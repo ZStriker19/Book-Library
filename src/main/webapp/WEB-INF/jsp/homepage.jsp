@@ -27,9 +27,8 @@
    </td>
    <td>
 
-     <c:out value="${books.authorFirstNames}"></c:out>
+     <c:out value="${books.getAuthorFullNames()}"></c:out>
 	
-	<c:out value="${books.authorLastNames}"></c:out>
 	 </td> 
   </tr>
   </c:forEach>

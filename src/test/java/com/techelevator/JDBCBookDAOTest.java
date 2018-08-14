@@ -68,9 +68,6 @@ public class JDBCBookDAOTest extends DAOIntegrationTest {
 		Assert.assertNotNull(books);
 		
 		Assert.assertEquals(3, books.size());
-		Assert.assertEquals(1, books.get(0).getBookId());
-		Assert.assertEquals(2, books.get(1).getBookId());
-		Assert.assertEquals(3, books.get(2).getBookId());
 		Assert.assertEquals("London", books.get(2).getCity());
 	}
 }
