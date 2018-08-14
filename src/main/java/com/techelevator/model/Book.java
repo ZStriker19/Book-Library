@@ -2,16 +2,18 @@ package com.techelevator.model;
 
 import java.util.List;
 
+import org.apache.commons.text.WordUtils;
+
 public class Book {
 	private long bookId;
 	private String title;
 	private String city;
 	private String country;
-	private String keyword;
-	private String characterFirstNames;
+	private List<String> keywords;
+	private List<String> characterFirstNames;
 	private List<String> characterLastNames;
 	private List<String> authorFirstNames;
-	private String authorLastNames;
+	private List<String> authorLastNames;
 	
 	
 	public long getBookId() {
@@ -21,54 +23,76 @@ public class Book {
 		this.bookId = book_id;
 	}
 	public String getTitle() {
-		return title;
-	}
+		return WordUtils.capitalize(title);
+	}	
 	public void setTitle(String title) {
 		this.title = title;
 	}
 	public String getCity() {
-		return city;
+		return WordUtils.capitalize(city);
 	}
 	public void setCity(String city) {
 		this.city = city;
 	}
 	public String getCountry() {
-		return country;
+		return WordUtils.capitalize(country);
 	}
 	public void setCountry(String country) {
 		this.country = country;
 	}
-	public String getKeyword() {
-		return keyword;
+	public List<String> getKeywords() {
+		return keywords;
 	}
-	public void setKeyword(String keyword) {
-		this.keyword = keyword;
+	public void setKeywords(List<String> keywords) {
+		this.keywords = keywords;
 	}
-	public String getCharacterFirstName() {
+	public List<String> getCharacterFirstNames() {
+		for(int i = 0; i < characterFirstNames.size(); i++) {
+	        characterFirstNames.set(i, WordUtils.capitalize(characterFirstNames.get(i)));
+	      }
 		return characterFirstNames;
 	}
-	public void setCharacterFirstName(String characterFirstNames) {
+	public void setCharacterFirstNames(List<String> characterFirstNames) {
 		this.characterFirstNames = characterFirstNames;
 	}
 	public List<String> getCharacterLastNames() {
+		for(int i = 0; i < characterLastNames.size(); i++) {
+	        characterLastNames.set(i, WordUtils.capitalize(characterLastNames.get(i)));
+	      }
 		return characterLastNames;
 	}
 	public void setCharacterLastNames(List<String> characterLastNames) {
 		this.characterLastNames = characterLastNames;
 	}
 	public List<String> getAuthorFirstNames() {
+		for(int i = 0; i < authorFirstNames.size(); i++) {
+	        authorFirstNames.set(i, WordUtils.capitalize(authorFirstNames.get(i)));
+	      }
 		return authorFirstNames;
 	}
 	public void setAuthorFirstNames(List<String> authorFirstNames) {
 		this.authorFirstNames = authorFirstNames;
 	}
-	public String getAuthorLastNames() {
+	public List<String> getAuthorLastNames() {
+		for(int i = 0; i < authorLastNames.size(); i++) {
+	        authorLastNames.set(i, WordUtils.capitalize(authorLastNames.get(i)));
+	      }
 		return authorLastNames;
 	}
-	public void setAuthorLastNames(String authorLastNames) {
+	public void setAuthorLastNames(List<String> authorLastNames) {
 		this.authorLastNames = authorLastNames;
 	}
 	
+	public boolean equals(Book otherBook) {
+		if (otherBook.getBookId() == this.bookId) {
+			return true;
+		} 
+		return false;
+	}
 	
-
+	public int hashCode() {
+        return (int) this.bookId;
+    }
+	
+	
 }
