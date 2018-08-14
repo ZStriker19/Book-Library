@@ -22,14 +22,19 @@
   </tr>
   <c:forEach items="${books}" var="book">
   <tr>
+
+    <td>${book.title}</td>
    <td>
-   <c:out value="${book.title}"></c:out>
+
+   <td>
+   <c:out value="${book.title}"/>
    </td>
    <td>
+
      <c:out value="${book.authorFirstNames}"></c:out>
 	
 	 <c:out value="${book.authorLastNames}"></c:out>
-	 </td>
+	 </td> 
   </tr>
   </c:forEach>
 </table>
