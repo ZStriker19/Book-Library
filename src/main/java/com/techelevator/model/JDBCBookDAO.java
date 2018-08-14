@@ -55,15 +55,10 @@ public class JDBCBookDAO implements BookDAO{
 				+ " JOIN book_keyword ON book.book_id = book_keyword.book_id"
 				+ " JOIN keyword ON keyword.keyword_id = book_keyword.keyword_id"   
 				+ " WHERE author.f_name = ? OR author.l_name = ? ";
-		int c = 0;
+		
 		SqlRowSet  results = jdbcTemplate.queryForRowSet(sqlQueryForAuthor, author, author);
 		
-		System.out.println("in search for books based on author");
 		while(results.next()) {
-			
-			System.out.println("inside .next");
-			System.out.println("this is c " + c);
-			c++;
 			books = mapBookToSqlRowSet(results, books);
 		}
 		return books;
@@ -165,14 +160,7 @@ public class JDBCBookDAO implements BookDAO{
 	
 	private List<Book> mapBookToSqlRowSet(SqlRowSet sqlRowSet, List<Book> books) {
 		Book newBook = createNewBook(sqlRowSet);
-//		System.out.println("this is the newbooks id " + newBook.getBookId());
-//		if (books.size() > 0) {
-//			System.out.println("this is the last book added's id " + books.get(books.size()-1).getBookId());
-//			boolean areTheysame = newBook.equals(books.get(0));
-//			System.out.println(areTheysame);
-//		}
 		if (containsBook(newBook, books)) {
-			System.out.println("it's the same book");
 			for (int j = 0; j < books.size(); j++) {
 				if (authorNotAlreadyInBook(newBook, books, j)) {
 					books.get(j).getAuthorFirstNames().add(newBook.getAuthorFirstNames().get(0));
@@ -188,7 +176,6 @@ public class JDBCBookDAO implements BookDAO{
 			
 			}
 		} else {
-			System.out.println("not the same ");
 			books.add(newBook);
 		}
 		return books;

@@ -25,7 +25,6 @@ public class JDBCBookDAOTest extends DAOIntegrationTest {
 	public void get_books_from_author_table() throws SQLException {
 		String queryString = "j.k.";
 		List<Book> books = bookDao.searchForBooksBasedOnAuthor(queryString);
-		System.out.println("books once function completes: " + books.get(2).getTitle());
 		Assert.assertNotNull(books);
 		Assert.assertEquals(3, books.size());
 	}
@@ -67,6 +66,11 @@ public class JDBCBookDAOTest extends DAOIntegrationTest {
 		String queryString = "j.k.";
 		List<Book> books = bookDao.searchForBooks(queryString);
 		Assert.assertNotNull(books);
+		
 		Assert.assertEquals(3, books.size());
+		Assert.assertEquals(1, books.get(0).getBookId());
+		Assert.assertEquals(2, books.get(1).getBookId());
+		Assert.assertEquals(3, books.get(2).getBookId());
+		Assert.assertEquals("London", books.get(2).getCity());
 	}
 }

@@ -84,9 +84,6 @@ public class Book {
 	}
 	
 	public boolean equals(Book otherBook) {
-		System.out.println("we've enetered the equals method for book");
-		System.out.println("this the otherBookId " + otherBook.getBookId());
-		System.out.println("this this books id " + this.getBookId());
 		
 		if (otherBook.getBookId() == this.bookId) {
 			return true;
@@ -94,17 +91,6 @@ public class Book {
 		return false;
 	}
 	
-//	public boolean equals(Object obj) {
-//		if (!(obj instanceof Dog))
-//			return false;	
-//		if (obj == this)
-//			return true;
-//		return this.color.equals(((Dog) obj).color);
-//	}
-// 
-//	public int hashCode(){
-//		return color.length();//for simplicity reason
-//	}
 	
 	public int hashCode() {
 		int bookIdInt = (int) this.bookId;
