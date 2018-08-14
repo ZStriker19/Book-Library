@@ -12,6 +12,7 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
 @Component
+
 public class JDBCBookDAO implements BookDAO{
 	
 	private JdbcTemplate jdbcTemplate;
@@ -23,8 +24,7 @@ public class JDBCBookDAO implements BookDAO{
 
 	
 	public void saveBook(Book book) {
-		// TODO Auto-generated method stub
-		
+		// TODO Auto-generated method stub	
 	}
 
 	public List<Book> searchForBooks(String queryString) {

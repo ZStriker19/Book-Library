@@ -23,27 +23,12 @@ import com.techelevator.model.UserDAO;
 public class UserController {
 
 	private UserDAO userDAO;
-	private BookDAO bookDAO;
+	
 	@Autowired
 	public UserController(UserDAO userDAO) {
 		this.userDAO = userDAO;
 	}
-//	@Autowired
-//	private BookDAO bookDAO;
 
-	@RequestMapping(path=("/"), method=RequestMethod.GET)
-	public String showHomepage() {
-	return "homepage";
-	}
-	
-	@RequestMapping(path=("/"), method=RequestMethod.POST)
-	public String searchBookResults(HttpServletRequest request) {
-		String book = request.getParameter("queryString");
-		List<Book> bookSearch = bookDAO.searchForBooksInAllTables(book);
-		request.setAttribute("book", bookSearch);
-		return "redirect:/"; //links to JSP page
-	}
-	
 	@RequestMapping(path="/users/new", method=RequestMethod.GET)
 	public String displayNewUserForm(ModelMap modelHolder) {
 		if( ! modelHolder.containsAttribute("user")) {
