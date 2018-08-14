@@ -23,14 +23,13 @@ import com.techelevator.model.UserDAO;
 public class UserController {
 
 	private UserDAO userDAO;
-	private BookDAO bookDAO;
+	
 	@Autowired
 	public UserController(UserDAO userDAO) {
 		this.userDAO = userDAO;
 	}
-//	@Autowired
-//	private BookDAO bookDAO;
 
+<<<<<<< HEAD
 	@RequestMapping(path=("/"), method=RequestMethod.GET)
 	public String showHomepage() {
 	return "homepage";
@@ -44,6 +43,8 @@ public class UserController {
 		return "redirect:/"; //links to JSP page
 	}
 	
+=======
+>>>>>>> 1bb9e5eba68786be64c2e18802238fbbd66d697b
 	@RequestMapping(path="/users/new", method=RequestMethod.GET)
 	public String displayNewUserForm(ModelMap modelHolder) {
 		if( ! modelHolder.containsAttribute("user")) {
