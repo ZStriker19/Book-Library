@@ -2,7 +2,7 @@
 
 <c:import url="/WEB-INF/jsp/header.jsp"/>
 
-<h1>Please search for a book by: </h1>
+<h1>Please search for a book by: Title, Author, Character, Keyword, or Location </h1>
 <form class="form-inline">
 <div>
 	<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
