@@ -21,7 +21,6 @@ public class JDBCBookDAO implements BookDAO{
 	public JDBCBookDAO(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
-
 	
 	public void saveBook(Book book) {
 		// TODO Auto-generated method stub	

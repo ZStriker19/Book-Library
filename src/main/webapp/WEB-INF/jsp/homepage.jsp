@@ -30,6 +30,7 @@
      <c:out value="${books.getAuthorFullNames()}"></c:out>
 	
 	 </td> 
+	
   </tr>
   </c:forEach>
 </table>
