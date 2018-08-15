@@ -21,13 +21,14 @@ public class JDBCBookDAO implements BookDAO{
 	public JDBCBookDAO(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
-
 	
 	public void saveBook(Book book) {
 		// TODO Auto-generated method stub	
 	}
 
 	public List<Book> searchForBooks(String queryString) {
+		queryString = queryString.toLowerCase();
+		
 		List<Book> allBooksFromQueries = new ArrayList<Book>();
 		
 		allBooksFromQueries.addAll(searchForBooksBasedOnAuthor(queryString));
@@ -154,8 +155,19 @@ public class JDBCBookDAO implements BookDAO{
 	}
 	
 	private List<Book> deleteDuplicateBooks(List<Book> books) {
-		List<Book> booksWithoutDuplicates = books.stream().distinct().collect(Collectors.toList());
-		return booksWithoutDuplicates;
+		for (int i = 0; i < books.size(); i++) {
+			Book bookToCheck = books.get(i);
+			int bookCounter = 0;
+			for (int j = 0; j < books.size(); j++) {
+				if (bookToCheck.equals(books.get(j))) {
+					bookCounter++;
+				}
+				if (bookCounter > 1) {
+					books.remove(i);
+				}
+			}
+		}
+		return books;
 	}
 	
 	private List<Book> mapBookToSqlRowSet(SqlRowSet sqlRowSet, List<Book> books) {
@@ -212,9 +224,6 @@ public class JDBCBookDAO implements BookDAO{
 		
 	}
 	
-	private boolean bookAlreadyOnList(Book newBook, List<Book> books) {
-		return (books.contains(newBook));
-	}
 	
 	private boolean authorNotAlreadyInBook(Book newBook, List<Book> books, int j) {
 		return (!books.get(j).getAuthorFirstNames().contains(newBook.getAuthorFirstNames().get(0)) && 

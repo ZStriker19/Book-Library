@@ -83,6 +83,17 @@ public class Book {
 		this.authorLastNames = authorLastNames;
 	}
 	
+	public String getAuthorFullNames() {
+		String authors = "";
+		for (int i = 0; i < authorFirstNames.size(); i++) {
+			authors += WordUtils.capitalize(authorFirstNames.get(i)) + " " + WordUtils.capitalize(authorLastNames.get(i));
+			if (i != authorFirstNames.size() -1) {
+				authors += ", ";
+			}
+		}
+		return authors;
+	}
+	
 	public boolean equals(Book otherBook) {
 		
 		if (otherBook.getBookId() == this.bookId) {
