@@ -13,7 +13,8 @@
 	    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	    <c:url var="cssHref" value="/css/homepage.css" />
 		<link rel="stylesheet" type="text/css" href="${cssHref}">
-		
+		<c:url var="formVal" value="/js/formValidation.js"/> 
+		<script src="${formVal}"></script>
 		<script type="text/javascript">
 			$(document).ready(function() {
 				$("time.timeago").timeago();
