@@ -10,7 +10,7 @@ public interface BookDAO {
 	
 	public List<Book> searchForBooksBasedOnAuthor(String author);
 	
-	public List<Book> searchForBooksBasedOnKeyword(String keyword);
+	public List<Book> searchForBooksBasedOnGenre(String genre);
 	
 	public List<Book> searchForBooksBasedOnPublishingLocation(String location);
 	

@@ -28,7 +28,7 @@ public class JDBCBookDAO implements BookDAO{
 		saveLocation(book.getSection().toLowerCase(), bookId);
 		saveCharacterNames(book.getCharacterFirstNames(), book.getCharacterLastNames(), bookId);
 		saveAuthorNames(book.getAuthorFirstNames(), book.getAuthorLastNames(), bookId);
-		saveKeywords(book.getKeywords(), bookId);
+		saveGenres(book.getGenres(), bookId);
 	}
 	
 	private void saveBookTitle(String title) {
@@ -77,17 +77,17 @@ public class JDBCBookDAO implements BookDAO{
 		}
 	}
 	
-	private void saveKeywords(List<String> keywords, long bookId) {
-		String sqlInsertKeyword = "INSERT INTO author (word) VALUES (?)";
-		String sqlInsertKeywordIdAndBookId = "INSERT INTO keyword_book (book_id, keyword_id) VALUES (?, ?)";
-		String sqlGetLastKeywordId = "SELECT keyword_id FROM keyword ORDER BY keyword_id DESC LIMIT 1";
-		long keywordId;
-		for (int i = 0; i < keywords.size(); i++) {
-			jdbcTemplate.update(sqlInsertKeyword, keywords.get(i));
+	private void saveGenres(List<String> genres, long bookId) {
+		String sqlInsertGenre = "INSERT INTO author (word) VALUES (?)";
+		String sqlInsertGenreIdAndBookId = "INSERT INTO book_genre (book_id, genre_id) VALUES (?, ?)";
+		String sqlGetLastGenreId = "SELECT genre_id FROM genre ORDER BY genre_id DESC LIMIT 1";
+		long genreId;
+		for (int i = 0; i < genres.size(); i++) {
+			jdbcTemplate.update(sqlInsertGenre, genres.get(i));
 			
-			SqlRowSet result = jdbcTemplate.queryForRowSet(sqlGetLastKeywordId);
-			keywordId = result.getLong("keyword_id");
-			jdbcTemplate.update(sqlInsertKeywordIdAndBookId, bookId, keywordId);
+			SqlRowSet result = jdbcTemplate.queryForRowSet(sqlGetLastGenreId);
+			genreId = result.getLong("genre_id");
+			jdbcTemplate.update(sqlInsertGenreIdAndBookId, bookId, genreId);
 		}
 	}
 	
@@ -107,7 +107,7 @@ public class JDBCBookDAO implements BookDAO{
 		List<Book> allBooksFromQueries = new ArrayList<Book>();
 		
 		allBooksFromQueries.addAll(searchForBooksBasedOnAuthor(queryString));
-		allBooksFromQueries.addAll(searchForBooksBasedOnKeyword(queryString));
+		allBooksFromQueries.addAll(searchForBooksBasedOnGenre(queryString));
 		allBooksFromQueries.addAll(searchForBooksBasedOnPublishingLocation(queryString));
 		allBooksFromQueries.addAll(searchForBooksBasedOnCharacter(queryString));
 		allBooksFromQueries.addAll(searchForBooksBasedOnTitle(queryString));
@@ -121,7 +121,7 @@ public class JDBCBookDAO implements BookDAO{
 	public List<Book> searchForBooksBasedOnAuthor(String author) {
 		List<Book> books = new ArrayList<Book>();
 		String sqlQueryForAuthor = "SELECT book.book_id, book.title, author.f_name AS author_first_name, author.l_name AS author_last_name,"
-				+ " character.f_name AS character_first_name, character.l_name AS character_last_name, location.section, keyword.word" 
+				+ " character.f_name AS character_first_name, character.l_name AS character_last_name, location.section, genre.genre" 
 				+ " FROM author "
 				+ " JOIN book_author ON book_author.author_id = author.author_id"
 				+ " JOIN book ON book.book_id = book_author.book_id" 
@@ -129,8 +129,8 @@ public class JDBCBookDAO implements BookDAO{
 				+ " JOIN character ON book_character.character_id = character.character_id"
 				+ " JOIN book_location ON book.book_id = book_location.book_id"
 				+ " JOIN location ON location.location_id = book_location.location_id"
-				+ " JOIN book_keyword ON book.book_id = book_keyword.book_id"
-				+ " JOIN keyword ON keyword.keyword_id = book_keyword.keyword_id"   
+				+ " JOIN book_genre ON book.book_id = book_genre.book_id"
+				+ " JOIN genre ON genre.genre_id = book_genre.genre_id"   
 				+ " WHERE author.f_name LIKE ? OR author.l_name LIKE ? ";
 		
 		SqlRowSet  results = jdbcTemplate.queryForRowSet(sqlQueryForAuthor, author + "%", author + "%");
@@ -142,21 +142,21 @@ public class JDBCBookDAO implements BookDAO{
 	}
 
 	
-	public List<Book> searchForBooksBasedOnKeyword(String keyword) {
+	public List<Book> searchForBooksBasedOnGenre(String genre) {
 		List<Book> books = new ArrayList<Book>();
-		String sqlQueryForKeyword = "SELECT book.book_id, book.title, author.f_name AS author_first_name, author.l_name AS author_last_name,"
-				+ " character.f_name AS character_first_name, character.l_name AS character_last_name, location.section, keyword.word" 
-				+" FROM keyword" 
-				+" JOIN book_keyword ON keyword.keyword_id = book_keyword.keyword_id" 
-				+" JOIN book ON book.book_id = book_keyword.book_id" 
+		String sqlQueryForGenre = "SELECT book.book_id, book.title, author.f_name AS author_first_name, author.l_name AS author_last_name,"
+				+ " character.f_name AS character_first_name, character.l_name AS character_last_name, location.section, genre.genre" 
+				+" FROM genre" 
+				+" JOIN book_genre ON genre.genre_id = book_genre.genre_id" 
+				+" JOIN book ON book.book_id = book_genre.book_id" 
 				+" JOIN book_author ON book.book_id = book_author.book_id" 
 				+" JOIN author ON book_author.author_id = author.author_id"
 				+" JOIN book_character ON book.book_id = book_character.book_id"
 				+" JOIN character ON book_character.character_id = character.character_id"
 				+" JOIN book_location ON book.book_id = book_location.book_id"
 				+" JOIN location ON location.location_id = book_location.location_id"
-				+" WHERE keyword.word = ?";
-		SqlRowSet  result = jdbcTemplate.queryForRowSet(sqlQueryForKeyword, keyword);
+				+" WHERE genre.genre = ?";
+		SqlRowSet  result = jdbcTemplate.queryForRowSet(sqlQueryForGenre, genre);
 		while(result.next()) {
 			books = mapBookToSqlRowSet(result, books);
 		}
@@ -167,12 +167,12 @@ public class JDBCBookDAO implements BookDAO{
 	public List<Book> searchForBooksBasedOnPublishingLocation(String location) {
 		List<Book> books = new ArrayList<Book>();
 		String sqlQueryForLocation = "SELECT book.book_id, book.title, author.f_name AS author_first_name, author.l_name AS author_last_name,"
-				+ " character.f_name AS character_first_name, character.l_name AS character_last_name, location.section, keyword.word" 
+				+ " character.f_name AS character_first_name, character.l_name AS character_last_name, location.section, genre.genre" 
 				+" FROM location"
 				+" JOIN book_location ON location.location_id = book_location.location_id"
 				+" JOIN book ON book.book_id = book_location.book_id" 
-				+" JOIN book_keyword ON book.book_id = book_keyword.book_id" 
-				+" JOIN keyword ON keyword.keyword_id = book_keyword.keyword_id"  
+				+" JOIN book_genre ON book.book_id = book_genre.book_id" 
+				+" JOIN genre ON genre.genre_id = book_genre.genre_id"  
 				+" JOIN book_author ON book.book_id = book_author.book_id"  
 				+" JOIN author ON book_author.author_id = author.author_id" 
 				+" JOIN book_character ON book.book_id = book_character.book_id" 
@@ -189,14 +189,14 @@ public class JDBCBookDAO implements BookDAO{
 	
 	public List<Book> searchForBooksBasedOnCharacter(String character) {
 		String sqlQueryForCharacter = "SELECT book.book_id, book.title, author.f_name AS author_first_name, author.l_name AS author_last_name,"
-				+ " character.f_name AS character_first_name, character.l_name AS character_last_name, location.section, keyword.word" 
+				+ " character.f_name AS character_first_name, character.l_name AS character_last_name, location.section, genre.genre" 
 				+" FROM character"
 				+" JOIN book_character ON character.character_id = book_character.character_id" 
 				+" JOIN book ON book_character.book_id = book.book_id"
 				+" JOIN book_location ON book.book_id = book_location.book_id"
 				+" JOIN location ON location.location_id = book_location.location_id"
-				+" JOIN book_keyword ON book.book_id = book_keyword.book_id"
-				+" JOIN keyword ON keyword.keyword_id = book_keyword.keyword_id" 
+				+" JOIN book_genre ON book.book_id = book_genre.book_id"
+				+" JOIN genre ON genre.genre_id = book_genre.genre_id" 
 				+" JOIN book_author ON book.book_id = book_author.book_id" 
 				+" JOIN author ON book_author.author_id = author.author_id"
 				+" WHERE character.f_name = ? OR character.l_name = ?";
@@ -211,14 +211,14 @@ public class JDBCBookDAO implements BookDAO{
 	
 	public List<Book> searchForBooksBasedOnTitle(String title) {
 		String sqlQueryForTitle = "SELECT book.book_id, book.title, author.f_name AS author_first_name, author.l_name AS author_last_name,"
-				+ " character.f_name AS character_first_name, character.l_name AS character_last_name, location.section, keyword.word" 
+				+ " character.f_name AS character_first_name, character.l_name AS character_last_name, location.section, genre.genre" 
 				+" FROM book"
 				+" JOIN book_character ON book.book_id = book_character.book_id" 
 				+" JOIN character ON book_character.character_id = character.character_id"
 				+" JOIN book_location ON book.book_id = book_location.book_id"
 				+" JOIN location ON location.location_id = book_location.location_id"
-				+" JOIN book_keyword ON book.book_id = book_keyword.book_id"
-				+" JOIN keyword ON keyword.keyword_id = book_keyword.keyword_id" 
+				+" JOIN book_genre ON book.book_id = book_genre.book_id"
+				+" JOIN genre ON genre.genre_id = book_genre.genre_id" 
 				+" JOIN book_author ON book.book_id = book_author.book_id" 
 				+" JOIN author ON book_author.author_id = author.author_id"
 				+" WHERE book.title LIKE ? OR book.title = ? ";
@@ -260,8 +260,8 @@ public class JDBCBookDAO implements BookDAO{
 					books.get(j).getCharacterFirstNames().add(newBook.getCharacterFirstNames().get(0));
 					books.get(j).getCharacterLastNames().add(newBook.getCharacterLastNames().get(0));
 				}
-				if (keywordNotAlreadyInBook(newBook, books, j)) {
-					books.get(j).getKeywords().add(newBook.getKeywords().get(0));
+				if (genreNotAlreadyInBook(newBook, books, j)) {
+					books.get(j).getGenres().add(newBook.getGenres().get(0));
 				}
 			
 			}
@@ -277,7 +277,7 @@ public class JDBCBookDAO implements BookDAO{
 		book.setAuthorLastNames(createAuthorLastNames(sqlRowSet));
 		book.setCharacterFirstNames(createCharacterFirstNames(sqlRowSet));
 		book.setCharacterLastNames(createCharacterLastNames(sqlRowSet));
-		book.setKeywords(createKeywords(sqlRowSet));
+		book.setGenres(createGenres(sqlRowSet));
 		book.setBook_id(sqlRowSet.getLong("book_id"));
 		book.setTitle(sqlRowSet.getString("title"));
 		book.setSection(sqlRowSet.getString("section"));
@@ -309,10 +309,10 @@ public class JDBCBookDAO implements BookDAO{
 		return characterLastNames;
 	}
 	
-	private List<String> createKeywords(SqlRowSet sqlRowSet) {
-		List<String> keywords = new ArrayList<String>();
-		keywords.add(sqlRowSet.getString("word"));
-		return keywords;
+	private List<String> createGenres(SqlRowSet sqlRowSet) {
+		List<String> genres = new ArrayList<String>();
+		genres.add(sqlRowSet.getString("genre"));
+		return genres;
 	}
 	
 	
@@ -328,8 +328,8 @@ public class JDBCBookDAO implements BookDAO{
 				!books.get(j).getCharacterLastNames().contains(newBook.getCharacterLastNames().get(0)));
 	}
 	
-	private boolean keywordNotAlreadyInBook(Book newBook,List<Book> books, int j) {
-		return (!books.get(j).getKeywords().contains(newBook.getKeywords().get(0)));
+	private boolean genreNotAlreadyInBook(Book newBook,List<Book> books, int j) {
+		return (!books.get(j).getGenres().contains(newBook.getGenres().get(0)));
 	}
 	
 	private boolean containsBook(Book newBook, List<Book> books) {

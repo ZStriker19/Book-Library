@@ -8,7 +8,7 @@ public class Book {
 	private long bookId;
 	private String title;
 	private String section;
-	private List<String> keywords;
+	private List<String> genres;
 	private List<String> characterFirstNames;
 	private List<String> characterLastNames;
 	private List<String> authorFirstNames;
@@ -34,11 +34,11 @@ public class Book {
 		this.section = section;
 	}
 	
-	public List<String> getKeywords() {
-		return keywords;
+	public List<String> getGenres() {
+		return genres;
 	}
-	public void setKeywords(List<String> keywords) {
-		this.keywords = keywords;
+	public void setGenres(List<String> genres) {
+		this.genres = genres;
 	}
 	public List<String> getCharacterFirstNames() {
 		for(int i = 0; i < characterFirstNames.size(); i++) {
