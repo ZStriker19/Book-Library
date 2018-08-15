@@ -23,8 +23,83 @@ public class JDBCBookDAO implements BookDAO{
 	}
 	
 	public void saveBook(Book book) {
-		// TODO Auto-generated method stub	
+		saveBookTitle(book.getTitle().toLowerCase());
+		long bookId = getLastBookId();
+		saveLocation(book.getSection().toLowerCase(), bookId);
+		saveCharacterNames(book.getCharacterFirstNames(), book.getCharacterLastNames(), bookId);
+		saveAuthorNames(book.getAuthorFirstNames(), book.getAuthorLastNames(), bookId);
+		saveKeywords(book.getKeywords(), bookId);
 	}
+	
+	private void saveBookTitle(String title) {
+		String sqlInsertBookTitle = "INSERT INTO book (title) VALUES (?)";
+		jdbcTemplate.update(sqlInsertBookTitle, title);
+	}
+	
+	private void saveLocation(String section, long bookId) {
+		String sqlInsertBookSection = "INSERT INTO location (section) VALUES (?)";
+		String sqlGetLastLocationId = "SELECT location_id FROM location ORDER BY location_id DESC LIMIT 1";
+		String sqlInsertLocationIdAndBookId = "INSERT INTO book_location (book_id, location_id) VALUES (?, ?)";
+		jdbcTemplate.update(sqlInsertBookSection, section);
+		
+		SqlRowSet result = jdbcTemplate.queryForRowSet(sqlGetLastLocationId);
+		long locationId = result.getLong("location_id");
+		
+		jdbcTemplate.update(sqlInsertLocationIdAndBookId, bookId, locationId);
+	}
+	
+	private void saveCharacterNames(List<String> characterFirstNames, List<String> characterLastNames, long bookId) {
+		String sqlInsertCharacterFirstName = "INSERT INTO character (f_name, l_name) VALUES (?, ?)";
+		String sqlInsertCharacterIdAndBookId = "INSERT INTO book_character (book_id, character_id) VALUES (?, ?)";
+		String sqlGetLastCharacterId = "SELECT character_id FROM character ORDER BY character_id DESC LIMIT 1";
+		long characterId;
+		
+		for (int i = 0; i < characterFirstNames.size(); i++) {
+			jdbcTemplate.update(sqlInsertCharacterFirstName, characterFirstNames.get(i), characterLastNames.get(i));
+			
+			SqlRowSet result = jdbcTemplate.queryForRowSet(sqlGetLastCharacterId);
+			characterId = result.getLong("character_id");
+			jdbcTemplate.update(sqlInsertCharacterIdAndBookId, bookId, characterId);
+		}
+	}
+	
+	private void saveAuthorNames(List<String> authorFirstNames, List<String> authorLastNames, long bookId) {
+		String sqlInsertAuthorFirstName = "INSERT INTO author (f_name, l_name) VALUES (?, ?)";
+		String sqlInsertAuthorIdAndBookId = "INSERT INTO book_author (book_id, author_id) VALUES (?, ?)";
+		String sqlGetLastAuthorId = "SELECT author_id FROM author ORDER BY author_id DESC LIMIT 1";
+		long authorId;
+		for (int i = 0; i < authorFirstNames.size(); i++) {
+			jdbcTemplate.update(sqlInsertAuthorFirstName, authorFirstNames.get(i), authorLastNames.get(i));
+			
+			SqlRowSet result = jdbcTemplate.queryForRowSet(sqlGetLastAuthorId);
+			authorId = result.getLong("author_id");
+			jdbcTemplate.update(sqlInsertAuthorIdAndBookId, bookId, authorId);
+		}
+	}
+	
+	private void saveKeywords(List<String> keywords, long bookId) {
+		String sqlInsertKeyword = "INSERT INTO author (word) VALUES (?)";
+		String sqlInsertKeywordIdAndBookId = "INSERT INTO keyword_book (book_id, keyword_id) VALUES (?, ?)";
+		String sqlGetLastKeywordId = "SELECT keyword_id FROM keyword ORDER BY keyword_id DESC LIMIT 1";
+		long keywordId;
+		for (int i = 0; i < keywords.size(); i++) {
+			jdbcTemplate.update(sqlInsertKeyword, keywords.get(i));
+			
+			SqlRowSet result = jdbcTemplate.queryForRowSet(sqlGetLastKeywordId);
+			keywordId = result.getLong("keyword_id");
+			jdbcTemplate.update(sqlInsertKeywordIdAndBookId, bookId, keywordId);
+		}
+	}
+	
+	
+	private long getLastBookId() {
+		String sqlGetLastBookId = "SELECT book_id FROM book ORDER BY book_id DESC LIMIT 1";
+		SqlRowSet  result = jdbcTemplate.queryForRowSet(sqlGetLastBookId);
+		long bookId = result.getLong("book_id");
+		return bookId;
+	}
+	
+	
 
 	public List<Book> searchForBooks(String queryString) {
 		queryString = queryString.toLowerCase();
