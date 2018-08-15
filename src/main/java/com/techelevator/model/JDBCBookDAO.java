@@ -56,9 +56,9 @@ public class JDBCBookDAO implements BookDAO{
 				+ " JOIN location ON location.location_id = book_location.location_id"
 				+ " JOIN book_keyword ON book.book_id = book_keyword.book_id"
 				+ " JOIN keyword ON keyword.keyword_id = book_keyword.keyword_id"   
-				+ " WHERE author.f_name = ? OR author.l_name = ? ";
+				+ " WHERE author.f_name LIKE ? OR author.l_name LIKE ? ";
 		
-		SqlRowSet  results = jdbcTemplate.queryForRowSet(sqlQueryForAuthor, author, author);
+		SqlRowSet  results = jdbcTemplate.queryForRowSet(sqlQueryForAuthor, author + "%", author + "%");
 		
 		while(results.next()) {
 			books = mapBookToSqlRowSet(results, books);
