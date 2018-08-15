@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <c:import url="/WEB-INF/jsp/header.jsp"/>
-
+<div class = "container">
 <h1>Please search for a book by: Title, Author, Character, Keyword, or Location </h1>
 <c:url var="formAction" value="/search"/>
 
@@ -13,8 +13,10 @@
     <input class="formSubmitButton" type="submit" value="Search" />
   
     </div>
+
 </form>
-<div class="container">
+</div>
+<div class="container t-3">
 	<table class="table">
 	
   <tr>
