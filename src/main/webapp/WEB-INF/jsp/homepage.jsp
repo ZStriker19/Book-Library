@@ -1,15 +1,20 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <c:import url="/WEB-INF/jsp/header.jsp"/>
+<<<<<<< HEAD
 <div class = "container">
 <h1>Please search for a book by: Title, Author, Character, Keyword, or Location </h1>
+=======
+
+<h1>Search by:  </h1>
+>>>>>>> abaf2e4008e4ba5a91af61f2dcea0c2f3cf9c864
 <c:url var="formAction" value="/search"/>
 
 <form id="search"  class="form-inline" method="GET" action="${formAction}">
 <div>
 	<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
     <i class="fa fa-search" aria-hidden="true"></i>
-    <input name="queryString" class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search" aria-label="Search"/>
+    <input name="queryString" class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Title, Author, Character, Keyword, or Location" aria-label="Search"/>
     <input class="formSubmitButton" type="submit" value="Search" />
   
     </div>

@@ -6,10 +6,10 @@ BEGIN;
 
 -- CREATE statements go here
 DROP TABLE IF EXISTS book_author;
-DROP TABLE IF EXISTS book_keyword;
+DROP TABLE IF EXISTS book_genre;
 DROP TABLE IF EXISTS book_location;
 DROP TABLE IF EXISTS book_character;
-DROP TABLE IF EXISTS keyword;
+DROP TABLE IF EXISTS genre;
 DROP TABLE IF EXISTS location;
 DROP TABLE IF EXISTS character;
 DROP TABLE IF EXISTS author;
@@ -46,9 +46,9 @@ CREATE TABLE location (
   section varchar(50)
 );
 
-CREATE TABLE keyword (
-  keyword_id SERIAL PRIMARY KEY,
-  word varchar(50) NOT NULL
+CREATE TABLE genre (
+  genre_id SERIAL PRIMARY KEY,
+  genre varchar(50) NOT NULL
 );
 
 CREATE TABLE book_character (
@@ -68,12 +68,12 @@ CREATE TABLE book_location (
 
 );
 
-CREATE TABLE book_keyword (
+CREATE TABLE book_genre (
     book_id integer NOT NULL,
-    keyword_id integer NOT NULL,
-    CONSTRAINT pk_book_keyword_book_id_keyword_id PRIMARY KEY (book_id, keyword_id),
-    CONSTRAINT fk_book_keywordBook_id foreign key (book_id) references book(book_id),
-    CONSTRAINT fk_book_keywordKeyword_id foreign key (keyword_id) references keyword(keyword_id)
+    genre_id integer NOT NULL,
+    CONSTRAINT pk_book_genre_book_id_genre_id PRIMARY KEY (book_id, genre_id),
+    CONSTRAINT fk_book_genreBook_id foreign key (book_id) references book(book_id),
+    CONSTRAINT fk_book_genreGenre_id foreign key (genre_id) references genre(genre_id)
 );
 
 CREATE TABLE book_author (
