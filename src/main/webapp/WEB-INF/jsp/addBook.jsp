@@ -32,10 +32,18 @@
   	</div>
   
   	<div class="form-group row">
-  		<label for="new-book-character-1" class="col-2 col-form-label">Character 1</label>
-  		<div class="col-10">
-    		<input class="form-control" type="text" placeholder="Character 1" id="character-1-input">
+  		<div class = "col-sm-6">
+  			<label for="new-book-character-1-first-name" class="col-2 col-form-label">Character 1 First Name</label>
+  			<div class="col-10">
+    			<input class="form-control" type="text" placeholder="Character 1 First Name" id="character-1-first-name- input">
+    		</div>
     	</div>
+    	<div class = "col-sm-6">
+    		<label for="new-book-character-1-last-name" class="col-2 col-form-label">Character 1 Last Name</label>
+  			<div class="col-10">
+    			<input class="form-control" type="text" placeholder="Character 1 Last Name" id="character-1-last-name- input">
+    		</div>
+		</div>
   	</div>
   
   	<div class="form-group row">
