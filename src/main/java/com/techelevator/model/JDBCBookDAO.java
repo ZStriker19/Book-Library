@@ -36,6 +36,7 @@ public class JDBCBookDAO implements BookDAO{
 		jdbcTemplate.update(sqlInsertBookTitle, title);
 	}
 	
+	
 	private void saveLocation(String section, long bookId) {
 		String sqlInsertBookSection = "INSERT INTO location (section) VALUES (?)";
 		String sqlGetLastLocationId = "SELECT location_id FROM location ORDER BY location_id DESC LIMIT 1";
@@ -43,8 +44,11 @@ public class JDBCBookDAO implements BookDAO{
 		jdbcTemplate.update(sqlInsertBookSection, section);
 		
 		SqlRowSet result = jdbcTemplate.queryForRowSet(sqlGetLastLocationId);
-		long locationId = result.getLong("location_id");
 		
+		long locationId = 0;
+		if(result.next()) {
+			locationId = result.getLong("location_id");
+		}
 		jdbcTemplate.update(sqlInsertLocationIdAndBookId, bookId, locationId);
 	}
 	
@@ -52,13 +56,16 @@ public class JDBCBookDAO implements BookDAO{
 		String sqlInsertCharacterFirstName = "INSERT INTO character (f_name, l_name) VALUES (?, ?)";
 		String sqlInsertCharacterIdAndBookId = "INSERT INTO book_character (book_id, character_id) VALUES (?, ?)";
 		String sqlGetLastCharacterId = "SELECT character_id FROM character ORDER BY character_id DESC LIMIT 1";
-		long characterId;
+		long characterId = 0;
 		
 		for (int i = 0; i < characterFirstNames.size(); i++) {
 			jdbcTemplate.update(sqlInsertCharacterFirstName, characterFirstNames.get(i), characterLastNames.get(i));
 			
 			SqlRowSet result = jdbcTemplate.queryForRowSet(sqlGetLastCharacterId);
-			characterId = result.getLong("character_id");
+			
+			if(result.next()) {
+				characterId = result.getLong("character_id");
+			}
 			jdbcTemplate.update(sqlInsertCharacterIdAndBookId, bookId, characterId);
 		}
 	}
@@ -67,35 +74,43 @@ public class JDBCBookDAO implements BookDAO{
 		String sqlInsertAuthorFirstName = "INSERT INTO author (f_name, l_name) VALUES (?, ?)";
 		String sqlInsertAuthorIdAndBookId = "INSERT INTO book_author (book_id, author_id) VALUES (?, ?)";
 		String sqlGetLastAuthorId = "SELECT author_id FROM author ORDER BY author_id DESC LIMIT 1";
-		long authorId;
+		long authorId = 0;
 		for (int i = 0; i < authorFirstNames.size(); i++) {
 			jdbcTemplate.update(sqlInsertAuthorFirstName, authorFirstNames.get(i), authorLastNames.get(i));
 			
 			SqlRowSet result = jdbcTemplate.queryForRowSet(sqlGetLastAuthorId);
-			authorId = result.getLong("author_id");
+			
+			if (result.next()) {
+				authorId = result.getLong("author_id");
+			}
 			jdbcTemplate.update(sqlInsertAuthorIdAndBookId, bookId, authorId);
 		}
 	}
 	
 	private void saveGenres(List<String> genres, long bookId) {
-		String sqlInsertGenre = "INSERT INTO author (word) VALUES (?)";
+		String sqlInsertGenre = "INSERT INTO genre (genre) VALUES (?)";
 		String sqlInsertGenreIdAndBookId = "INSERT INTO book_genre (book_id, genre_id) VALUES (?, ?)";
 		String sqlGetLastGenreId = "SELECT genre_id FROM genre ORDER BY genre_id DESC LIMIT 1";
-		long genreId;
+		long genreId = 0;
 		for (int i = 0; i < genres.size(); i++) {
 			jdbcTemplate.update(sqlInsertGenre, genres.get(i));
 			
 			SqlRowSet result = jdbcTemplate.queryForRowSet(sqlGetLastGenreId);
-			genreId = result.getLong("genre_id");
+			if (result.next()) {
+				genreId = result.getLong("genre_id");
+			}
+			
 			jdbcTemplate.update(sqlInsertGenreIdAndBookId, bookId, genreId);
 		}
 	}
 	
-	
 	private long getLastBookId() {
 		String sqlGetLastBookId = "SELECT book_id FROM book ORDER BY book_id DESC LIMIT 1";
 		SqlRowSet  result = jdbcTemplate.queryForRowSet(sqlGetLastBookId);
-		long bookId = result.getLong("book_id");
+		long bookId = 0;
+		if (result.next()) {
+			bookId = result.getLong("book_id");
+		}
 		return bookId;
 	}
 	
@@ -324,8 +339,7 @@ public class JDBCBookDAO implements BookDAO{
 	
 	
 	private boolean characterNotAlreadyInBook(Book newBook,List<Book> books, int j) {
-		return (!books.get(j).getCharacterFirstNames().contains(newBook.getCharacterFirstNames().get(0)) && 
-				!books.get(j).getCharacterLastNames().contains(newBook.getCharacterLastNames().get(0)));
+		return (!books.get(j).getCharacterFirstNames().contains(newBook.getCharacterFirstNames().get(0)));
 	}
 	
 	private boolean genreNotAlreadyInBook(Book newBook,List<Book> books, int j) {

@@ -1,6 +1,7 @@
 package com.techelevator;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Assert;
@@ -68,6 +69,79 @@ public class JDBCBookDAOTest extends DAOIntegrationTest {
 		Assert.assertNotNull(books);
 		
 		Assert.assertEquals(7, books.size());
+		Assert.assertEquals(2, books.get(0).getBookId());
+		Assert.assertEquals(3, books.get(2).getCharacterFirstNames().size());
 		Assert.assertEquals("A1", books.get(2).getSection());
+	}
+	
+	@Test
+	public void get_books_from_search_for_books_with_multiple_authors() throws SQLException {
+		String queryString = "lance";
+		List<Book> books = bookDao.searchForBooks(queryString);
+		Assert.assertNotNull(books);
+		
+		Assert.assertEquals(1, books.size());
+		Assert.assertEquals(9, books.get(0).getBookId());
+		Assert.assertEquals(2, books.get(0).getAuthorFirstNames().size());
+	}
+	
+	@Test
+	public void save_book() throws SQLException {
+		Book book = createBook();
+		bookDao.saveBook(book);
+		
+		List<Book> books = bookDao.searchForBooks("good omens");
+		Assert.assertNotNull(books);
+		Assert.assertEquals(1, books.size());
+		Assert.assertEquals(books.get(0).getSection(), "A1");
+		Assert.assertEquals(books.get(0).getAuthorFullNames(), "Terry Pratchett, Neil Gaiman");
+		Assert.assertEquals(books.get(0).getCharacterLastNames().size(), 2);
+		
+	}
+	
+	private Book createBook() {
+		Book book = new Book();
+		String title = "good omens";
+		String section = "A1";
+		String genreOne = "fantasy";
+		String genreTwo = "fiction";
+		String characterOneFirstName = "crowley";
+		String characterTwoFirstName = "adam";
+		String characterOneLastName = "satan";
+		String characterTwoLastName = null;
+		String authorOneFirstName = "neil";
+		String authorTwoFirstName = "terry";
+		String authorOneLastName = "gaiman";
+		String authorTwoLastName = "pratchett";
+		
+		List<String> genres = new ArrayList<String>();
+		genres.add(genreOne);
+		genres.add(genreTwo);
+		
+		List<String> authorFirstNames = new ArrayList<String>();
+		List<String> authorLastNames = new ArrayList<String>();
+		authorFirstNames.add(authorOneFirstName);
+		authorFirstNames.add(authorTwoFirstName);
+		authorLastNames.add(authorOneLastName);
+		authorLastNames.add(authorTwoLastName);
+		
+		
+		List<String> characterFirstNames = new ArrayList<String>();
+		List<String> characterLastNames = new ArrayList<String>();
+		characterFirstNames.add(characterOneFirstName);
+		characterFirstNames.add(characterTwoFirstName);
+		characterLastNames.add(characterOneLastName);
+		characterLastNames.add(characterTwoLastName);
+		
+		book.setAuthorFirstNames(authorFirstNames);
+		book.setAuthorLastNames(authorLastNames);
+		book.setCharacterFirstNames(characterFirstNames);
+		book.setCharacterLastNames(characterLastNames);
+		book.setGenres(genres);
+		book.setSection(section);
+		book.setTitle(title);
+		
+		return book;
+		
 	}
 }
