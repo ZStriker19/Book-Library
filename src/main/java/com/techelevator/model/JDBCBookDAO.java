@@ -195,34 +195,49 @@ public class JDBCBookDAO implements BookDAO{
 	
 	private Book createNewBook(SqlRowSet sqlRowSet) {
 		Book book = new Book();
-		List<String> authorFirstNames = new ArrayList<String>();
-		authorFirstNames.add(sqlRowSet.getString("author_first_name"));
-		book.setAuthorFirstNames(authorFirstNames);
-		
-		List<String> authorLastNames = new ArrayList<String>();
-		authorLastNames.add(sqlRowSet.getString("author_last_name"));
-		book.setAuthorLastNames(authorLastNames);
-		
-		List<String> characterFirstNames = new ArrayList<String>();
-		characterFirstNames.add(sqlRowSet.getString("character_first_name"));
-		book.setCharacterFirstNames(authorFirstNames);
-		
-		List<String> characterLastNames = new ArrayList<String>();
-		characterLastNames.add(sqlRowSet.getString("character_last_name"));
-		book.setCharacterLastNames(authorLastNames);
-		
-		List<String> keywords = new ArrayList<String>();
-		keywords.add(sqlRowSet.getString("word"));
-		book.setKeywords(keywords);
-		
+		book.setAuthorFirstNames(createAuthorFirstNames(sqlRowSet));
+		book.setAuthorLastNames(createAuthorLastNames(sqlRowSet));
+		book.setCharacterFirstNames(createCharacterFirstNames(sqlRowSet));
+		book.setCharacterLastNames(createCharacterLastNames(sqlRowSet));
+		book.setKeywords(createKeywords(sqlRowSet));
 		book.setBook_id(sqlRowSet.getLong("book_id"));
 		book.setTitle(sqlRowSet.getString("title"));
 		book.setCity(sqlRowSet.getString("city"));
 		book.setCountry(sqlRowSet.getString("country"));
-		
 		return book;
 		
 	}
+	
+	private List<String> createAuthorFirstNames(SqlRowSet sqlRowSet) {
+		List<String> authorFirstNames = new ArrayList<String>();
+		authorFirstNames.add(sqlRowSet.getString("author_first_name"));
+		return authorFirstNames;
+	}
+	
+	private List<String> createAuthorLastNames(SqlRowSet sqlRowSet) {
+		List<String> authorLastNames = new ArrayList<String>();
+		authorLastNames.add(sqlRowSet.getString("author_last_name"));
+		return authorLastNames;
+	}
+	
+	private List<String> createCharacterFirstNames(SqlRowSet sqlRowSet) {
+		List<String> characterFirstNames = new ArrayList<String>();
+		characterFirstNames.add(sqlRowSet.getString("author_last_name"));
+		return characterFirstNames;
+	}
+	
+	private List<String> createCharacterLastNames(SqlRowSet sqlRowSet) {
+		List<String> characterLastNames = new ArrayList<String>();
+		characterLastNames.add(sqlRowSet.getString("character_last_name"));
+		return characterLastNames;
+	}
+	
+	private List<String> createKeywords(SqlRowSet sqlRowSet) {
+		List<String> keywords = new ArrayList<String>();
+		keywords.add(sqlRowSet.getString("word"));
+		return keywords;
+	}
+	
 	
 	
 	private boolean authorNotAlreadyInBook(Book newBook, List<Book> books, int j) {
