@@ -27,26 +27,32 @@ INSERT INTO character (character_id, f_name, l_name) VALUES (7, 'robert', 'penn'
 
 SELECT setval(pg_get_serial_sequence('character', 'character_id'), 7);
 
-INSERT INTO location(location_id, section) VALUES (1, 'fantasy');
-INSERT INTO location(location_id, section) VALUES (2, 'fiction');
-INSERT INTO location(location_id, section) VALUES (3, 'non-fiction');
-INSERT INTO location(location_id, section) VALUES (4, 'sci-fi');
-INSERT INTO location(location_id, section) VALUES (5, 'mystery');
-INSERT INTO location(location_id, section) VALUES (6, 'thriller');
-INSERT INTO location(location_id, section) VALUES (7, 'children');
-INSERT INTO location(location_id, section) VALUES (8, 'horror');
-INSERT INTO location(location_id, section) VALUES (9, 'romance');
-INSERT INTO location(location_id, section) VALUES (10, 'comic books');
+INSERT INTO location (location_id, section) VALUES (1, 'A1');
+INSERT INTO location (location_id, section) VALUES (2, 'A2');
+INSERT INTO location (location_id, section) VALUES (3, 'A3');
+INSERT INTO location (location_id, section) VALUES (4, 'A4');
+INSERT INTO location (location_id, section) VALUES (5, 'A5');
+INSERT INTO location (location_id, section) VALUES (6, 'A6');
+INSERT INTO location (location_id, section) VALUES (7, 'A7');
+INSERT INTO location (location_id, section) VALUES (8, 'A8');
+INSERT INTO location (location_id, section) VALUES (9, 'A9');
+INSERT INTO location (location_id, section) VALUES (10, 'A10');
 
 
 SELECT setval(pg_get_serial_sequence('location', 'location_id'), 10);
 
-INSERT INTO keyword (keyword_id, word) VALUES (1, 'magic');
-INSERT INTO keyword (keyword_id, word) VALUES (2, 'wizards');
-INSERT INTO keyword (keyword_id, word) VALUES (3, 'bike');
-INSERT INTO keyword (keyword_id, word) VALUES (4, 'money');
+INSERT INTO genre (genre_id, genre) VALUES (1, 'fantasy');
+INSERT INTO genre (genre_id, genre) VALUES (2, 'fiction');
+INSERT INTO genre (genre_id, genre) VALUES (3, 'autobiography');
+INSERT INTO genre (genre_id, genre) VALUES (4, 'sci-fi');
+INSERT INTO genre (genre_id, genre) VALUES (5, 'mystery');
+INSERT INTO genre (genre_id, genre) VALUES (6, 'thriller');
+INSERT INTO genre (genre_id, genre) VALUES (7, 'children');
+INSERT INTO genre (genre_id, genre) VALUES (8, 'horror');
+INSERT INTO genre (genre_id, genre) VALUES (9, 'romance');
+INSERT INTO genre (genre_id, genre) VALUES (10, 'comic books');
 
-SELECT setval(pg_get_serial_sequence('keyword', 'keyword_id'), 4);
+SELECT setval(pg_get_serial_sequence('genre', 'genre_id'), 10);
 
 INSERT INTO author (author_id, f_name, l_name) VALUES (1, 'j.k.', 'rowling');
 INSERT INTO author (author_id, f_name, l_name) VALUES (2, 'f. scott', 'fitzgerald');
@@ -93,23 +99,16 @@ INSERT INTO book_location (book_id, location_id) VALUES (8, 2);
 INSERT INTO book_location (book_id, location_id) VALUES (9, 3);
 INSERT INTO book_location (book_id, location_id) VALUES (10, 3);
 
-INSERT INTO book_keyword (book_id, keyword_id) VALUES (1, 1);
-INSERT INTO book_keyword (book_id, keyword_id) VALUES (1, 2);
-INSERT INTO book_keyword (book_id, keyword_id) VALUES (2, 1);
-INSERT INTO book_keyword (book_id, keyword_id) VALUES (2, 2);
-INSERT INTO book_keyword (book_id, keyword_id) VALUES (3, 1);
-INSERT INTO book_keyword (book_id, keyword_id) VALUES (3, 2);
-INSERT INTO book_keyword (book_id, keyword_id) VALUES (4, 1);
-INSERT INTO book_keyword (book_id, keyword_id) VALUES (4, 2);
-INSERT INTO book_keyword (book_id, keyword_id) VALUES (5, 1);
-INSERT INTO book_keyword (book_id, keyword_id) VALUES (5, 2);
-INSERT INTO book_keyword (book_id, keyword_id) VALUES (6, 1);
-INSERT INTO book_keyword (book_id, keyword_id) VALUES (6, 2);
-INSERT INTO book_keyword (book_id, keyword_id) VALUES (7, 1);
-INSERT INTO book_keyword (book_id, keyword_id) VALUES (7, 2);
-INSERT INTO book_keyword (book_id, keyword_id) VALUES (8, 4);
-INSERT INTO book_keyword (book_id, keyword_id) VALUES (9, 3);
-INSERT INTO book_keyword (book_id, keyword_id) VALUES (10, 3);
+INSERT INTO book_genre (book_id, genre_id) VALUES (1, 1);
+INSERT INTO book_genre (book_id, genre_id) VALUES (2, 1);
+INSERT INTO book_genre (book_id, genre_id) VALUES (3, 1);
+INSERT INTO book_genre (book_id, genre_id) VALUES (4, 1);
+INSERT INTO book_genre (book_id, genre_id) VALUES (5, 1);
+INSERT INTO book_genre (book_id, genre_id) VALUES (6, 1);
+INSERT INTO book_genre (book_id, genre_id) VALUES (7, 1);
+INSERT INTO book_genre (book_id, genre_id) VALUES (8, 2);
+INSERT INTO book_genre (book_id, genre_id) VALUES (9, 3);
+INSERT INTO book_genre (book_id, genre_id) VALUES (10, 3);
 
 INSERT INTO book_author (book_id, author_id) VALUES (1, 1);
 INSERT INTO book_author (book_id, author_id) VALUES (2, 1);
@@ -122,8 +121,5 @@ INSERT INTO book_author (book_id, author_id) VALUES (8, 2);
 INSERT INTO book_author (book_id, author_id) VALUES (9, 3);
 INSERT INTO book_author (book_id, author_id) VALUES (9, 4);
 INSERT INTO book_author (book_id, author_id) VALUES (10, 5);
-
-
-
 
 COMMIT;
