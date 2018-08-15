@@ -7,8 +7,7 @@ import org.apache.commons.text.WordUtils;
 public class Book {
 	private long bookId;
 	private String title;
-	private String city;
-	private String country;
+	private String section;
 	private List<String> keywords;
 	private List<String> characterFirstNames;
 	private List<String> characterLastNames;
@@ -28,18 +27,13 @@ public class Book {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public String getCity() {
-		return WordUtils.capitalize(city);
+	public String getSection() {
+		return WordUtils.capitalize(section);
 	}
-	public void setCity(String city) {
-		this.city = city;
+	public void setSection(String section) {
+		this.section = section;
 	}
-	public String getCountry() {
-		return WordUtils.capitalize(country);
-	}
-	public void setCountry(String country) {
-		this.country = country;
-	}
+	
 	public List<String> getKeywords() {
 		return keywords;
 	}
