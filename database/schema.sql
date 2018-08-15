@@ -38,13 +38,12 @@ CREATE TABLE author (
 CREATE TABLE character (
   character_id SERIAL PRIMARY KEY,
   f_name varchar(50) NOT NULL,
-  l_name varchar(50) NOT NULL
+  l_name varchar(50) 
 );
 
 CREATE TABLE location (
   location_id SERIAL PRIMARY KEY,
-  city varchar(150) NOT NULL, 
-  country varchar(150) NOT NULL 
+  section varchar(50)
 );
 
 CREATE TABLE keyword (
