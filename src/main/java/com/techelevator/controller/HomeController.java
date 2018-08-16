@@ -1,6 +1,9 @@
 package com.techelevator.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -25,9 +28,23 @@ public class HomeController {
 	
 	@RequestMapping(path=("/search"), method=RequestMethod.GET)
 	public String searchBookResults(HttpServletRequest request) {
-		String book = request.getParameter("queryString");
-		List<Book> bookSearch = bookDAO.searchForBooks(book);
-		request.setAttribute("book", bookSearch);
+		String bookQuery = request.getParameter("queryString");
+		List<Book> books = bookDAO.searchForBooks(bookQuery);
+		if (books.size() == 0) {
+			Book fakeBook = new Book();
+			fakeBook.setTitle("There were no results found for your search. Please try a different query.");
+			ArrayList<String> fakeAuthorFirstNames = new ArrayList<String>();
+			fakeAuthorFirstNames.add("");
+			ArrayList<String> fakeAuthorLastNames = new ArrayList<String>();
+			fakeAuthorFirstNames.add("");
+			fakeBook.setAuthorFirstNames(fakeAuthorFirstNames);
+			fakeBook.setAuthorLastNames(fakeAuthorLastNames);
+			
+			books.add(fakeBook);
+			request.setAttribute("books", books);
+		} else {
+			request.setAttribute("books", books);
+		}
 		return "homepage"; //links to JSP page
 	}
 	

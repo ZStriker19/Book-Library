@@ -7,7 +7,6 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.techelevator.model.Book;
 import com.techelevator.model.BookDAO;
