@@ -4,8 +4,6 @@
 
 <div class = "container">
 
-
-
 <h1>Search by:  </h1>
 
 <c:url var="formAction" value="/search"/>
