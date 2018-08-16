@@ -17,8 +17,12 @@ import com.techelevator.model.JDBCBookDAO;
 
 
 @Controller
-public class AddBookController {
 
+
+public class AddBookController {
+	
+	@Autowired 
+	private BookDAO bookDAO;
 		
 		@RequestMapping(path=("addBook"), method=RequestMethod.GET)
 		public String showAddBookPage() {
@@ -33,14 +37,14 @@ public class AddBookController {
 			String lastNames = (String) request.getParameter("last-name-input");
 			String characterFirst = (String) request.getParameter("character-1-first-name-input");
 			String characterLast = (String) request.getParameter("character-1-last-name-input");
-			String keyword = (String) request.getParameter("keyword-input");
+			String genre = (String) request.getParameter("genres-input");
 			System.out.println(title);
 			System.out.println(section);
 			System.out.println(firstNames);
 			System.out.println(lastNames);
 			System.out.println(characterFirst);
 			System.out.println(characterLast);
-			System.out.println(keyword);
+			System.out.println(genre);
 			
 			Book book = new Book();
 			
@@ -63,8 +67,11 @@ public class AddBookController {
 			characterLastNames.add(characterLast);
 			book.setCharacterLastNames(characterLastNames);
 			
+			List<String> genres = new ArrayList<String>();
+			genres.add(genre);
+			book.setGenres(genres);
 			
-			
+			bookDAO.saveBook(book);
 			return "/addBook";
 			
 		}
