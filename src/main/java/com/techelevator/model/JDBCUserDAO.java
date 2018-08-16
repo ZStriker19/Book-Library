@@ -25,12 +25,12 @@ public class JDBCUserDAO implements UserDAO {
 	
 	@Override
 	public void saveUser(String userName, String password) {
-		byte[] salt = hashMaster.generateRandomSalt();
-		String hashedPassword = hashMaster.computeHash(password, salt);
-		String saltString = new String(Base64.encode(salt));
+//		byte[] salt = hashMaster.generateRandomSalt();
+//		String hashedPassword = hashMaster.computeHash(password, salt);
+//		String saltString = new String(Base64.encode(salt));
 		
 		jdbcTemplate.update("INSERT INTO app_user(user_name, password, salt) VALUES (?, ?, ?)",
-				userName, hashedPassword, saltString);
+				userName, password, "1");
 	}
 
 	@Override
@@ -42,9 +42,9 @@ public class JDBCUserDAO implements UserDAO {
 		SqlRowSet user = jdbcTemplate.queryForRowSet(sqlSearchForUser, userName.toUpperCase());
 		if(user.next()) {
 			String dbSalt = user.getString("salt");
-			String dbHashedPassword = user.getString("password");
-			String givenPassword = hashMaster.computeHash(password, Base64.decode(dbSalt));
-			return dbHashedPassword.equals(givenPassword);
+			String dbPassword = user.getString("password");
+//			String givenPassword = hashMaster.computeHash(password, Base64.decode(dbSalt));
+			return password.equals(dbPassword);
 		} else {
 			return false;
 		}
