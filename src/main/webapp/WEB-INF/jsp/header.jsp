@@ -4,7 +4,7 @@
 <html>
 
 	<head>
-		<title>FoxtrotPublicLibrary</title>
+		<title>Foxtrot Public Library</title>
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 	    <script src="http://cdn.jsdelivr.net/jquery.validation/1.15.0/jquery.validate.min.js"></script>
@@ -45,9 +45,23 @@
 		</div>
 		<nav class="navbar navbar-default">
 			<div class="container-fluid">
+			
+			<button type =  "button" class = "navbar-toggle" data-toggle = "collapse" data-target = "navCollapse">
+				<span class = "icon-bar"></span>
+				<span class = "icon-bar"></span>
+				<span class = "icon-bar"></span>
+			</button>
+			
+			<div class = "collapse navbar-collapse" id = "navCollapse">
 				<ul class="nav navbar-nav">
+				
+			
+				
 					<c:url var="homePageHref" value="/" />
 					<li><a href="${homePageHref}">Home</a></li>
+					
+					
+					
 					<c:url var="addBookHref" value="/addBook" />
 					<li><a href="${addBookHref}">Add Book</a></li>
 					
@@ -63,7 +77,7 @@
 						<li><a href="${changePasswordHref}">Change Password</a></li>
 					</c:if>
 				</ul>
-				<ul class="nav navbar-nav navbar-right">
+				<ul class="nav nav-bar navbar-nav navbar-right">
 					<c:choose>
 						<c:when test="${empty currentUser}">
 							<c:url var="newUserHref" value="/users/new" />
@@ -79,7 +93,9 @@
 							<li><a id="logoutLink" href="#">Log Out</a></li>
 						</c:otherwise>
 					</c:choose>
+					
 				</ul>
+				</div>
 			</div>
 		</nav>
 		<c:if test="${not empty currentUser}">
