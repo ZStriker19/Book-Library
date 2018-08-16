@@ -4,6 +4,10 @@
 
 BEGIN;
 
+INSERT INTO app_user (app_user_id, user_name, password, role, salt) VALUES (1, 'system_admin', 'Systemadministrator', true, '1');
+
+SELECT setval(pg_get_serial_sequence('app_user', 'app_user_id'), 1);
+
 INSERT INTO book (book_id, title) VALUES (1, 'harry potter and the sorcerer''s stone');
 INSERT INTO book (book_id, title) VALUES (2, 'harry potter and the chamber of secrets');
 INSERT INTO book (book_id, title) VALUES (3, 'harry potter and the prisoner of azkaban');
