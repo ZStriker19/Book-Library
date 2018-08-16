@@ -52,9 +52,10 @@
 				<span class = "icon-bar"></span>
 			</button>
 			
+			<div class = "collapse navbar-collapse" id = "navCollapse">
 				<ul class="nav navbar-nav">
 				
-				<div class = "collapse navbar-collapse" id = "navCollapse">
+			
 				
 					<c:url var="homePageHref" value="/" />
 					<li><a href="${homePageHref}">Home</a></li>
@@ -76,7 +77,7 @@
 						<li><a href="${changePasswordHref}">Change Password</a></li>
 					</c:if>
 				</ul>
-				<ul class="nav navbar-nav navbar-right">
+				<ul class="nav nav-bar navbar-nav navbar-right">
 					<c:choose>
 						<c:when test="${empty currentUser}">
 							<c:url var="newUserHref" value="/users/new" />
@@ -92,8 +93,9 @@
 							<li><a id="logoutLink" href="#">Log Out</a></li>
 						</c:otherwise>
 					</c:choose>
-					</div>
+					
 				</ul>
+				</div>
 			</div>
 		</nav>
 		<c:if test="${not empty currentUser}">
