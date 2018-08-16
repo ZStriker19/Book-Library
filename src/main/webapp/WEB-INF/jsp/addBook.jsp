@@ -50,9 +50,9 @@
   	</div>
   
   	<div class="form-group row">
-  		<label for="new-book-keyword" class="col-2 col-form-label">Keyword</label>
+  		<label for="new-book-genres" class="col-2 col-form-label">Genres</label>
   		<div class="col-10">
-    		<input class="form-control" type="text" placeholder="Keyword" id="keyword-input" name="keyword-input">
+    		<input class="form-control" type="text" placeholder="genres" id="genres-input" name="genres-input">
     	</div>
     	<input class="formSubmitButton" type="submit" value="Add Book" />
   	</div>
