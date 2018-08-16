@@ -1,13 +1,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <c:import url="/WEB-INF/jsp/header.jsp"/>
-<<<<<<< HEAD
+
 <div class = "container">
 <h1>Please search for a book by: Title, Author, Character, Keyword, or Location </h1>
-=======
 
 <h1>Search by:  </h1>
->>>>>>> abaf2e4008e4ba5a91af61f2dcea0c2f3cf9c864
 <c:url var="formAction" value="/search"/>
 
 <form id="search"  class="form-inline" method="GET" action="${formAction}">
