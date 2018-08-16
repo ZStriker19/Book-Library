@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.techelevator.model.Book;
 import com.techelevator.model.BookDAO;
@@ -30,7 +31,7 @@ public class AddBookController {
 		}
 		
 		@RequestMapping(path=("/addBook/submit"), method=RequestMethod.POST)
-		public String createNewBook(HttpServletRequest request) {
+		public String createNewBook(HttpServletRequest request, final RedirectAttributes redirectAttributes) {
 			String title = (String) request.getParameter("title-input");
 			String section = (String) request.getParameter("section-input");
 			String firstNames = (String) request.getParameter("first-name-input");
@@ -38,13 +39,6 @@ public class AddBookController {
 			String characterFirst = (String) request.getParameter("character-1-first-name-input");
 			String characterLast = (String) request.getParameter("character-1-last-name-input");
 			String genre = (String) request.getParameter("genres-input");
-			System.out.println(title);
-			System.out.println(section);
-			System.out.println(firstNames);
-			System.out.println(lastNames);
-			System.out.println(characterFirst);
-			System.out.println(characterLast);
-			System.out.println(genre);
 			
 			Book book = new Book();
 			
@@ -72,8 +66,13 @@ public class AddBookController {
 			book.setGenres(genres);
 			
 			bookDAO.saveBook(book);
-			return "/addBook";
+			redirectAttributes.addFlashAttribute("addedBook", book);
+			redirectAttributes.addFlashAttribute("message", book.getTitle() + " added successfully");
+
+			return "redirect:/";
 			
 		}
+		
+		
 }
 
