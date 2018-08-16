@@ -15,6 +15,11 @@
 	<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
     <i class="fa fa-search" aria-hidden="true"></i>
     <input name="queryString" class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Title, Author, Character, Keyword, or Section" aria-label="Search"/>
+    <div class="form-check">
+    <input type="checkbox" class="form-check-input" id="newSearch">
+    <label class="form-check-label" for="newSearch">Search only books added since last search</label>
+  </div>
+  
     <input class="formSubmitButton" type="submit" value="Search" />
   
     </div>
