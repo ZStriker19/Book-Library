@@ -4,7 +4,7 @@
 <html>
 
 	<head>
-		<title>FoxtrotPublicLibrary</title>
+		<title>Foxtrot Public Library</title>
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 	    <script src="http://cdn.jsdelivr.net/jquery.validation/1.15.0/jquery.validate.min.js"></script>
@@ -45,9 +45,22 @@
 		</div>
 		<nav class="navbar navbar-default">
 			<div class="container-fluid">
+			
+			<button type =  "button" class = "navbar-toggle" data-toggle = "collapse" data-target = "navCollapse">
+				<span class = "icon-bar"></span>
+				<span class = "icon-bar"></span>
+				<span class = "icon-bar"></span>
+			</button>
+			
 				<ul class="nav navbar-nav">
+				
+				<div class = "collapse navbar-collapse" id = "navCollapse">
+				
 					<c:url var="homePageHref" value="/" />
 					<li><a href="${homePageHref}">Home</a></li>
+					
+					
+					
 					<c:url var="addBookHref" value="/addBook" />
 					<li><a href="${addBookHref}">Add Book</a></li>
 					
@@ -79,6 +92,7 @@
 							<li><a id="logoutLink" href="#">Log Out</a></li>
 						</c:otherwise>
 					</c:choose>
+					</div>
 				</ul>
 			</div>
 		</nav>
