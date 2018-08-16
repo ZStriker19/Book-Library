@@ -29,22 +29,41 @@ public class AddBookController {
 		public String createNewBook(HttpServletRequest request) {
 			String title = (String) request.getParameter("title-input");
 			String section = (String) request.getParameter("section-input");
-			String firstName = (String) request.getParameter("first-name-input");
-			String lastName = (String) request.getParameter("last-name-input");
+			String firstNames = (String) request.getParameter("first-name-input");
+			String lastNames = (String) request.getParameter("last-name-input");
 			String characterFirst = (String) request.getParameter("character-1-first-name-input");
 			String characterLast = (String) request.getParameter("character-1-last-name-input");
 			String keyword = (String) request.getParameter("keyword-input");
 			System.out.println(title);
 			System.out.println(section);
-			System.out.println(firstName);
-			System.out.println(lastName);
+			System.out.println(firstNames);
+			System.out.println(lastNames);
 			System.out.println(characterFirst);
 			System.out.println(characterLast);
 			System.out.println(keyword);
+			
 			Book book = new Book();
+			
+			book.setTitle(title);
+			book.setSection(section);
+			
 			List<String> authorFirstNames = new ArrayList<String>();
-			authorFirstNames.add(firstName);
+			authorFirstNames.add(firstNames);
 			book.setAuthorFirstNames(authorFirstNames);
+			
+			List<String> authorLastNames = new ArrayList<String>();
+			authorLastNames.add(lastNames);
+			book.setAuthorLastNames(authorLastNames);
+			
+			List<String> characterFirstNames = new ArrayList<String>();
+			characterFirstNames.add(characterFirst);
+			book.setCharacterFirstNames(characterFirstNames);
+			
+			List<String> characterLastNames = new ArrayList<String>();
+			characterLastNames.add(characterLast);
+			book.setCharacterLastNames(characterLastNames);
+			
+			
 			
 			return "/addBook";
 			
