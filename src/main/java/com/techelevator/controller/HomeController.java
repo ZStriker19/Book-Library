@@ -14,6 +14,7 @@ import com.techelevator.model.BookDAO;
 
 @Controller
 public class HomeController {
+	
 	@Autowired
 	private BookDAO bookDAO;
 
@@ -29,5 +30,7 @@ public class HomeController {
 		request.setAttribute("book", bookSearch);
 		return "homepage"; //links to JSP page
 	}
+	
+	
 	
 }
