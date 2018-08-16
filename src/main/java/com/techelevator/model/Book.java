@@ -88,19 +88,19 @@ public class Book {
 		return authors;
 	}
 	
-	public boolean equals(Book otherBook) {
-		
-		if (otherBook.getBookId() == this.bookId) {
-			return true;
-		} 
-		return false;
-	}
-	
-	
-	public int hashCode() {
-		int bookIdInt = (int) this.bookId;
-        return bookIdInt;
-    }
+//	public boolean equals(Book otherBook) {
+//		
+//		if (otherBook.getBookId() == this.bookId) {
+//			return true;
+//		} 
+//		return false;
+//	}
+//	
+//	
+//	public int hashCode() {
+//		int bookIdInt = (int) this.bookId;
+//        return bookIdInt;
+//    }
 	
 	
 }

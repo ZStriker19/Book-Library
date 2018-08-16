@@ -2,7 +2,7 @@ package com.techelevator.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
+
 
 import javax.sql.DataSource;
 
@@ -128,8 +128,11 @@ public class JDBCBookDAO implements BookDAO{
 		allBooksFromQueries.addAll(searchForBooksBasedOnTitle(queryString));
 		
 	
-		List<Book> booksWithoutDuplicates = deleteDuplicateBooks(allBooksFromQueries);
-		return booksWithoutDuplicates;
+		List<Book> booksWithoutDuplicates = combineBooks(allBooksFromQueries);
+		List<Book> booksWithoutDuplicates2 = booksWithoutDuplicates;
+		
+		
+		return booksWithoutDuplicates2;
 	}
 
 	
@@ -151,7 +154,8 @@ public class JDBCBookDAO implements BookDAO{
 		SqlRowSet  results = jdbcTemplate.queryForRowSet(sqlQueryForAuthor, author + "%", author + "%");
 		
 		while(results.next()) {
-			books = mapBookToSqlRowSet(results, books);
+			Book book = createNewBook(results);
+			books.add(book);
 		}
 		return books;
 	}
@@ -173,7 +177,8 @@ public class JDBCBookDAO implements BookDAO{
 				+" WHERE genre.genre = ?";
 		SqlRowSet  result = jdbcTemplate.queryForRowSet(sqlQueryForGenre, genre);
 		while(result.next()) {
-			books = mapBookToSqlRowSet(result, books);
+			Book book = createNewBook(result);
+			books.add(book);
 		}
 		return books;
 	}
@@ -196,7 +201,8 @@ public class JDBCBookDAO implements BookDAO{
 		
 		SqlRowSet  result = jdbcTemplate.queryForRowSet(sqlQueryForLocation, location);
 		while(result.next()) {
-			books = mapBookToSqlRowSet(result, books);
+			Book book = createNewBook(result);
+			books.add(book);
 		}
 		return books;
 	}
@@ -218,7 +224,8 @@ public class JDBCBookDAO implements BookDAO{
 		List<Book> books = new ArrayList<Book>();
 		SqlRowSet  result = jdbcTemplate.queryForRowSet(sqlQueryForCharacter, character, character);
 		while(result.next()) {
-			books = mapBookToSqlRowSet(result, books);
+			Book book = createNewBook(result);
+			books.add(book);
 		}
 		return books;
 	}
@@ -240,51 +247,70 @@ public class JDBCBookDAO implements BookDAO{
 		List<Book> books = new ArrayList<Book>();
 		SqlRowSet  result = jdbcTemplate.queryForRowSet(sqlQueryForTitle, "%" + title + "%", title);
 		while(result.next()) {
-			books = mapBookToSqlRowSet(result, books);
+			Book book = createNewBook(result);
+			books.add(book);
 		}
 		return books;
 	}
 	
 	private List<Book> deleteDuplicateBooks(List<Book> books) {
-		Book bookToCheck;
+		List<Book> booksWithoutDuplicates = new ArrayList<Book>();
+		
 		for (int i = 0; i < books.size(); i++) {
-			bookToCheck = books.get(i);
-			int bookCounter = 0;
-			for (int j = 0; j < books.size(); j++) {
-				if (bookToCheck.equals(books.get(j))) {
-					bookCounter++;
-				}
-				if (bookCounter > 1) {
-					books.remove(i);
-					break;
-				}
+			if (!containsBook(books.get(i), booksWithoutDuplicates)){
+				booksWithoutDuplicates.add(books.get(i));
 			}
 		}
+		
+		return booksWithoutDuplicates;
+		
+//		Book bookToCheck;
+//		for (int i = 0; i < books.size(); i++) {
+//			bookToCheck = books.get(i);
+//			int bookCounter = 0;
+//			for (int j = 0; j < books.size(); j++) {
+//				if (bookToCheck.equals(books.get(j))) {
+//					bookCounter++;
+//				}
+//				if (bookCounter > 1) {
+//					books.remove(i);
+//					break;
+//				}
+//			}
+//		}
+//		return books;
+	}
+	
+	private List<Book> combineBooks(List<Book> books) {
+		Book newBook;
+		Book comparedBook;
+		for (int i=0; i<books.size(); i++) {
+			newBook = books.get(i);
+				for (int j = 0; j < books.size(); j++) {
+					comparedBook = books.get(j);
+					if (comparedBook.getBookId() == newBook.getBookId()) {
+						if (authorNotAlreadyInBook(newBook, books, j)) {
+							books.get(j).getAuthorFirstNames().add(newBook.getAuthorFirstNames().get(0));
+							books.get(j).getAuthorLastNames().add(newBook.getAuthorLastNames().get(0));
+						}
+						if (characterNotAlreadyInBook(newBook, books, j)) {
+							books.get(j).getCharacterFirstNames().add(newBook.getCharacterFirstNames().get(0));
+							books.get(j).getCharacterLastNames().add(newBook.getCharacterLastNames().get(0));
+						}
+						if (genreNotAlreadyInBook(newBook, books, j)) {
+							books.get(j).getGenres().add(newBook.getGenres().get(0));
+						}
+					}
+				
+				}
+		}
+		books = deleteDuplicateBooks(books);
 		return books;
 	}
 	
-	private List<Book> mapBookToSqlRowSet(SqlRowSet sqlRowSet, List<Book> books) {
-		Book newBook = createNewBook(sqlRowSet);
-		if (containsBook(newBook, books)) {
-			for (int j = 0; j < books.size(); j++) {
-				if (authorNotAlreadyInBook(newBook, books, j)) {
-					books.get(j).getAuthorFirstNames().add(newBook.getAuthorFirstNames().get(0));
-					books.get(j).getAuthorLastNames().add(newBook.getAuthorLastNames().get(0));
-				}
-				if (characterNotAlreadyInBook(newBook, books, j)) {
-					books.get(j).getCharacterFirstNames().add(newBook.getCharacterFirstNames().get(0));
-					books.get(j).getCharacterLastNames().add(newBook.getCharacterLastNames().get(0));
-				}
-				if (genreNotAlreadyInBook(newBook, books, j)) {
-					books.get(j).getGenres().add(newBook.getGenres().get(0));
-				}
-			
-			}
-		} else {
-			books.add(newBook);
-		}
-		return books;
-	}
+	
+	
+	
 	
 	private Book createNewBook(SqlRowSet sqlRowSet) {
 		Book book = new Book();
@@ -314,7 +340,7 @@ public class JDBCBookDAO implements BookDAO{
 	
 	private List<String> createCharacterFirstNames(SqlRowSet sqlRowSet) {
 		List<String> characterFirstNames = new ArrayList<String>();
-		characterFirstNames.add(sqlRowSet.getString("author_last_name"));
+		characterFirstNames.add(sqlRowSet.getString("character_first_name"));
 		return characterFirstNames;
 	}
 	
@@ -331,7 +357,6 @@ public class JDBCBookDAO implements BookDAO{
 	}
 	
 	
-	
 	private boolean authorNotAlreadyInBook(Book newBook, List<Book> books, int j) {
 		return (!books.get(j).getAuthorFirstNames().contains(newBook.getAuthorFirstNames().get(0)) && 
 				!books.get(j).getAuthorLastNames().contains(newBook.getAuthorLastNames().get(0)));
@@ -339,6 +364,13 @@ public class JDBCBookDAO implements BookDAO{
 	
 	
 	private boolean characterNotAlreadyInBook(Book newBook,List<Book> books, int j) {
+		for (int i = 0; i < books.size(); i++) {
+//			System.out.println("id" + books.get(j).getBookId());
+//			System.out.println("books char first names " + books.get(j).getCharacterFirstNames());
+//			System.out.println( books.get(j).getCharacterFirstNames().size());
+////			System.out.println("the one in the book" + newBook.getCharacterFirstNames());
+		}
+		
 		return (!books.get(j).getCharacterFirstNames().contains(newBook.getCharacterFirstNames().get(0)));
 	}
 	
@@ -348,7 +380,10 @@ public class JDBCBookDAO implements BookDAO{
 	
 	private boolean containsBook(Book newBook, List<Book> books) {
 		for (Book book : books) {
-			if (book.equals(newBook)) {
+			System.out.println("new book id " + newBook.getBookId());
+			System.out.println("book id  already on list" + newBook.getBookId() + "\n");
+			if (book.getBookId() == newBook.getBookId()) {
+				System.out.println("\nfound book.getbookid " + book.getBookId());
 				return true;
 			}
 		}
