@@ -5,7 +5,7 @@
 <script type="text/javascript">
 	$(document).ready(function () {
 	
-		$("form").validate({
+		$("#userLogin").validate({
 			
 			rules : {
 				userName : {
@@ -17,7 +17,12 @@
 					minlength : 8
 				}
 			},
-			messages : {			
+			messages : {		
+				userName: {
+					required: "Username is required!",
+					minlength: "Username must be at least 3 characters"
+				}
+			},
 				confirmPassword : {
 					equalTo : "Passwords do not match"
 				}
@@ -40,7 +45,7 @@ jQuery.extend(jQuery.validator.messages, {
 	<div class="col-sm-4"></div>
 	<div class="col-sm-4">
 		<c:url var="formAction" value="/login" />
-		<form method="POST" action="${formAction}">
+		<form id="userLogin" name="userLogin" method="POST" action="${formAction}">
 		<input type="hidden" name="destination" value="${param.destination}"/>
 		<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
 			<div class="form-group">
