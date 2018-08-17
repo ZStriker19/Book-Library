@@ -1,1 +1,3 @@
-$("input.clone").on("click", clone);
+$(document).ready(function(){
+	$('#add-another-author')
+})

@@ -95,13 +95,15 @@ public class JDBCBookDAOTest extends DAOIntegrationTest {
 		
 		List<Book> books = bookDao.searchForBooks("good omens");
 		for (Book booker : books) {
-			System.out.println((booker.getBookId()));
+			System.out.println((book.getCharacterFirstNames()));
+			System.out.println((book.getCharacterLastNames()));
 		}
 		Assert.assertNotNull(books);
 		Assert.assertEquals(1, books.size());
 		Assert.assertEquals(books.get(0).getSection(), "A1");
 		Assert.assertEquals(books.get(0).getAuthorFullNames(), "Neil Gaiman, Terry Pratchett");
 		Assert.assertEquals(books.get(0).getCharacterLastNames().size(), 2);
+		Assert.assertFalse(books.get(0).getCharacterLastNames().get(0).equals(books.get(0).getCharacterFirstNames().get(0)));
 	}
 	
 	private Book createBook() {

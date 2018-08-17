@@ -132,10 +132,11 @@ public class AddBookController {
 			characterLastNames.add(characterLName6);
 			
 			
-			authorFirstNames = authorFirstNames.stream().filter(item-> item != null).collect(Collectors.toList());
-			authorLastNames =  authorLastNames.stream().filter(item-> item != null).collect(Collectors.toList());
-			characterFirstNames = characterFirstNames.stream().filter(item -> item != null).collect(Collectors.toList());
-			characterLastNames = characterFirstNames.stream().filter(item -> item != null).collect(Collectors.toList());
+			authorFirstNames = authorFirstNames.stream().filter(item-> !item.equals("")).collect(Collectors.toList());
+			authorLastNames =  authorLastNames.stream().filter(item-> !item.equals("")).collect(Collectors.toList());
+			characterFirstNames = characterFirstNames.stream().filter(item -> !item.equals("")).collect(Collectors.toList());
+			characterLastNames = characterLastNames.stream().filter(item -> !item.equals("")).collect(Collectors.toList());
+			genres = genres.stream().filter(item -> !item.equals("")).collect(Collectors.toList());
 			
 			
 			book.setAuthorFirstNames(authorFirstNames);
@@ -146,7 +147,13 @@ public class AddBookController {
 			book.setSection(section);
 			book.setTitle(title);
 			
+			for (String lName : characterLastNames) {
+				System.out.println("last names " + lName);
+			}
 			
+			for (String fName : characterFirstNames) {
+				System.out.println("first names " + fName);
+			}
 			
 			
 			return book;
