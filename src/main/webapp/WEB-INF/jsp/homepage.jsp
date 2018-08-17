@@ -41,14 +41,13 @@
    <c:out value="${book.title}"/>
    </td>
    <td>
-
      <c:out value="${book.getAuthorFullNames()}"></c:out>
-	
 	 </td> 
 	
   </tr>
   </c:forEach>
 </table>
+
 <c:if test="${messageNoBooks != null}">
 	<div class="alert alert-danger alert-dismissible" role="alert">
 		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
