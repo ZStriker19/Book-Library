@@ -1,9 +1,12 @@
-		</div>
-		
-		<footer class = "footer">
-			<div class = "containter">
-				<div class = "footer-copyright navbar-fixed-bottom text-muted">   © Copyright 2018 Foxtrot Inc.</div>
-			</div>
-		</footer>
-	</body>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+</head>
+<hr>
+<p>Â© Copyright 2018 Foxtrot Inc.</p>
+</body>
 </html>

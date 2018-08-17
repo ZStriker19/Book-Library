@@ -2,6 +2,34 @@
 
 <c:import url="/WEB-INF/jsp/header.jsp"/>
 
+<script type="text/javascript">
+	$(document).ready(function () {
+	
+		$("#addBook").validate({
+			
+			rules : {
+				title : {
+					required : true 
+				},
+				section : {
+					required : true,
+					maxlength : 2
+				}
+			},
+			messages : {		
+				title : {
+					required: "Book title is required"	
+				},
+				section : {
+					required: "Library section is required",
+					maxlength: "Section only contains 2 characters (e.g. A1, A2, A3, etc.)"	
+				}
+			},
+			errorClass : "error"
+		});
+	});
+</script>
+
 <div class = "container">
 
 <h1>Enter New Book Information:</h1>
@@ -12,14 +40,14 @@
 	<div class="form-group row">
   		<label for="new-book-title" class="col-2 col-form-label">Title</label>
   		<div class="col-10">
-    		<input class="form-control" type="text" placeholder="Title" id="title-input" name="title-input">
+    		<input class="form-control" type="text" placeholder="Title" id="title" name="title">
   		</div>
   	</div>
   
     <div class="form-group row">
   		<label for="new-book-location" class="col-2 col-form-label">Section</label>
   		<div class="col-10">
-    		<input class="form-control" type="text" placeholder="Section in Library" id="section-input" name="section-input">
+    		<input class="form-control" type="text" placeholder="Section in Library" id="section" name="section">
     	</div>
   	</div>
   
@@ -69,7 +97,7 @@
     	</div>
   	</div>
   	
-  	<input type="button" name="add-another-author" id="add-another-author" class="btn btn-success btn-file clone" value="Add Additional Author">
+  	<input type="button" name="add-another-author" id="add-another-author" class="btn btn-warning btn-file clone" value="Add Additional Author">
   
   	<div class="form-group row" id = "character1">
   		<div class = "col-sm-6">
@@ -164,8 +192,8 @@
 		</div>
   	</div>
   	
-  	<input type="button" name="add-another-character" id="add-another-character" class="btn btn-success btn-file clone" value="Add Additional Character">
-  	
+  	<input type="button" name="add-another-character" id="add-another-character" class="btn btn-warning btn-file clone" value="Add Additional Character">
+ 
   	<div class="form-group row" id = "genre1">
   		<label for="new-book-genres" class="col-2 col-form-label">Genre</label>
   		<div class="col-10">
@@ -188,9 +216,10 @@
     		<input class="form-control" type="text" placeholder="Genre 3" id="genre-3" name="genre-3">
     	</div>
   	</div>
-  	<input type="button" name="add-another-genre" id="add-another-genre" class="btn btn-success btn-file clone" value="Add Additional Genre">
-    	
-    <input class="formSubmitButton btn-success" type="submit" value="Add Book" />
+  	<input type="button" name="add-another-genre" id="add-another-genre" class="btn btn-warning btn-file clone" value="Add Additional Genre">
+    <br>
+    <br>
+   	<input class="formSubmitButton btn btn-primary" type="submit" value="Add Book" />
   </form>
 </div>
 
