@@ -1,12 +1,16 @@
 package com.techelevator.model;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.InvalidResultSetAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
@@ -23,7 +27,7 @@ public class JDBCBookDAO implements BookDAO{
 	}
 	
 	public void saveBook(Book book) {
-		saveBookTitle(book.getTitle().toLowerCase());
+		saveToBook(book.getTitle().toLowerCase());
 		long bookId = getLastBookId();
 		saveLocation(book.getSection().toLowerCase(), bookId);
 		saveCharacterNames(book.getCharacterFirstNames(), book.getCharacterLastNames(), bookId);
@@ -31,9 +35,13 @@ public class JDBCBookDAO implements BookDAO{
 		saveGenres(book.getGenres(), bookId);
 	}
 	
-	private void saveBookTitle(String title) {
-		String sqlInsertBookTitle = "INSERT INTO book (title) VALUES (?)";
-		jdbcTemplate.update(sqlInsertBookTitle, title);
+	private void saveToBook(String title) {
+		Date curDate = new Date();
+		SimpleDateFormat format = new SimpleDateFormat();
+		String dateToStr = format.format(curDate);
+
+		String sqlInsertBookTitle = "INSERT INTO book (title, date_added) VALUES (?, ?)";
+		jdbcTemplate.update(sqlInsertBookTitle, title, dateToStr);
 	}
 	
 	
@@ -263,22 +271,6 @@ public class JDBCBookDAO implements BookDAO{
 		}
 		
 		return booksWithoutDuplicates;
-		
-//		Book bookToCheck;
-//		for (int i = 0; i < books.size(); i++) {
-//			bookToCheck = books.get(i);
-//			int bookCounter = 0;
-//			for (int j = 0; j < books.size(); j++) {
-//				if (bookToCheck.equals(books.get(j))) {
-//					bookCounter++;
-//				}
-//				if (bookCounter > 1) {
-//					books.remove(i);
-//					break;
-//				}
-//			}
-//		}
-//		return books;
 	}
 	
 	private List<Book> combineBooks(List<Book> books) {
@@ -321,6 +313,18 @@ public class JDBCBookDAO implements BookDAO{
 		book.setBook_id(sqlRowSet.getLong("book_id"));
 		book.setTitle(sqlRowSet.getString("title"));
 		book.setSection(sqlRowSet.getString("section"));
+//		SimpleDateFormat format = new SimpleDateFormat();
+//		Date dateAdded = null;
+//		try {
+//			dateAdded = format.parse(sqlRowSet.getString("date_added"));
+//		} catch (InvalidResultSetAccessException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (ParseException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		book.setDateAdded(dateAdded);
 		return book;
 		
 	}
@@ -364,10 +368,6 @@ public class JDBCBookDAO implements BookDAO{
 	
 	private boolean characterNotAlreadyInBook(Book newBook,List<Book> books, int j) {
 		for (int i = 0; i < books.size(); i++) {
-//			System.out.println("id" + books.get(j).getBookId());
-//			System.out.println("books char first names " + books.get(j).getCharacterFirstNames());
-//			System.out.println( books.get(j).getCharacterFirstNames().size());
-////			System.out.println("the one in the book" + newBook.getCharacterFirstNames());
 		}
 		
 		return (!books.get(j).getCharacterFirstNames().contains(newBook.getCharacterFirstNames().get(0)));
