@@ -36,14 +36,14 @@
     <th>Book Title</th>
     <th>Author</th>
   </tr>
-  <c:forEach items="${book}" var="books">
+  <c:forEach items="${books}" var="book">
   <tr>
    <td>
-   <c:out value="${books.title}"/>
+   <c:out value="${book.title}"/>
    </td>
    <td>
 
-     <c:out value="${books.getAuthorFullNames()}"></c:out>
+     <c:out value="${book.getAuthorFullNames()}"></c:out>
 	
 	 </td> 
 	

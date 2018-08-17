@@ -37,9 +37,9 @@ public class JDBCUserDAO implements UserDAO {
 	public boolean searchForUsernameAndPassword(String userName, String password) {
 		String sqlSearchForUser = "SELECT * "+
 							      "FROM app_user "+
-							      "WHERE UPPER(user_name) = ? ";
+							      "WHERE user_name = ? ";
 		
-		SqlRowSet user = jdbcTemplate.queryForRowSet(sqlSearchForUser, userName.toUpperCase());
+		SqlRowSet user = jdbcTemplate.queryForRowSet(sqlSearchForUser, userName);
 		if(user.next()) {
 			String dbSalt = user.getString("salt");
 			String dbPassword = user.getString("password");
@@ -59,9 +59,9 @@ public class JDBCUserDAO implements UserDAO {
 	public Object getUserByUserName(String userName) {
 		String sqlSearchForUsername ="SELECT * "+
 		"FROM app_user "+
-		"WHERE UPPER(user_name) = ? ";
+		"WHERE (user_name) = ? ";
 
-		SqlRowSet user = jdbcTemplate.queryForRowSet(sqlSearchForUsername, userName.toUpperCase()); 
+		SqlRowSet user = jdbcTemplate.queryForRowSet(sqlSearchForUsername, userName); 
 		User thisUser = null;
 		if(user.next()) {
 			thisUser = new User();

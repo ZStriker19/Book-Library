@@ -301,7 +301,6 @@ public class JDBCBookDAO implements BookDAO{
 							books.get(j).getGenres().add(newBook.getGenres().get(0));
 						}
 					}
-				
 				}
 		}
 		books = deleteDuplicateBooks(books);
