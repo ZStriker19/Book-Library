@@ -27,6 +27,45 @@
   	<div class="form-group row">
   		<div class = "col-sm-6">
   			<label for="new-book-first-name" class="col-2 col-form-label">Author's First Name</label>
+    		<input class="form-control" type="text" placeholder="First name" id="first-name-input1" name="first-name-input1">
+    		<input type="button" name="clone" class="btn btn-success btn-file clone" value="Add">
+    	</div>
+    	<div class = "col-sm-6">
+  			<label for="new-book-last-name" class="col-2 col-form-label">Author's Last Name</label>
+    		<input class="form-control" type="text" placeholder="Last name" id="last-name-input1" name="last-name-input1">
+    		<input type="button" name="clone" class="btn btn-success btn-file clone" value="Add">
+    	</div>
+  	</div>
+  	
+  	<div class="form-group row">
+  		<div class = "col-sm-6">
+  			<label for="new-book-first-name" class="col-2 col-form-label">Author's First Name</label>
+    		<input class="form-control" type="text" placeholder="First name" id="first-name-input2" name="first-name-input2">
+    		<input type="button" name="clone" class="btn btn-success btn-file clone" value="Add">
+    	</div>
+    	<div class = "col-sm-6">
+  			<label for="new-book-last-name" class="col-2 col-form-label">Author's Last Name</label>
+    		<input class="form-control" type="text" placeholder="Last name" id="last-name-input" name="last-name-input">
+    		<input type="button" name="clone" class="btn btn-success btn-file clone" value="Add">
+    	</div>
+  	</div>
+  	
+  	<div class="form-group row">
+  		<div class = "col-sm-6">
+  			<label for="new-book-first-name" class="col-2 col-form-label">Author's First Name</label>
+    		<input class="form-control" type="text" placeholder="First name" id="first-name-input" name="first-name-input">
+    		<input type="button" name="clone" class="btn btn-success btn-file clone" value="Add">
+    	</div>
+    	<div class = "col-sm-6">
+  			<label for="new-book-last-name" class="col-2 col-form-label">Author's Last Name</label>
+    		<input class="form-control" type="text" placeholder="Last name" id="last-name-input" name="last-name-input">
+    		<input type="button" name="clone" class="btn btn-success btn-file clone" value="Add">
+    	</div>
+  	</div>
+  	
+  	<div class="form-group row">
+  		<div class = "col-sm-6">
+  			<label for="new-book-first-name" class="col-2 col-form-label">Author's First Name</label>
     		<input class="form-control" type="text" placeholder="First name" id="first-name-input" name="first-name-input">
     		<input type="button" name="clone" class="btn btn-success btn-file clone" value="Add">
     	</div>
@@ -39,14 +78,218 @@
   
   	<div class="form-group row">
   		<div class = "col-sm-6">
-  			<label for="new-book-character-1-first-name" class="col-2 col-form-label">Character 1 First Name</label>
+  			<label for="new-book-character-1-first-name" class="col-2 col-form-label">Character First Name</label>
   			<div class="col-10">
     			<input class="form-control" type="text" placeholder="Character 1 First Name" id="character-1-first-name-input" name="character-1-first-name-input">
     			<input type="button" name="clone" class="btn btn-success btn-file clone" value="Add">
     		</div>
     	</div>
     	<div class = "col-sm-6">
-    		<label for="new-book-character-1-last-name" class="col-2 col-form-label">Character 1 Last Name</label>
+    		<label for="new-book-character-1-last-name" class="col-2 col-form-label">Character Last Name</label>
+  			<div class="col-10">
+    			<input class="form-control" type="text" placeholder="Character 1 Last Name" id="character-1-last-name-input" name="character-1-last-name-input">
+    			<input type="button" name="clone" class="btn btn-success btn-file clone" value="Add">
+    		</div>
+		</div>
+  	</div>
+  	
+  	<div class="form-group row">
+  		<div class = "col-sm-6">
+  			<label for="new-book-character-1-first-name" class="col-2 col-form-label">Character First Name</label>
+  			<div class="col-10">
+    			<input class="form-control" type="text" placeholder="Character 1 First Name" id="character-1-first-name-input" name="character-1-first-name-input">
+    			<input type="button" name="clone" class="btn btn-success btn-file clone" value="Add">
+    		</div>
+    	</div>
+    	<div class = "col-sm-6">
+    		<label for="new-book-character-1-last-name" class="col-2 col-form-label">Character Last Name</label>
+  			<div class="col-10">
+    			<input class="form-control" type="text" placeholder="Character 1 Last Name" id="character-1-last-name-input" name="character-1-last-name-input">
+    			<input type="button" name="clone" class="btn btn-success btn-file clone" value="Add">
+    		</div>
+		</div>
+  	</div>
+  	
+  	<div class="form-group row">
+  		<div class = "col-sm-6">
+  			<label for="new-book-character-1-first-name" class="col-2 col-form-label">Character First Name</label>
+  			<div class="col-10">
+    			<input class="form-control" type="text" placeholder="Character 1 First Name" id="character-1-first-name-input" name="character-1-first-name-input">
+    			<input type="button" name="clone" class="btn btn-success btn-file clone" value="Add">
+    		</div>
+    	</div>
+    	<div class = "col-sm-6">
+    		<label for="new-book-character-1-last-name" class="col-2 col-form-label">Character Last Name</label>
+  			<div class="col-10">
+    			<input class="form-control" type="text" placeholder="Character 1 Last Name" id="character-1-last-name-input" name="character-1-last-name-input">
+    			<input type="button" name="clone" class="btn btn-success btn-file clone" value="Add">
+    		</div>
+		</div>
+  	</div>
+  	
+  	<div class="form-group row">
+  		<div class = "col-sm-6">
+  			<label for="new-book-character-1-first-name" class="col-2 col-form-label">Character First Name</label>
+  			<div class="col-10">
+    			<input class="form-control" type="text" placeholder="Character 1 First Name" id="character-1-first-name-input" name="character-1-first-name-input">
+    			<input type="button" name="clone" class="btn btn-success btn-file clone" value="Add">
+    		</div>
+    	</div>
+    	<div class = "col-sm-6">
+    		<label for="new-book-character-1-last-name" class="col-2 col-form-label">Character Last Name</label>
+  			<div class="col-10">
+    			<input class="form-control" type="text" placeholder="Character 1 Last Name" id="character-1-last-name-input" name="character-1-last-name-input">
+    			<input type="button" name="clone" class="btn btn-success btn-file clone" value="Add">
+    		</div>
+		</div>
+  	</div>
+  	
+  	<div class="form-group row">
+  		<div class = "col-sm-6">
+  			<label for="new-book-character-1-first-name" class="col-2 col-form-label">Character First Name</label>
+  			<div class="col-10">
+    			<input class="form-control" type="text" placeholder="Character 1 First Name" id="character-1-first-name-input" name="character-1-first-name-input">
+    			<input type="button" name="clone" class="btn btn-success btn-file clone" value="Add">
+    		</div>
+    	</div>
+    	<div class = "col-sm-6">
+    		<label for="new-book-character-1-last-name" class="col-2 col-form-label">Character Last Name</label>
+  			<div class="col-10">
+    			<input class="form-control" type="text" placeholder="Character 1 Last Name" id="character-1-last-name-input" name="character-1-last-name-input">
+    			<input type="button" name="clone" class="btn btn-success btn-file clone" value="Add">
+    		</div>
+		</div>
+  	</div>
+  	
+  	<div class="form-group row">
+  		<div class = "col-sm-6">
+  			<label for="new-book-character-1-first-name" class="col-2 col-form-label">Character First Name</label>
+  			<div class="col-10">
+    			<input class="form-control" type="text" placeholder="Character 1 First Name" id="character-1-first-name-input" name="character-1-first-name-input">
+    			<input type="button" name="clone" class="btn btn-success btn-file clone" value="Add">
+    		</div>
+    	</div>
+    	<div class = "col-sm-6">
+    		<label for="new-book-character-1-last-name" class="col-2 col-form-label">Character Last Name</label>
+  			<div class="col-10">
+    			<input class="form-control" type="text" placeholder="Character 1 Last Name" id="character-1-last-name-input" name="character-1-last-name-input">
+    			<input type="button" name="clone" class="btn btn-success btn-file clone" value="Add">
+    		</div>
+		</div>
+  	</div>
+  	
+  	<div class="form-group row">
+  		<div class = "col-sm-6">
+  			<label for="new-book-character-1-first-name" class="col-2 col-form-label">Character First Name</label>
+  			<div class="col-10">
+    			<input class="form-control" type="text" placeholder="Character 1 First Name" id="character-1-first-name-input" name="character-1-first-name-input">
+    			<input type="button" name="clone" class="btn btn-success btn-file clone" value="Add">
+    		</div>
+    	</div>
+    	<div class = "col-sm-6">
+    		<label for="new-book-character-1-last-name" class="col-2 col-form-label">Character Last Name</label>
+  			<div class="col-10">
+    			<input class="form-control" type="text" placeholder="Character 1 Last Name" id="character-1-last-name-input" name="character-1-last-name-input">
+    			<input type="button" name="clone" class="btn btn-success btn-file clone" value="Add">
+    		</div>
+		</div>
+  	</div>
+  	
+  	<div class="form-group row">
+  		<div class = "col-sm-6">
+  			<label for="new-book-character-1-first-name" class="col-2 col-form-label">Character First Name</label>
+  			<div class="col-10">
+    			<input class="form-control" type="text" placeholder="Character 1 First Name" id="character-1-first-name-input" name="character-1-first-name-input">
+    			<input type="button" name="clone" class="btn btn-success btn-file clone" value="Add">
+    		</div>
+    	</div>
+    	<div class = "col-sm-6">
+    		<label for="new-book-character-1-last-name" class="col-2 col-form-label">Character Last Name</label>
+  			<div class="col-10">
+    			<input class="form-control" type="text" placeholder="Character 1 Last Name" id="character-1-last-name-input" name="character-1-last-name-input">
+    			<input type="button" name="clone" class="btn btn-success btn-file clone" value="Add">
+    		</div>
+		</div>
+  	</div>
+  	
+  	<div class="form-group row">
+  		<div class = "col-sm-6">
+  			<label for="new-book-character-1-first-name" class="col-2 col-form-label">Character First Name</label>
+  			<div class="col-10">
+    			<input class="form-control" type="text" placeholder="Character 1 First Name" id="character-2-first-name-input" name="character-2-first-name-input">
+    			<input type="button" name="clone" class="btn btn-success btn-file clone" value="Add">
+    		</div>
+    	</div>
+    	<div class = "col-sm-6">
+    		<label for="new-book-character-2-last-name" class="col-2 col-form-label">Character Last Name</label>
+  			<div class="col-10">
+    			<input class="form-control" type="text" placeholder="Character 2 Last Name" id="character-2-last-name-input" name="character-2-last-name-input">
+    			<input type="button" name="clone" class="btn btn-success btn-file clone" value="Add">
+    		</div>
+		</div>
+  	</div>
+  	
+  	<div class="form-group row">
+  		<div class = "col-sm-6">
+  			<label for="new-book-character-1-first-name" class="col-2 col-form-label">Character First Name</label>
+  			<div class="col-10">
+    			<input class="form-control" type="text" placeholder="Character 1 First Name" id="character-1-first-name-input" name="character-1-first-name-input">
+    			<input type="button" name="clone" class="btn btn-success btn-file clone" value="Add">
+    		</div>
+    	</div>
+    	<div class = "col-sm-6">
+    		<label for="new-book-character-1-last-name" class="col-2 col-form-label">Character Last Name</label>
+  			<div class="col-10">
+    			<input class="form-control" type="text" placeholder="Character 1 Last Name" id="character-1-last-name-input" name="character-1-last-name-input">
+    			<input type="button" name="clone" class="btn btn-success btn-file clone" value="Add">
+    		</div>
+		</div>
+  	</div>
+  	
+  	<div class="form-group row">
+  		<div class = "col-sm-6">
+  			<label for="new-book-character-1-first-name" class="col-2 col-form-label">Character First Name</label>
+  			<div class="col-10">
+    			<input class="form-control" type="text" placeholder="Character 1 First Name" id="character-1-first-name-input" name="character-1-first-name-input">
+    			<input type="button" name="clone" class="btn btn-success btn-file clone" value="Add">
+    		</div>
+    	</div>
+    	<div class = "col-sm-6">
+    		<label for="new-book-character-1-last-name" class="col-2 col-form-label">Character Last Name</label>
+  			<div class="col-10">
+    			<input class="form-control" type="text" placeholder="Character 1 Last Name" id="character-1-last-name-input" name="character-1-last-name-input">
+    			<input type="button" name="clone" class="btn btn-success btn-file clone" value="Add">
+    		</div>
+		</div>
+  	</div>
+  	
+  	<div class="form-group row">
+  		<div class = "col-sm-6">
+  			<label for="new-book-character-1-first-name" class="col-2 col-form-label">Character First Name</label>
+  			<div class="col-10">
+    			<input class="form-control" type="text" placeholder="Character 1 First Name" id="character-1-first-name-input" name="character-1-first-name-input">
+    			<input type="button" name="clone" class="btn btn-success btn-file clone" value="Add">
+    		</div>
+    	</div>
+    	<div class = "col-sm-6">
+    		<label for="new-book-character-1-last-name" class="col-2 col-form-label">Character Last Name</label>
+  			<div class="col-10">
+    			<input class="form-control" type="text" placeholder="Character 1 Last Name" id="character-1-last-name-input" name="character-1-last-name-input">
+    			<input type="button" name="clone" class="btn btn-success btn-file clone" value="Add">
+    		</div>
+		</div>
+  	</div>
+  	
+  	<div class="form-group row">
+  		<div class = "col-sm-6">
+  			<label for="new-book-character-1-first-name" class="col-2 col-form-label">Character First Name</label>
+  			<div class="col-10">
+    			<input class="form-control" type="text" placeholder="Character 1 First Name" id="character-1-first-name-input" name="character-1-first-name-input">
+    			<input type="button" name="clone" class="btn btn-success btn-file clone" value="Add">
+    		</div>
+    	</div>
+    	<div class = "col-sm-6">
+    		<label for="new-book-character-1-last-name" class="col-2 col-form-label">Character Last Name</label>
   			<div class="col-10">
     			<input class="form-control" type="text" placeholder="Character 1 Last Name" id="character-1-last-name-input" name="character-1-last-name-input">
     			<input type="button" name="clone" class="btn btn-success btn-file clone" value="Add">
