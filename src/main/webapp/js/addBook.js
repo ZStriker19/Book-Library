@@ -3,6 +3,7 @@ $(document).ready(function(){
 	let characterCounter = 1;
 	let genreCounter = 1
 	$('#add-another-author').on('click', (event) => {
+		console.log("clicked add author button");
 		$('#author' + authorCounter.toString()).show('slow');
 	})
 	

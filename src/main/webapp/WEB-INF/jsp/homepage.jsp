@@ -11,15 +11,16 @@
 	</c:if>
 <h1>Search by:  </h1>
 
-<c:url var="formAction" value="/search"/>
+<c:url var="formAction" value="/search" />
 
 <form id="search" name="search" method="GET" action="${formAction}">
 <div>
     <i class="fa fa-search" aria-hidden="true"></i>
-    <input name="queryString" class="form-control search" type="text" placeholder="Title, Author, Character, Genre, or Section" aria-label="Search"/>
+    <input name="queryString"  id="queryString" class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Title, Author, Character, Keyword, or Section" aria-label="Search"/>
+
     <div class="form-check">
-    <input type="checkbox" class="form-check-input" id="newSearch">
-    <label class="form-check-label" for="newSearch">Search only books added since last search</label>
+   <input type="checkbox" class="form-check-input" id="newSearch">
+    <label class="form-check-label" for="newSearch">Search only books added since last search</label> 
   </div>
   
     <input class="formSubmitButton" type="submit" value="Search" />
@@ -28,6 +29,7 @@
 
 </form>
 </div>
+
 <div class="container t-3">
 	<table class="table">
 	
