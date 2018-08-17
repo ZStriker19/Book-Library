@@ -1,7 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <c:import url="/WEB-INF/jsp/header.jsp"/>
-<script src = "addBook.js"></script>
 
 <div class = "container">
 
@@ -24,46 +23,40 @@
     	</div>
   	</div>
   
-  	<div class="form-group row">
+  	<div class="form-group row" id="author1">
   		<div class = "col-sm-6">
   			<label for="new-book-first-name" class="col-2 col-form-label">Author's First Name</label>
     		<input class="form-control" type="text" placeholder="First name" id="author-1-first-name" name="author-1-first-name">
-    		<input type="button" name="clone" class="btn btn-success btn-file clone" value="Add an additional author's first name">
     	</div>
     	<div class = "col-sm-6">
   			<label for="new-book-last-name" class="col-2 col-form-label">Author's Last Name</label>
     		<input class="form-control" type="text" placeholder="Last name" id="author-1-last-name" name="author-1-last-name">
-    		<input type="button" name="clone" class="btn btn-success btn-file clone" value="Add an additional author's last name">
     	</div>
   	</div>
   	
-  	<div class="form-group row">
+  	<div class="form-group row initiallyHidden" id = "author2">
   		<div class = "col-sm-6">
   			<label for="new-book-first-name" class="col-2 col-form-label">Author's First Name</label>
     		<input class="form-control" type="text" placeholder="First name" id="author-2-first-name" name="author-2-first-name">
-    		<input type="button" name="clone" class="btn btn-success btn-file clone" value="Add an additional author's first name">
     	</div>
     	<div class = "col-sm-6">
   			<label for="new-book-last-name" class="col-2 col-form-label">Author's Last Name</label>
     		<input class="form-control" type="text" placeholder="Last name" id="author-2-last-name" name="author-2-last-name">
-    		<input type="button" name="clone" class="btn btn-success btn-file clone" value="Add an additional author's last name">
     	</div>
   	</div>
   	
-  	<div class="form-group row">
+  	<div class="form-group row initiallyHidden" id = "author3">
   		<div class = "col-sm-6">
   			<label for="new-book-first-name" class="col-2 col-form-label">Author's First Name</label>
     		<input class="form-control" type="text" placeholder="First name" id="author-3-first-name" name="author-3-first-name">
-    		<input type="button" name="clone" class="btn btn-success btn-file clone" value="Add an additional author's first name">
     	</div>
     	<div class = "col-sm-6">
   			<label for="new-book-last-name" class="col-2 col-form-label">Author's Last Name</label>
     		<input class="form-control" type="text" placeholder="Last name" id="author-3-last-name" name="author-3-last-name">
-    		<input type="button" name="clone" class="btn btn-success btn-file clone" value="Add an additional author's last name">
     	</div>
   	</div>
   	
-  	<div class="form-group row">
+  	<div class="form-group row initiallyHidden" id = "author4">
   		<div class = "col-sm-6">
   			<label for="new-book-first-name" class="col-2 col-form-label">Author's First Name</label>
     		<input class="form-control" type="text" placeholder="First name" id="author-4-first-name" name="author-4-first-name">
@@ -75,59 +68,56 @@
     		
     	</div>
   	</div>
+  	
+  	<input type="button" name="add-another-author" id="add-another-author" class="btn btn-success btn-file clone" value="Add Additional Author">
   
-  	<div class="form-group row">
+  	<div class="form-group row" id = "character1">
   		<div class = "col-sm-6">
   			<label for="new-book-character-1-first-name" class="col-2 col-form-label">Character First Name</label>
   			<div class="col-10">
     			<input class="form-control" type="text" placeholder="Character 1 First Name" id="character-1-first-name" name="character-1-first-name">
-    			<input type="button" name="clone" class="btn btn-success btn-file clone" value="Add an additional character's first name">
     		</div>
     	</div>
     	<div class = "col-sm-6">
     		<label for="new-book-character-1-last-name" class="col-2 col-form-label">Character Last Name</label>
   			<div class="col-10">
     			<input class="form-control" type="text" placeholder="Character 1 Last Name" id="character-1-last-name" name="character-1-last-name">
-    			<input type="button" name="clone" class="btn btn-success btn-file clone" value="Add an additional character's last name">
     		</div>
 		</div>
   	</div>
   	
-  	<div class="form-group row">
+  	<div class="form-group row initiallyHidden" id = "character2">
   		<div class = "col-sm-6">
   			<label for="new-book-character-1-first-name" class="col-2 col-form-label">Character First Name</label>
   			<div class="col-10">
     			<input class="form-control" type="text" placeholder="Character 2 First Name" id="character-2-first-name" name="character-2-first-name">
-    			<input type="button" name="clone" class="btn btn-success btn-file clone" value="Add an additional character's first name">
+    			
     		</div>
     	</div>
     	<div class = "col-sm-6">
     		<label for="new-book-character-1-last-name" class="col-2 col-form-label">Character Last Name</label>
   			<div class="col-10">
     			<input class="form-control" type="text" placeholder="Character 2 Last Name" id="character-2-last-name" name="character-2-last-name">
-    			<input type="button" name="clone" class="btn btn-success btn-file clone" value="Add an additional character's last name">
     		</div>
 		</div>
   	</div>
   	
-  	<div class="form-group row">
+  	<div class="form-group row initiallyHidden" id = "character3">
   		<div class = "col-sm-6">
   			<label for="new-book-character-1-first-name" class="col-2 col-form-label">Character First Name</label>
   			<div class="col-10">
     			<input class="form-control" type="text" placeholder="Character 3 First Name" id="character-3-first-name" name="character-3-first-name">
-    			<input type="button" name="clone" class="btn btn-success btn-file clone" value="Add an additional character's first name">
     		</div>
     	</div>
     	<div class = "col-sm-6">
     		<label for="new-book-character-1-last-name" class="col-2 col-form-label">Character Last Name</label>
   			<div class="col-10">
     			<input class="form-control" type="text" placeholder="Character 3 Last Name" id="character-3-last-name" name="character-3-last-name">
-    			<input type="button" name="clone" class="btn btn-success btn-file clone" value="Add an additional character's last name">
     		</div>
 		</div>
   	</div>
   	
-  	<div class="form-group row">
+  	<div class="form-group row initiallyHidden" id = "character4">
   		<div class = "col-sm-6">
   			<label for="new-book-character-1-first-name" class="col-2 col-form-label">Character First Name</label>
   			<div class="col-10">
@@ -139,29 +129,26 @@
     		<label for="new-book-character-1-last-name" class="col-2 col-form-label">Character Last Name</label>
   			<div class="col-10">
     			<input class="form-control" type="text" placeholder="Character 4 Last Name" id="character-4-last-name" name="character-4-last-name">
-    			<input type="button" name="clone" class="btn btn-success btn-file clone" value="Add an additional character's last name">
     		</div>
 		</div>
   	</div>
   	
-  	<div class="form-group row">
+  	<div class="form-group row initiallyHidden" id = "character5">
   		<div class = "col-sm-6">
   			<label for="new-book-character-1-first-name" class="col-2 col-form-label">Character First Name</label>
   			<div class="col-10">
     			<input class="form-control" type="text" placeholder="Character 5 First Name" id="character-5-first-name" name="character-5-first-name">
-    			<input type="button" name="clone" class="btn btn-success btn-file clone" value="Add an additional character's first name">
     		</div>
     	</div>
     	<div class = "col-sm-6">
     		<label for="new-book-character-1-last-name" class="col-2 col-form-label">Character Last Name</label>
   			<div class="col-10">
     			<input class="form-control" type="text" placeholder="Character 5 Last Name" id="character-5-last-name" name="character-5-last-name">
-    			<input type="button" name="clone" class="btn btn-success btn-file clone" value="Add an additional character's last name">
     		</div>
 		</div>
   	</div>
   	
-  	<div class="form-group row">
+  	<div class="form-group row initiallyHidden"  id = "character6">
   		<div class = "col-sm-6">
   			<label for="new-book-character-1-first-name" class="col-2 col-form-label">Character First Name</label>
   			<div class="col-10">
@@ -178,34 +165,35 @@
 		</div>
   	</div>
   	
-  	<div class="form-group row">
+  	<input type="button" name="add-another-character" id="add-another-character" class="btn btn-success btn-file clone" value="Add Additional Character">
+  	
+  	<div class="form-group row" id = "genre1">
   		<label for="new-book-genres" class="col-2 col-form-label">Genre</label>
   		<div class="col-10">
     		<input class="form-control" type="text" placeholder="genre" id="genre-1" name="genre-1">
     	</div>
     	
-    	<input type="button" name="clone" class="btn btn-success btn-file clone" value="Add an additional genre">
   	</div>
   	
-  	<div class="form-group row">
+  	<div class="form-group row initiallyHidden" id = "genre2">
   		<label for="new-book-genres" class="col-2 col-form-label">Genre</label>
   		<div class="col-10">
     		<input class="form-control" type="text" placeholder="genre" id="genre-2" name="genre-2">
     	</div>
     	
-    	<input type="button" name="clone" class="btn btn-success btn-file clone" value="Add an additional genre">
   	</div>
   	
-  	<div class="form-group row">
+  	<div class="form-group row initiallyHidden" id = "genre3">
   		<label for="new-book-genres" class="col-2 col-form-label">Genre</label>
   		<div class="col-10">
     		<input class="form-control" type="text" placeholder="genre" id="genre-3" name="genre-3">
     	</div>
-    	
-    	<input class="formSubmitButton btn-success" type="submit" value="Add Book" />
   	</div>
-  	
+  	<input type="button" name="add-another-genre" id="add-another-genre" class="btn btn-success btn-file clone" value="Add Additional Genre">
+    	
+    <input class="formSubmitButton btn-success" type="submit" value="Add Book" />
   </form>
 </div>
 
+<script src = "/js/addBook.js"></script>
 <c:import url="/WEB-INF/jsp/footer.jsp"/>
