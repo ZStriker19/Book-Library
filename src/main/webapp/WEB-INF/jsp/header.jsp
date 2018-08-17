@@ -98,7 +98,7 @@
 				</div>
 			</div>
 		</nav>
-		<c:if test="${not empty currentUser}">
+		<%-- <c:if test="${not empty currentUser}">
 			<p id="currentUser">Current User: ${currentUser}</p>
-		</c:if>		
+		</c:if>		 --%>
 		<div class="container">
