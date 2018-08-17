@@ -34,7 +34,7 @@
     	</div>
   	</div>
   	
-  	<div class="form-group row initiallyHidden">
+  	<div class="form-group row initiallyHidden" id = "author2">
   		<div class = "col-sm-6">
   			<label for="new-book-first-name" class="col-2 col-form-label">Author's First Name</label>
     		<input class="form-control" type="text" placeholder="First name" id="author-2-first-name" name="author-2-first-name">
@@ -47,7 +47,7 @@
     	</div>
   	</div>
   	
-  	<div class="form-group row initiallyHidden">
+  	<div class="form-group row initiallyHidden" id = "author3">
   		<div class = "col-sm-6">
   			<label for="new-book-first-name" class="col-2 col-form-label">Author's First Name</label>
     		<input class="form-control" type="text" placeholder="First name" id="author-3-first-name" name="author-3-first-name">
@@ -60,7 +60,7 @@
     	</div>
   	</div>
   	
-  	<div class="form-group row initiallyHidden">
+  	<div class="form-group row initiallyHidden" id = "author4">
   		<div class = "col-sm-6">
   			<label for="new-book-first-name" class="col-2 col-form-label">Author's First Name</label>
     		<input class="form-control" type="text" placeholder="First name" id="author-4-first-name" name="author-4-first-name">
@@ -75,7 +75,7 @@
   	
   	<input type="button" name="add-another-author" id="#add-another-author" class="btn btn-success btn-file clone" value="Add Additional Author">
   
-  	<div class="form-group row">
+  	<div class="form-group row" id = "character1">
   		<div class = "col-sm-6">
   			<label for="new-book-character-1-first-name" class="col-2 col-form-label">Character First Name</label>
   			<div class="col-10">
@@ -92,7 +92,7 @@
 		</div>
   	</div>
   	
-  	<div class="form-group row initiallyHidden">
+  	<div class="form-group row initiallyHidden" id = "character2">
   		<div class = "col-sm-6">
   			<label for="new-book-character-1-first-name" class="col-2 col-form-label">Character First Name</label>
   			<div class="col-10">
@@ -109,7 +109,7 @@
 		</div>
   	</div>
   	
-  	<div class="form-group row initiallyHidden">
+  	<div class="form-group row initiallyHidden" id = "character3">
   		<div class = "col-sm-6">
   			<label for="new-book-character-1-first-name" class="col-2 col-form-label">Character First Name</label>
   			<div class="col-10">
@@ -126,7 +126,7 @@
 		</div>
   	</div>
   	
-  	<div class="form-group row initiallyHidden">
+  	<div class="form-group row initiallyHidden" id = "character4">
   		<div class = "col-sm-6">
   			<label for="new-book-character-1-first-name" class="col-2 col-form-label">Character First Name</label>
   			<div class="col-10">
@@ -143,7 +143,7 @@
 		</div>
   	</div>
   	
-  	<div class="form-group row initiallyHidden">
+  	<div class="form-group row initiallyHidden" id = "character5">
   		<div class = "col-sm-6">
   			<label for="new-book-character-1-first-name" class="col-2 col-form-label">Character First Name</label>
   			<div class="col-10">
@@ -160,7 +160,7 @@
 		</div>
   	</div>
   	
-  	<div class="form-group row initiallyHidden" >
+  	<div class="form-group row initiallyHidden"  id = "character6">
   		<div class = "col-sm-6">
   			<label for="new-book-character-1-first-name" class="col-2 col-form-label">Character First Name</label>
   			<div class="col-10">
@@ -177,7 +177,7 @@
 		</div>
   	</div>
   	
-  	<div class="form-group row">
+  	<div class="form-group row" id = "genre1">
   		<label for="new-book-genres" class="col-2 col-form-label">Genre</label>
   		<div class="col-10">
     		<input class="form-control" type="text" placeholder="genre" id="genre-1" name="genre-1">
@@ -186,7 +186,7 @@
     	<input type="button" name="clone" class="btn btn-success btn-file clone" value="Add an additional genre">
   	</div>
   	
-  	<div class="form-group row initiallyHidden">
+  	<div class="form-group row initiallyHidden" id = "genre2">
   		<label for="new-book-genres" class="col-2 col-form-label">Genre</label>
   		<div class="col-10">
     		<input class="form-control" type="text" placeholder="genre" id="genre-2" name="genre-2">
@@ -195,7 +195,7 @@
     	<input type="button" name="clone" class="btn btn-success btn-file clone" value="Add an additional genre">
   	</div>
   	
-  	<div class="form-group row initiallyHidden">
+  	<div class="form-group row initiallyHidden" id = "genre3">
   		<label for="new-book-genres" class="col-2 col-form-label">Genre</label>
   		<div class="col-10">
     		<input class="form-control" type="text" placeholder="genre" id="genre-3" name="genre-3">
