@@ -59,7 +59,8 @@
   		<div class="col-10">
     		<input class="form-control" type="text" placeholder="genres" id="genres-input" name="genres-input">
     	</div>
-    	<input class="formSubmitButton" type="submit" value="Add Book" />
+    	
+    	<input class="formSubmitButton btn-success" type="submit" value="Add Book" />
   	</div>
   </form>
 </div>
