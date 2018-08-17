@@ -1,5 +1,6 @@
 package com.techelevator.model;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.text.WordUtils;
@@ -8,6 +9,7 @@ public class Book {
 	private long bookId;
 	private String title;
 	private String section;
+	private Date dateAdded;
 	private List<String> genres;
 	private List<String> characterFirstNames;
 	private List<String> characterLastNames;
@@ -32,6 +34,10 @@ public class Book {
 	}
 	public void setSection(String section) {
 		this.section = section;
+	}
+	
+	public void setDateAdded(Date dateAdded) {
+		this.dateAdded = dateAdded;
 	}
 	
 	public List<String> getGenres() {
