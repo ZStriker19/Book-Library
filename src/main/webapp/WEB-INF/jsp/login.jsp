@@ -35,15 +35,6 @@
 	});
 </script>
 
-<!-- <script>
-jQuery.extend(jQuery.validator.messages, {
-    required: "Username and password are required.",
-    minlength: jQuery.validator.format("Username must be at least 3 characters."),
-});
-
-</script> -->
-	
-
 <div class="row">
 	<div class="col-sm-4"></div>
 	<div class="col-sm-4">
