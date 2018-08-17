@@ -41,7 +41,7 @@ public class JDBCBookDAO implements BookDAO{
 		String dateToStr = format.format(curDate);
 
 		String sqlInsertBookTitle = "INSERT INTO book (title, date_added) VALUES (?, ?)";
-		jdbcTemplate.update(sqlInsertBookTitle, title, dateToStr);
+		jdbcTemplate.update(sqlInsertBookTitle, title.toLowerCase(), dateToStr);
 	}
 	
 	
@@ -67,7 +67,7 @@ public class JDBCBookDAO implements BookDAO{
 		long characterId = 0;
 		
 		for (int i = 0; i < characterFirstNames.size(); i++) {
-			jdbcTemplate.update(sqlInsertCharacterFirstName, characterFirstNames.get(i), characterLastNames.get(i));
+			jdbcTemplate.update(sqlInsertCharacterFirstName, characterFirstNames.get(i).toLowerCase(), characterLastNames.get(i).toLowerCase());
 			
 			SqlRowSet result = jdbcTemplate.queryForRowSet(sqlGetLastCharacterId);
 			
@@ -84,7 +84,7 @@ public class JDBCBookDAO implements BookDAO{
 		String sqlGetLastAuthorId = "SELECT author_id FROM author ORDER BY author_id DESC LIMIT 1";
 		long authorId = 0;
 		for (int i = 0; i < authorFirstNames.size(); i++) {
-			jdbcTemplate.update(sqlInsertAuthorFirstName, authorFirstNames.get(i), authorLastNames.get(i));
+			jdbcTemplate.update(sqlInsertAuthorFirstName, authorFirstNames.get(i).toLowerCase(), authorLastNames.get(i).toLowerCase());
 			
 			SqlRowSet result = jdbcTemplate.queryForRowSet(sqlGetLastAuthorId);
 			
@@ -101,7 +101,7 @@ public class JDBCBookDAO implements BookDAO{
 		String sqlGetLastGenreId = "SELECT genre_id FROM genre ORDER BY genre_id DESC LIMIT 1";
 		long genreId = 0;
 		for (int i = 0; i < genres.size(); i++) {
-			jdbcTemplate.update(sqlInsertGenre, genres.get(i));
+			jdbcTemplate.update(sqlInsertGenre, genres.get(i).toLowerCase());
 			
 			SqlRowSet result = jdbcTemplate.queryForRowSet(sqlGetLastGenreId);
 			if (result.next()) {
