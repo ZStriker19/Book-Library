@@ -21,8 +21,11 @@
 				userName: {
 					required: "Username is required!",
 					minlength: "Username must be at least 3 characters"
-				}
-			},
+				},
+				password: {
+					required: "Password is required!",
+					minlength: "Password must be at least 8 characters"
+				},
 				confirmPassword : {
 					equalTo : "Passwords do not match"
 				}
