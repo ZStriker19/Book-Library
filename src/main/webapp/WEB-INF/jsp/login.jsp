@@ -9,10 +9,12 @@
 			
 			rules : {
 				userName : {
-					required : true
+					required : true,
+					minlength : 3 
 				},
 				password : {
-					required : true
+					required : true,
+					minlength : 8
 				}
 			},
 			messages : {			
@@ -24,6 +26,15 @@
 		});
 	});
 </script>
+
+<!-- <script>
+jQuery.extend(jQuery.validator.messages, {
+    required: "Username and password are required.",
+    minlength: jQuery.validator.format("Username must be at least 3 characters."),
+});
+
+</script> -->
+	
 
 <div class="row">
 	<div class="col-sm-4"></div>

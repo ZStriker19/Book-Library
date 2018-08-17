@@ -16,7 +16,7 @@
 <form id="search" name="search" method="GET" action="${formAction}">
 <div>
     <i class="fa fa-search" aria-hidden="true"></i>
-    <input name="queryString"  id="queryString" class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Title, Author, Character, Keyword, or Section" aria-label="Search"/>
+    <input name="queryString"  id="queryString" class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Title, Author, Character, Genre (e.g. fiction, non-fiction, children etc.), or Location In Library" aria-label="Search"/>
 
     <div class="form-check">
    <input type="checkbox" class="form-check-input" id="newSearch">
@@ -43,14 +43,13 @@
    <c:out value="${book.title}"/>
    </td>
    <td>
-
      <c:out value="${book.getAuthorFullNames()}"></c:out>
-	
 	 </td> 
 	
   </tr>
   </c:forEach>
 </table>
+
 <c:if test="${messageNoBooks != null}">
 	<div class="alert alert-danger alert-dismissible" role="alert">
 		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>

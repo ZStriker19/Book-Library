@@ -7,7 +7,7 @@
 		$.validator.addMethod('capitals', function(thing){
 			return thing.match(/[A-Z]/);
 		});
-		$("form").validate({
+		$("#newUser").validate({
 			
 			rules : {
 				userName : {
@@ -38,7 +38,7 @@
 </script>
 
 <c:url var="formAction" value="/users" />
-<form method="POST" action="${formAction}">
+<form id="newUser" method="POST" action="${formAction}">
 <input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
 	<div class="row">
 		<div class="col-sm-4"></div>

@@ -26,7 +26,8 @@ CREATE TABLE app_user (
 
 CREATE TABLE book (
   book_id SERIAL PRIMARY KEY,
-  title varchar(150) NOT NULL UNIQUE
+  title varchar(150) NOT NULL UNIQUE,
+  date_added varchar(50) NOT NULL 
 );
 
 CREATE TABLE author (
