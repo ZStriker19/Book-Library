@@ -4,7 +4,7 @@
 
 BEGIN;
 
-INSERT INTO app_user (app_user_id, user_name, password, role, salt) VALUES (1, 'system_admin', 'Systemadministrator', true, '1');
+INSERT INTO app_user (app_user_id, user_name, password, role, salt) VALUES (1, 'system_admin', 'Password', true, '1');
 
 SELECT setval(pg_get_serial_sequence('app_user', 'app_user_id'), 1);
 
