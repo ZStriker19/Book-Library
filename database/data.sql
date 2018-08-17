@@ -8,16 +8,16 @@ INSERT INTO app_user (app_user_id, user_name, password, role, salt) VALUES (1, '
 
 SELECT setval(pg_get_serial_sequence('app_user', 'app_user_id'), 1);
 
-INSERT INTO book (book_id, title) VALUES (1, 'harry potter and the sorcerer''s stone');
-INSERT INTO book (book_id, title) VALUES (2, 'harry potter and the chamber of secrets');
-INSERT INTO book (book_id, title) VALUES (3, 'harry potter and the prisoner of azkaban');
-INSERT INTO book (book_id, title) VALUES (4, 'harry potter and the goblet of fire');
-INSERT INTO book (book_id, title) VALUES (5, 'harry potter and the order of the phoenix');
-INSERT INTO book (book_id, title) VALUES (6, 'harry potter and the half-blood prince');
-INSERT INTO book (book_id, title) VALUES (7, 'harry potter and the deathly hallows');
-INSERT INTO book (book_id, title) VALUES (8, 'the great gatsby');
-INSERT INTO book (book_id, title) VALUES (9, 'it''s not about the bike: my journey back to life');
-INSERT INTO book (book_id, title) VALUES (10, 'it''s all about the bike: the pursuit of happiness on two wheels');
+INSERT INTO book (book_id, title, date_added) VALUES (1, 'harry potter and the sorcerer''s stone', '8/13/18 11:30 AM');
+INSERT INTO book (book_id, title, date_added) VALUES (2, 'harry potter and the chamber of secrets', '8/13/18 11:31 AM');
+INSERT INTO book (book_id, title, date_added) VALUES (3, 'harry potter and the prisoner of azkaban', '8/13/18 11:32 AM');
+INSERT INTO book (book_id, title, date_added) VALUES (4, 'harry potter and the goblet of fire', '8/13/18 11:33 AM');
+INSERT INTO book (book_id, title, date_added) VALUES (5, 'harry potter and the order of the phoenix', '8/13/18 11:34 AM');
+INSERT INTO book (book_id, title, date_added) VALUES (6, 'harry potter and the half-blood prince', '8/13/18 11:35 AM');
+INSERT INTO book (book_id, title, date_added) VALUES (7, 'harry potter and the deathly hallows', '8/13/18 11:36 AM');
+INSERT INTO book (book_id, title, date_added) VALUES (8, 'the great gatsby', '8/13/18 11:37 AM');
+INSERT INTO book (book_id, title, date_added) VALUES (9, 'it''s not about the bike: my journey back to life', '8/13/18 11:38 AM');
+INSERT INTO book (book_id, title, date_added) VALUES (10, 'it''s all about the bike: the pursuit of happiness on two wheels', '8/13/18 11:39 AM');
 
 SELECT setval(pg_get_serial_sequence('book', 'book_id'), 10);
 
