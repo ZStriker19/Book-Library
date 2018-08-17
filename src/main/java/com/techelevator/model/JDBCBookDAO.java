@@ -146,7 +146,7 @@ public class JDBCBookDAO implements BookDAO{
 	
 	public List<Book> searchForBooksBasedOnAuthor(String author) {
 		List<Book> books = new ArrayList<Book>();
-		String sqlQueryForAuthor = "SELECT book.book_id, book.title, author.f_name AS author_first_name, author.l_name AS author_last_name,"
+		String sqlQueryForAuthor = "SELECT book.book_id, book.date_added, book.title, author.f_name AS author_first_name, author.l_name AS author_last_name,"
 				+ " character.f_name AS character_first_name, character.l_name AS character_last_name, location.section, genre.genre" 
 				+ " FROM author "
 				+ " JOIN book_author ON book_author.author_id = author.author_id"
@@ -171,7 +171,7 @@ public class JDBCBookDAO implements BookDAO{
 	
 	public List<Book> searchForBooksBasedOnGenre(String genre) {
 		List<Book> books = new ArrayList<Book>();
-		String sqlQueryForGenre = "SELECT book.book_id, book.title, author.f_name AS author_first_name, author.l_name AS author_last_name,"
+		String sqlQueryForGenre = "SELECT book.book_id, book.title, book.date_added, author.f_name AS author_first_name, author.l_name AS author_last_name,"
 				+ " character.f_name AS character_first_name, character.l_name AS character_last_name, location.section, genre.genre" 
 				+" FROM genre" 
 				+" JOIN book_genre ON genre.genre_id = book_genre.genre_id" 
@@ -194,7 +194,7 @@ public class JDBCBookDAO implements BookDAO{
 	
 	public List<Book> searchForBooksBasedOnPublishingLocation(String location) {
 		List<Book> books = new ArrayList<Book>();
-		String sqlQueryForLocation = "SELECT book.book_id, book.title, author.f_name AS author_first_name, author.l_name AS author_last_name,"
+		String sqlQueryForLocation = "SELECT book.book_id, book.title, book.date_added, author.f_name AS author_first_name, author.l_name AS author_last_name,"
 				+ " character.f_name AS character_first_name, character.l_name AS character_last_name, location.section, genre.genre" 
 				+" FROM location"
 				+" JOIN book_location ON location.location_id = book_location.location_id"
@@ -217,7 +217,7 @@ public class JDBCBookDAO implements BookDAO{
 
 	
 	public List<Book> searchForBooksBasedOnCharacter(String character) {
-		String sqlQueryForCharacter = "SELECT book.book_id, book.title, author.f_name AS author_first_name, author.l_name AS author_last_name,"
+		String sqlQueryForCharacter = "SELECT book.book_id, book.title, book.date_added, author.f_name AS author_first_name, author.l_name AS author_last_name,"
 				+ " character.f_name AS character_first_name, character.l_name AS character_last_name, location.section, genre.genre" 
 				+" FROM character"
 				+" JOIN book_character ON character.character_id = book_character.character_id" 
@@ -240,7 +240,7 @@ public class JDBCBookDAO implements BookDAO{
 
 	
 	public List<Book> searchForBooksBasedOnTitle(String title) {
-		String sqlQueryForTitle = "SELECT book.book_id, book.title, author.f_name AS author_first_name, author.l_name AS author_last_name,"
+		String sqlQueryForTitle = "SELECT book.book_id, book.title, book.date_added, author.f_name AS author_first_name, author.l_name AS author_last_name,"
 				+ " character.f_name AS character_first_name, character.l_name AS character_last_name, location.section, genre.genre" 
 				+" FROM book"
 				+" JOIN book_character ON book.book_id = book_character.book_id" 
@@ -313,18 +313,18 @@ public class JDBCBookDAO implements BookDAO{
 		book.setBook_id(sqlRowSet.getLong("book_id"));
 		book.setTitle(sqlRowSet.getString("title"));
 		book.setSection(sqlRowSet.getString("section"));
-//		SimpleDateFormat format = new SimpleDateFormat();
-//		Date dateAdded = null;
-//		try {
-//			dateAdded = format.parse(sqlRowSet.getString("date_added"));
-//		} catch (InvalidResultSetAccessException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (ParseException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		book.setDateAdded(dateAdded);
+		SimpleDateFormat format = new SimpleDateFormat();
+		Date dateAdded = null;
+		try {
+			dateAdded = format.parse(sqlRowSet.getString("date_added"));
+		} catch (InvalidResultSetAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		book.setDateAdded(dateAdded);
 		return book;
 		
 	}
