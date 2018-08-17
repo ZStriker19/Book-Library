@@ -44,7 +44,7 @@ public class UserController {
 			flash.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "user", result);
 			return "redirect:/users/new";
 		}
-		
+		System.out.println("inside the /users");
 		userDAO.saveUser(user.getUserName(), user.getPassword());
 		return "redirect:login";
 	}
