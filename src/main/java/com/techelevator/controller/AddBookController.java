@@ -2,6 +2,7 @@ package com.techelevator.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -32,44 +33,123 @@ public class AddBookController {
 		
 		@RequestMapping(path=("/addBook/submit"), method=RequestMethod.POST)
 		public String createNewBook(HttpServletRequest request, final RedirectAttributes redirectAttributes) {
-			String title = (String) request.getParameter("title-input");
-			String section = (String) request.getParameter("section-input");
-			String firstNames = (String) request.getParameter("first-name-input");
-			String lastNames = (String) request.getParameter("last-name-input");
-			String characterFirst = (String) request.getParameter("character-1-first-name-input");
-			String characterLast = (String) request.getParameter("character-1-last-name-input");
-			String genre = (String) request.getParameter("genres-input");
-			
-			Book book = new Book();
-			
-			book.setTitle(title);
-			book.setSection(section);
-			
-			List<String> authorFirstNames = new ArrayList<String>();
-			authorFirstNames.add(firstNames);
-			book.setAuthorFirstNames(authorFirstNames);
-			
-			List<String> authorLastNames = new ArrayList<String>();
-			authorLastNames.add(lastNames);
-			book.setAuthorLastNames(authorLastNames);
-			
-			List<String> characterFirstNames = new ArrayList<String>();
-			characterFirstNames.add(characterFirst);
-			book.setCharacterFirstNames(characterFirstNames);
-			
-			List<String> characterLastNames = new ArrayList<String>();
-			characterLastNames.add(characterLast);
-			book.setCharacterLastNames(characterLastNames);
-			
-			List<String> genres = new ArrayList<String>();
-			genres.add(genre);
-			book.setGenres(genres);
+			Book book = createBook(request);
 			
 			bookDAO.saveBook(book);
 			redirectAttributes.addFlashAttribute("addedBook", book);
 			redirectAttributes.addFlashAttribute("message", book.getTitle() + " added successfully");
 
 			return "redirect:/";
+			
+		}
+		
+		private Book createBook(HttpServletRequest request) {
+			Book book = new Book();
+			
+			String title = (String) request.getParameter("title-input");
+			String section = (String) request.getParameter("section-input");
+			
+			List<String> authorFirstNames = new ArrayList<String>();
+			
+			List<String> authorLastNames = new ArrayList<String>();
+			
+			List<String> characterFirstNames = new ArrayList<String>();
+			
+			List<String> characterLastNames = new ArrayList<String>();
+			
+			List<String> genres = new ArrayList<String>();
+			
+			
+			String genre1 = (String) request.getParameter("genre-1");
+			String genre2 = (String) request.getParameter("genre-2");
+			String genre3 = (String) request.getParameter("genre-3");
+			
+			genres.add(genre1);
+			genres.add(genre2);
+			genres.add(genre3);
+			
+			
+			
+			
+			
+			String authorFName1 = (String) request.getParameter("author-1-first-name");
+			String authorLName1 = (String) request.getParameter("author-1-last-name");
+			
+			String authorFName2 = (String) request.getParameter("author-2-first-name");
+			String authorLName2 = (String) request.getParameter("author-2-last-name");
+			
+			String authorFName3 = (String) request.getParameter("author-3-first-name");
+			String authorLName3 = (String) request.getParameter("author-3-last-name");
+			
+			String authorFName4 = (String) request.getParameter("author-4-first-name");
+			String authorLName4 = (String) request.getParameter("author-4-last-name");
+			
+			
+			
+			
+			String characterFName1 = (String) request.getParameter("character-1-first-name");
+			String characterLName1 = (String) request.getParameter("character-1-last-name");
+			
+			String characterFName2 = (String) request.getParameter("character-2-first-name");
+			String characterLName2 = (String) request.getParameter("character-2-last-name");
+			
+			String characterFName3 = (String) request.getParameter("character-3-first-name");
+			String characterLName3 = (String) request.getParameter("character-3-last-name");
+			
+			String characterFName4 = (String) request.getParameter("character-4-first-name");
+			String characterLName4 = (String) request.getParameter("character-4-last-name");
+			
+			String characterFName5 = (String) request.getParameter("character-5-first-name");
+			String characterLName5 = (String) request.getParameter("character-5-last-name");
+			
+			String characterFName6 = (String) request.getParameter("character-6-first-name");
+			String characterLName6 = (String) request.getParameter("character-6-last-name");
+			
+			
+			
+			authorFirstNames.add(authorFName1);
+			authorFirstNames.add(authorFName2);
+			authorFirstNames.add(authorFName3);
+			authorFirstNames.add(authorFName4);
+			
+			authorLastNames.add(authorLName1);
+			authorLastNames.add(authorLName2);
+			authorLastNames.add(authorLName3);
+			authorLastNames.add(authorLName4);
+			
+			characterFirstNames.add(characterFName1);
+			characterFirstNames.add(characterFName2);
+			characterFirstNames.add(characterFName3);
+			characterFirstNames.add(characterFName4);
+			characterFirstNames.add(characterFName5);
+			characterFirstNames.add(characterFName6);
+			
+			characterLastNames.add(characterLName1);
+			characterLastNames.add(characterLName2);
+			characterLastNames.add(characterLName3);
+			characterLastNames.add(characterLName4);
+			characterLastNames.add(characterLName5);
+			characterLastNames.add(characterLName6);
+			
+			
+			authorFirstNames = authorFirstNames.stream().filter(item-> item != null).collect(Collectors.toList());
+			authorLastNames =  authorLastNames.stream().filter(item-> item != null).collect(Collectors.toList());
+			characterFirstNames = characterFirstNames.stream().filter(item -> item != null).collect(Collectors.toList());
+			characterLastNames = characterFirstNames.stream().filter(item -> item != null).collect(Collectors.toList());
+			
+			
+			book.setAuthorFirstNames(authorFirstNames);
+			book.setAuthorLastNames(authorLastNames);
+			book.setCharacterFirstNames(characterFirstNames);
+			book.setCharacterLastNames(characterLastNames);
+			book.setGenres(genres);
+			book.setSection(section);
+			book.setTitle(title);
+			
+			
+			
+			
+			return book;
 			
 		}
 		
