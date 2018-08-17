@@ -40,6 +40,7 @@ public class HomeController {
 		
 		return "redirect:/"; //links to JSP page
 
+
 	}
 	
 	

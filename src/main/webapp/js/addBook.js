@@ -1,0 +1,1 @@
+$("input.clone").on("click", clone);
