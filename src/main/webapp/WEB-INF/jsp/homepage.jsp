@@ -3,7 +3,12 @@
 <c:import url="/WEB-INF/jsp/header.jsp"/>
 
 <div class = "container">
-
+<c:if test="${message != null}">
+	<div class="alert alert-success alert-dismissible" role="alert">
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+	${message}
+	</div>
+	</c:if>
 <h1>Search by:  </h1>
 
 <c:url var="formAction" value="/search"/>
@@ -45,5 +50,11 @@
   </tr>
   </c:forEach>
 </table>
+<c:if test="${messageNoBooks != null}">
+	<div class="alert alert-danger alert-dismissible" role="alert">
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+	${messageNoBooks}
+	</div>
+	</c:if>
 </div>
 <c:import url="/WEB-INF/jsp/footer.jsp"/>
