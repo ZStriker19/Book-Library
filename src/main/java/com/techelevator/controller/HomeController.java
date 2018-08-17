@@ -27,18 +27,22 @@ public class HomeController {
 	return "homepage";
 	}
 	
+	
 	@RequestMapping(path=("/search"), method=RequestMethod.GET)
 	public String searchBookResults(HttpServletRequest request, final RedirectAttributes redirectAttributes) {
 		String bookQuery = request.getParameter("queryString");
+		System.out.println(bookQuery);
 		List<Book> books = bookDAO.searchForBooks(bookQuery);
-		request.setAttribute("book", books);
-		if (books.size()== 0) {
+		if (books.size() == 0) {
 			redirectAttributes.addFlashAttribute("bookSize", books);
 			redirectAttributes.addFlashAttribute("messageNoBooks", " There were no books found. Please try a different search.");
-
+			return "redirect:/";
+			
 		}
 		
-		return "redirect:/"; //links to JSP page
+		request.setAttribute("books", books);
+		
+		return "homepage"; //links to JSP page
 
 
 	}
