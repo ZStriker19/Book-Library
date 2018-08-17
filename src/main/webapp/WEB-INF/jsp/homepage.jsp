@@ -23,7 +23,7 @@
     <label class="form-check-label" for="newSearch">Search only books added since last search</label> 
   </div>
   
-    <input class="formSubmitButton" type="submit" value="Search" />
+    <input class="formSubmitButton btn btn-primary" type="submit" value="Search" />
   
     </div>
 
