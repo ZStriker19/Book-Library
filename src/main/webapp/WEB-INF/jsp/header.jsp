@@ -64,9 +64,10 @@
 					<li><a href="${homePageHref}">Home</a></li>
 					
 					
-					
+					<c:if test="${currentUser.role == true }">
 					<c:url var="addBookHref" value="/addBook" />
 					<li><a href="${addBookHref}">Add Book</a></li>
+					</c:if>
 					
 					
 					<c:if test="${not empty currentUser}">
@@ -93,7 +94,7 @@
 							<form id="logoutForm" action="${logoutAction}" method="POST">
 							<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
 							</form>
-							<li><a id="logoutLink" href="#">Log Out</a></li>
+							<li><a id="logoutLink" href="${logoutAction}">Log Out</a></li>
 						</c:otherwise>
 					</c:choose>
 					
