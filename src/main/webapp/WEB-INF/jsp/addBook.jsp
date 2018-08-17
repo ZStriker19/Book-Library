@@ -52,7 +52,7 @@
     	</div>
     	<div class = "col-sm-6">
   			<label for="new-book-last-name" class="col-2 col-form-label">Author's Last Name</label>
-    		<input class="form-control" type="text" placeholder="Author 3 Last Name id="author-3-last-name" name="author-3-last-name">
+    		<input class="form-control" type="text" placeholder="Author 3 Last Name" id="author-3-last-name" name="author-3-last-name">
     	</div>
   	</div>
   	
@@ -64,7 +64,7 @@
     	</div>
     	<div class = "col-sm-6">
   			<label for="new-book-last-name" class="col-2 col-form-label">Author's Last Name</label>
-    		<input class="form-control" type="text" placeholder="Author 4 First Name" id="author-4-last-name" name="author-4-last-name">
+    		<input class="form-control" type="text" placeholder="Author 4 Last Name" id="author-4-last-name" name="author-4-last-name">
     		
     	</div>
   	</div>
