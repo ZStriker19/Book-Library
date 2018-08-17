@@ -19,7 +19,7 @@
     <input name="queryString"  id="queryString" class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Title, Author, Character, Genre (e.g. fiction, non-fiction, children etc.), or Location In Library" aria-label="Search"/>
 
     <div class="form-check">
-   <input type="checkbox" class="form-check-input" id="newSearch">
+   		<input type="checkbox" class="form-check-input" id="newSearch" name="newSearch" value="checked">
     <label class="form-check-label" for="newSearch">Search only books added since last search</label> 
   </div>
   

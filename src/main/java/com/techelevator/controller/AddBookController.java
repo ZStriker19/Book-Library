@@ -46,8 +46,8 @@ public class AddBookController {
 		private Book createBook(HttpServletRequest request) {
 			Book book = new Book();
 			
-			String title = (String) request.getParameter("title-input");
-			String section = (String) request.getParameter("section-input");
+			String title = (String) request.getParameter("title");
+			String section = (String) request.getParameter("section");
 			
 			List<String> authorFirstNames = new ArrayList<String>();
 			

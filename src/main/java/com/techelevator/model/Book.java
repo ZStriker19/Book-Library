@@ -40,6 +40,10 @@ public class Book {
 		this.dateAdded = dateAdded;
 	}
 	
+	public Date getDateAdded() {
+		return dateAdded;
+	}
+	
 	public List<String> getGenres() {
 		return genres;
 	}

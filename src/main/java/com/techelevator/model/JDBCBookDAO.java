@@ -379,10 +379,7 @@ public class JDBCBookDAO implements BookDAO{
 	
 	private boolean containsBook(Book newBook, List<Book> books) {
 		for (Book book : books) {
-			System.out.println("new book id " + newBook.getBookId());
-			System.out.println("book id  already on list" + newBook.getBookId() + "\n");
 			if (book.getBookId() == newBook.getBookId()) {
-				System.out.println("\nfound book.getbookid " + book.getBookId());
 				return true;
 			}
 		}
