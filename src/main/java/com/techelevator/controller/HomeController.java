@@ -41,7 +41,6 @@ public class HomeController {
 	@RequestMapping(path=("/search"), method=RequestMethod.GET)
 	public String searchBookResults(HttpServletRequest request, final RedirectAttributes redirectAttributes, ModelMap map) {
 		
-		
 		String bookQuery = request.getParameter("queryString");
 		List<Book> books = bookDAO.searchForBooks(bookQuery);
 		
@@ -51,8 +50,6 @@ public class HomeController {
 		
 		Date curDate = new Date();
 		map.put("dateLastSearched", curDate);
-		
-		
 		
 		if (books.size() == 0) {
 			redirectAttributes.addFlashAttribute("bookSize", books);

@@ -5,6 +5,7 @@ import javax.validation.constraints.Pattern;
 public class User {
 	
 	private String userName;
+	private long userId;
 	
 	@Pattern.List({
 		@Pattern(regexp=".*[a-z].*", message="Must have a lower case"),
@@ -43,5 +44,13 @@ public class User {
 	}
 	public void setConfirmPassword(String confirmPassword) {
 		this.confirmPassword = confirmPassword;
+	}
+	
+	public void setId(long userId) {
+		this.userId = userId;
+	}
+	
+	public long getId() {
+		return userId;
 	}
 }
