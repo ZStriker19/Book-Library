@@ -74,12 +74,15 @@
 					
 					
 					<c:if test="${currentUser.role == true }">
-					<c:url var="addBookHref" value="/addBook" />
-					<li><a href="${addBookHref}">Add Book</a></li>
+						<c:url var="addBookHref" value="/addBook" />
+						<li><a href="${addBookHref}">Add Book</a></li>
 					</c:if>
 					
 					
 					<c:if test="${not empty currentUser}">
+						<c:url var="readingLists" value="/readingLists" />
+						<li><a href="${readingLists}">Reading Lists</a></li>
+						
 						<c:url var="dashboardHref" value="/users/${currentUser}" />
 						<li><a href="${dashboardHref}">Private Messages</a></li>
 						<c:url var="newMessageHref" value="/users/${currentUser}/messages/new" />
