@@ -86,6 +86,8 @@
 						<li><a href="${newMessageHref}">New Message</a></li>
 						<c:url var="sentMessagesHref" value="/users/${currentUser}/messages" />
 						<li><a href="${sentMessagesHref}">Sent Messages</a></li>
+						<c:url var="forumLink" value="/forum/posts"/>
+            			<li><a href="${forumLink}">Foxtrot Forum</a></li>    
 						<c:url var="changePasswordHref" value="/users/${currentUser}/changePassword" />
 						<li><a href="${changePasswordHref}">Change Password</a></li>
 					</c:if>
