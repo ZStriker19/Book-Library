@@ -18,6 +18,13 @@ public interface BookDAO {
 	
 	public List<Book> searchForBooksBasedOnTitle(String title);
 	
+	public List<Book> searchForBooksUserHasRead(long appUserId);
+	
+	public List<Book> searchForBooksUserWillRead(long appUserId);
+	
+	public void saveBookUserWillReadList(long appUserId, long bookId);
+	
+	public void saveBookUserHaveReadList(long appUserId, long bookId);
 	
 	
 }

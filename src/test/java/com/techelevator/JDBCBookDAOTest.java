@@ -7,6 +7,7 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.techelevator.model.Book;
 import com.techelevator.model.BookDAO;
@@ -14,11 +15,13 @@ import com.techelevator.model.JDBCBookDAO;
 
 
 public class JDBCBookDAOTest extends DAOIntegrationTest {
-	BookDAO bookDao;
+	private BookDAO bookDao;
+	private JdbcTemplate jdbcTemplate;
 	
 	@Before
 	public void setup() {
 		bookDao = new JDBCBookDAO(dataSource);
+		jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 	
 	@Test 
@@ -94,10 +97,7 @@ public class JDBCBookDAOTest extends DAOIntegrationTest {
 		bookDao.saveBook(book);
 		
 		List<Book> books = bookDao.searchForBooks("good omens");
-		for (Book booker : books) {
-			System.out.println((book.getCharacterFirstNames()));
-			System.out.println((book.getCharacterLastNames()));
-		}
+		
 		Assert.assertNotNull(books);
 		Assert.assertEquals(1, books.size());
 		Assert.assertEquals(books.get(0).getSection(), "A1");
@@ -105,6 +105,63 @@ public class JDBCBookDAOTest extends DAOIntegrationTest {
 		Assert.assertEquals(books.get(0).getCharacterLastNames().size(), 2);
 		Assert.assertFalse(books.get(0).getCharacterLastNames().get(0).equals(books.get(0).getCharacterFirstNames().get(0)));
 	}
+	
+	@Test
+	public void get_books_user_has_read() throws SQLException {
+		long app_user_id = 1;
+		List<Book> books = bookDao.searchForBooksUserHasRead(app_user_id);
+		
+		Assert.assertNotNull(books);
+		Assert.assertEquals(3, books.size());
+		Assert.assertEquals("J.k. Rowling", books.get(0).getAuthorFullNames());
+		Assert.assertEquals(5, books.get(0).getBookId());
+		Assert.assertEquals(1, books.get(0).getAuthorFirstNames().size());
+	}
+	
+	@Test
+	public void get_books_user_will_read() throws SQLException {
+		long appUserId = 1;
+		List<Book> books = bookDao.searchForBooksUserWillRead(appUserId);
+		
+		Assert.assertNotNull(books);
+		Assert.assertEquals(3, books.size());
+		Assert.assertEquals("J.k. Rowling", books.get(0).getAuthorFullNames());
+		Assert.assertEquals(1, books.get(0).getBookId());
+		Assert.assertEquals(1, books.get(0).getAuthorFirstNames().size());
+	}
+	
+	@Test
+	public void add_book_to_will_read_list() throws SQLException {
+		long appUserId = 1;
+		long bookId = 9;
+		List<Book> booksBeforeAdding = bookDao.searchForBooksUserWillRead(appUserId);
+		
+		bookDao.saveBookUserWillReadList(appUserId, bookId);
+		
+		List<Book> booksAfterAdding = bookDao.searchForBooksUserWillRead(appUserId);
+		
+		Assert.assertNotNull(booksAfterAdding);
+		Assert.assertTrue(booksBeforeAdding.size() + 1 == booksAfterAdding.size());
+	}
+	
+	@Test
+	public void add_book_to_have_read_list() throws SQLException {
+		long appUserId = 1;
+		long bookId = 9;
+		List<Book> booksBeforeAdding = bookDao.searchForBooksUserHasRead(appUserId);
+		
+		bookDao.saveBookUserHaveReadList(appUserId, bookId);
+		
+		List<Book> booksAfterAdding = bookDao.searchForBooksUserHasRead(appUserId);
+		System.out.println(booksBeforeAdding.size());
+		System.out.println(booksAfterAdding.size());
+		
+		Assert.assertNotNull(booksAfterAdding);
+		Assert.assertTrue(booksBeforeAdding.size() + 1 == booksAfterAdding.size());
+	}
+	
+	
+	
 	
 	private Book createBook() {
 		Book book = new Book();
@@ -115,7 +172,7 @@ public class JDBCBookDAOTest extends DAOIntegrationTest {
 		String characterOneFirstName = "crowley";
 		String characterTwoFirstName = "adam";
 		String characterOneLastName = "satan";
-		String characterTwoLastName = null;
+		String characterTwoLastName = "greg";
 		String authorOneFirstName = "neil";
 		String authorTwoFirstName = "terry";
 		String authorOneLastName = "gaiman";

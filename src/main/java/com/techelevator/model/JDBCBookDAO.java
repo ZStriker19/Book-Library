@@ -26,6 +26,7 @@ public class JDBCBookDAO implements BookDAO{
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 	
+	
 	public void saveBook(Book book) {
 		saveToBook(book.getTitle().toLowerCase());
 		long bookId = getLastBookId();
@@ -122,8 +123,71 @@ public class JDBCBookDAO implements BookDAO{
 		return bookId;
 	}
 	
+	public void saveBookUserWillReadList(long appUserId, long bookId) {
+		String sqlAddBookToWillRead = "INSERT INTO book_app_user_will_read (app_user_id, book_id) VALUES (?, ?)";
+		jdbcTemplate.update(sqlAddBookToWillRead, appUserId, bookId);
+		
+	}
 	
-
+	public void saveBookUserHaveReadList(long appUserId, long bookId) {
+		String sqlAddBookToHaveRead = "INSERT INTO book_app_user_have_read (app_user_id, book_id) VALUES (?, ?)";
+		jdbcTemplate.update(sqlAddBookToHaveRead, appUserId, bookId);
+	}
+	
+	public List<Book> searchForBooksUserHasRead(long appUserId) {
+		List<Book> books = new ArrayList<Book>();
+		String sqlQueryForAuthor = "SELECT book.book_id, book.title, book.date_added, author.f_name AS author_first_name, author.l_name AS author_last_name,"
+				+ " character.f_name AS character_first_name, character.l_name AS character_last_name, location.section, genre.genre"  
+				+" FROM book_app_user_have_read"
+				+" JOIN book ON book_app_user_have_read.book_id = book.book_id"
+				+" JOIN book_character ON book.book_id = book_character.book_id"
+				+" JOIN character ON book_character.character_id = character.character_id"
+				+" JOIN book_location ON book.book_id = book_location.book_id" 
+				+" JOIN location ON location.location_id = book_location.location_id"
+				+" JOIN book_genre ON book.book_id = book_genre.book_id"
+				+" JOIN genre ON genre.genre_id = book_genre.genre_id" 
+				+" JOIN book_author ON book.book_id = book_author.book_id"
+				+" JOIN author ON book_author.author_id = author.author_id" 
+				+" WHERE book_app_user_have_read.app_user_id = ?";
+		
+		SqlRowSet  results = jdbcTemplate.queryForRowSet(sqlQueryForAuthor, appUserId);
+		
+		while(results.next()) {
+			Book book = createNewBook(results);
+			books.add(book);
+		}
+		
+		books = deleteDuplicateBooks(books);
+		return books;
+	}
+	
+	public List<Book> searchForBooksUserWillRead(long appUserId) {
+		List<Book> books = new ArrayList<Book>();
+		String sqlQueryForAuthor = "SELECT book.book_id, book.title, book.date_added, author.f_name AS author_first_name, author.l_name AS author_last_name,"
+				+ " character.f_name AS character_first_name, character.l_name AS character_last_name, location.section, genre.genre"  
+				+" FROM book_app_user_will_read"
+				+" JOIN book ON book_app_user_will_read.book_id = book.book_id"
+				+" JOIN book_character ON book.book_id = book_character.book_id"
+				+" JOIN character ON book_character.character_id = character.character_id"
+				+" JOIN book_location ON book.book_id = book_location.book_id" 
+				+" JOIN location ON location.location_id = book_location.location_id"
+				+" JOIN book_genre ON book.book_id = book_genre.book_id"
+				+" JOIN genre ON genre.genre_id = book_genre.genre_id" 
+				+" JOIN book_author ON book.book_id = book_author.book_id"
+				+" JOIN author ON book_author.author_id = author.author_id" 
+				+" WHERE book_app_user_will_read.app_user_id = ?";
+		
+		SqlRowSet  results = jdbcTemplate.queryForRowSet(sqlQueryForAuthor, appUserId);
+		
+		while(results.next()) {
+			Book book = createNewBook(results);
+			books.add(book);
+		}
+		
+		books = deleteDuplicateBooks(books);
+		return books;
+	}
+	
 	public List<Book> searchForBooks(String queryString) {
 		queryString = queryString.toLowerCase();
 		
