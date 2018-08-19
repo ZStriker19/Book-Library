@@ -5,6 +5,7 @@
 BEGIN;
 
 INSERT INTO app_user (app_user_id, user_name, password, role, salt) VALUES (1, 'system_admin', 'Password', true, '1');
+INSERT INTO app_user (app_user_id, user_name, password, role, salt) VALUES (2, 'user', 'Userpassword', false, '1');
 
 SELECT setval(pg_get_serial_sequence('app_user', 'app_user_id'), 1);
 
@@ -125,5 +126,15 @@ INSERT INTO book_author (book_id, author_id) VALUES (8, 2);
 INSERT INTO book_author (book_id, author_id) VALUES (9, 3);
 INSERT INTO book_author (book_id, author_id) VALUES (9, 4);
 INSERT INTO book_author (book_id, author_id) VALUES (10, 5);
+
+INSERT INTO book_app_user_will_read (app_user_id, book_id) VALUES (1, 1);
+INSERT INTO book_app_user_will_read (app_user_id, book_id) VALUES (1, 2);
+INSERT INTO book_app_user_will_read (app_user_id, book_id) VALUES (1, 3);
+
+INSERT INTO book_app_user_have_read (app_user_id, book_id) VALUES (1, 5);
+INSERT INTO book_app_user_have_read (app_user_id, book_id) VALUES (1, 6);
+INSERT INTO book_app_user_have_read (app_user_id, book_id) VALUES (1, 7);
+
+
 
 COMMIT;

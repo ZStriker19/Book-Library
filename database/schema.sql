@@ -9,12 +9,17 @@ DROP TABLE IF EXISTS book_author;
 DROP TABLE IF EXISTS book_genre;
 DROP TABLE IF EXISTS book_location;
 DROP TABLE IF EXISTS book_character;
+DROP TABLE IF EXISTS book_app_user_will_read;
+DROP TABLE IF EXISTS book_app_user_have_read;
 DROP TABLE IF EXISTS genre;
 DROP TABLE IF EXISTS location;
 DROP TABLE IF EXISTS character;
 DROP TABLE IF EXISTS author;
 DROP TABLE IF EXISTS book;
 DROP TABLE IF EXISTS app_user;
+
+
+
 
 CREATE TABLE app_user (
   app_user_id SERIAL PRIMARY KEY,
@@ -85,7 +90,21 @@ CREATE TABLE book_author (
     CONSTRAINT fk_book_authorAuthor_id foreign key (author_id) references author(author_id)
 );
 
+CREATE TABLE book_app_user_will_read (
+    app_user_id integer NOT NULL,
+    book_id integer NOT NULL,
+    CONSTRAINT pk_book_app_user_book_id_app_user_id_for_will_read PRIMARY KEY (book_id, app_user_id),
+    CONSTRAINT fk_book_app_user_app_user_id_for_will_read foreign key (app_user_id) references app_user(app_user_id),
+    CONSTRAINT fk_book_app_user_Book_id_for_will_read foreign key (book_id) references book(book_id)
+);
 
-
+CREATE TABLE book_app_user_have_read (
+    app_user_id integer NOT NULL,
+    book_id integer NOT NULL,
+    CONSTRAINT pk_book_app_user_book_id_app_user_id_for_have_read PRIMARY KEY (book_id, app_user_id),
+    CONSTRAINT fk_book_app_user_app_user_id_for_have_read foreign key (app_user_id) references app_user(app_user_id),
+    CONSTRAINT fk_book_app_user_Book_id_for_have_read foreign key (book_id) references book(book_id)
+  
+);
 
 COMMIT;
