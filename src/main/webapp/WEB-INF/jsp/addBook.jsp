@@ -42,14 +42,14 @@
 
 	<div class="form-group row">
   		<label for="new-book-title" class="col-2 col-form-label">Title</label>
-  		<div class="col-6">
+  		<div class="col-10">
     		<input class="form-control" type="text" placeholder="Title" id="title" name="title">
   		</div>
   	</div>
   
     <div class="form-group row">
   		<label for="new-book-location" class="col-2 col-form-label">Section</label>
-  		<div class="col-6">
+  		<div class="col-10">
     		<input class="form-control" type="text" placeholder="Section in Library" id="section" name="section">
     	</div>
   	</div>
