@@ -54,19 +54,17 @@
   		</div>
     </td>
     <td>
-		<div class="dropdown">
-  <button class="btn btn-default dropdown-toggle" type="button" id="readingListMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+	<div class="btn-group">
+  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" 
+  aria-expanded="false">
     Reading List Options
-    <span class="caret"></span>
   </button>
-  <ul class="reading-list-menu" aria-labelledby="readingListMenu">
-    <li><a href="#">Add to Books to Read</a></li>
-    <li role="separator" class="divider"></li>
-    <li><a href="#">Add to Books I Have Read</a></li>
-    
+  <div class="dropdown-menu">
+    <a class="dropdown-item" href="#">Add to Books to Read</a>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item" href="#">Add to Books I Have Read</a>
    
-  
-  </ul>
+  </div>
 </div>
 	</td>
   </tr>
