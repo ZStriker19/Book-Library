@@ -3,12 +3,14 @@ package com.techelevator.controller;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,13 +23,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.techelevator.model.book.Book;
 import com.techelevator.model.book.BookDAO;
+import com.techelevator.model.user.User;
 
 @Controller
 @SessionAttributes("dateLastSearched")
 public class HomeController {
 	
 	@Autowired
-	private BookDAO bookDAO;
+	private BookDAO bookDao;
 
 	@RequestMapping(path=("/"), method=RequestMethod.GET)
 	public String showHomepage(ModelMap map) {
@@ -43,7 +46,7 @@ public class HomeController {
 	public String searchBookResults(HttpServletRequest request, final RedirectAttributes redirectAttributes, ModelMap map) {
 		
 		String bookQuery = request.getParameter("queryString");
-		List<Book> books = bookDAO.searchForBooks(bookQuery);
+		List<Book> books = bookDao.searchForBooks(bookQuery);
 		
 		if (!(request.getParameter("newSearch") == null)) {
 			books = books.stream().filter(book -> (book.getDateAdded().compareTo((Date) map.get("dateLastSearched"))) > 0).collect(Collectors.toList());
@@ -62,18 +65,35 @@ public class HomeController {
 		redirectAttributes.addFlashAttribute("books", books);
 		request.setAttribute("books", books);
 		
-		return "homepage"; //links to JSP page
+		return "homepage";
 	}
 	
-	@RequestMapping(path=("/addBookToList"), method=RequestMethod.GET)
-	public String addBookToList(HttpServletRequest request, final RedirectAttributes redirectAttributes, Model model) {
+	@RequestMapping(path=("/addToWillReadList"), method=RequestMethod.POST)
+	public String addBookToWillReadList(HttpServletRequest request, RedirectAttributes redirectAttributes, Model model, HttpSession session) {
+		User currentUser = (User) session.getAttribute("currentUser");
+		Enumeration<String> enumeration = request.getParameterNames();
+		    while(enumeration.hasMoreElements()){
+		    	long bookId = Long.parseLong((String) request.getParameter(enumeration.nextElement()));
+		        bookDao.saveBookUserWillReadList(currentUser.getId(), bookId);
+		    }
+		    
+		
+		return "redirect:/readingLists";
+	}
+	
+	@RequestMapping(path=("/addToHaveReadList"), method=RequestMethod.POST)
+	public String addBookToHaveReadList(HttpServletRequest request, RedirectAttributes redirectAttributes, Model model, HttpSession session) {
+		
+		User currentUser = (User) session.getAttribute("currentUser");
+		Enumeration<String> enumeration = request.getParameterNames();
+		    while(enumeration.hasMoreElements()){
+		    	long bookId = Long.parseLong((String) request.getParameter(enumeration.nextElement()));
+		        bookDao.saveBookUserHaveReadList(currentUser.getId(), bookId);
+		    }
+		    
 		
 		
-		List<Book> books = (ArrayList<Book>) model.asMap().get("books");
-		request.setAttribute("books", books);
-		
-		
-		return "redirect:/";
+		return "redirect:/readingLists";
 	}
 	
 	

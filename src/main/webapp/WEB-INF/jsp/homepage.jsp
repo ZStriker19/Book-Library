@@ -30,23 +30,26 @@
 </form>
 </div>
 
+
 <div class="container t-3">
+<form action="addToWillReadList" method="POST" >
 	<table class="table">
 	
   <tr>
     <th>Book Title</th>
     <th>Author</th>
-    <th>Add to Reading List<th>
-    <th><div class="btn-group">
-  <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Reading List Options
-  </button>
-  <div class="dropdown-menu">
-    <a class="dropdown-item" href="#">Add to Books to Read</a>
-    <a class="dropdown-item" href="#">Add to Books I Have Read</a>
+    <c:if test="${not empty currentUser}">
+    <th>
+     <div class="dropdown show">
+	    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Options
+	    <span class="caret"></span></button>
+	    <ul class="dropdown-menu">
+	      <li><input class="formSubmitButton btn btn-link" type="submit" style="text-decoration:none" value="Add To Want To Read List"> </li>
+	      <li><input class="formSubmitButton btn btn-link" type="submit" style="text-decoration:none" value="Add To Have Read List" formaction="addToHaveReadList"></li>
+	    </ul>
   </div>
-</div>
 </th>
+</c:if>
     
   </tr>
   <c:forEach items="${books}" var="book">
@@ -57,16 +60,17 @@
    <td>
      <c:out value="${book.getAuthorFullNames()}"></c:out>
 	</td> 
+	<c:if test="${not empty currentUser}">
 	<td>
-		<div class="form-check">
-    	<input type="checkbox" class="form-check-input" id="addToReadingListCheck">
-    	<label class="form-check-label" for="addToReadingList"></label>
-  		</div>
+		<td> <input type="checkbox" name="checkbox${book.bookId}" value="${book.bookId}">
+		</td>
     </td>
+    </c:if>
     
   </tr>
   </c:forEach>
 </table>
+</form>
 
 <c:if test="${messageNoBooks != null}">
 	<div class="alert alert-danger alert-dismissible" role="alert">
