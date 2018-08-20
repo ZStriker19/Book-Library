@@ -7,10 +7,10 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.techelevator.model.Book;
-import com.techelevator.model.JDBCUserDAO;
-import com.techelevator.model.User;
-import com.techelevator.model.UserDAO;
+import com.techelevator.model.book.Book;
+import com.techelevator.model.user.JDBCUserDAO;
+import com.techelevator.model.user.User;
+import com.techelevator.model.user.UserDAO;
 import com.techelevator.security.PasswordHasher;
 
 public class JDBCUserDAOTest extends DAOIntegrationTest {

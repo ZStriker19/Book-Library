@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.techelevator.model.Book;
-import com.techelevator.model.BookDAO;
-import com.techelevator.model.JDBCBookDAO;
+import com.techelevator.model.book.Book;
+import com.techelevator.model.book.BookDAO;
+import com.techelevator.model.book.JDBCBookDAO;
 
 
 

@@ -19,8 +19,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.techelevator.model.Book;
-import com.techelevator.model.BookDAO;
+import com.techelevator.model.book.Book;
+import com.techelevator.model.book.BookDAO;
 
 @Controller
 @SessionAttributes("dateLastSearched")
