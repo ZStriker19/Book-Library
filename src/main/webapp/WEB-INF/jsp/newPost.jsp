@@ -9,18 +9,21 @@
 
 <h2>New Forum Post</h2>
 <form method="POST" class="forms" action="${forumFormURL}">
-	
+	<div>
 	<label for="username">Username:</label>
-	<input type="text" id="username" name="username" /><br />
-
+	<c:out value="${currentUser.userName}"/>
+</div>
+<div>
 	<label for="subject">Subject:</label>
 	<input type="text" id="subject" name="subject" /><br />
-	
+	</div>
+	<div>
 	<label for="message">Message: </label>
 	<input type="text" id="message" name="message" /><br />
-	
+	</div>
+	<div>
 	<input type="submit" value="submit" />
-
+</div>
 </form>	
 
 </div>
