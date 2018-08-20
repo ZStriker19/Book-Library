@@ -23,6 +23,10 @@
 	    <c:url var="cssHref" value="/css/homepage.css" />
 		<link rel="stylesheet" type="text/css" href="${cssHref}">
 		
+		<c:url var="cssHref" value="/css/validation.css" />
+		<link rel="stylesheet" type="text/css" href="${cssHref}">
+		
+		
 		<c:url var="formVal" value="/js/formValidation.js"/> 
 		<script src="${formVal}"></script> 
 		

@@ -9,22 +9,18 @@
 			
 			rules : {
 				userName : {
-					required : true,
-					minlength : 3 
+					required : true, 
 				},
 				password : {
 					required : true,
-					minlength : 8
 				}
 			},
 			messages : {		
 				userName: {
-					required: "Username is required!",
-					minlength: "Username must be at least 3 characters"
+					required: "Username is required",
 				},
 				password: {
-					required: "Password is required!",
-					minlength: "Password must be at least 8 characters"
+					required: "Password is required",
 				},
 				confirmPassword : {
 					equalTo : "Passwords do not match"
