@@ -46,7 +46,7 @@ public class ReadingListController {
 		User currentUser = (User) session.getAttribute("currentUser");
 		Enumeration<String> enumeration = request.getParameterNames();
 		    while(enumeration.hasMoreElements()){
-		        long bookId = Long.parseLong((String) enumeration.nextElement());
+		    	long bookId = Long.parseLong((String) request.getParameter(enumeration.nextElement()));
 		        bookDao.deleteBookFromUserHasReadList(currentUser.getId(), bookId);
 		        bookDao.saveBookUserWillReadList(currentUser.getId(), bookId);
 		        
@@ -61,12 +61,12 @@ public class ReadingListController {
 		
 	}
 	
-	@RequestMapping(path="/addBooksYouHaveRead")
+	@RequestMapping(path="/addToBooksYouHaveRead")
 	public String addBooksYouHaveRead(HttpSession session, HttpServletRequest request) {
 		User currentUser = (User) session.getAttribute("currentUser");
 		Enumeration<String> enumeration = request.getParameterNames();
 		    while(enumeration.hasMoreElements()){
-		        long bookId = Long.parseLong((String) enumeration.nextElement());
+		        long bookId = Long.parseLong((String) request.getParameter(enumeration.nextElement()));
 		        bookDao.deleteBookFromUserWillReadList(currentUser.getId(), bookId);
 		        bookDao.saveBookUserHaveReadList(currentUser.getId(), bookId);
 		        
@@ -86,7 +86,7 @@ public class ReadingListController {
 		User currentUser = (User) session.getAttribute("currentUser");
 		Enumeration<String> enumeration = request.getParameterNames();
 		    while(enumeration.hasMoreElements()){
-		        long bookId = Long.parseLong((String) enumeration.nextElement());
+		    	long bookId = Long.parseLong((String) request.getParameter(enumeration.nextElement()));
 		        bookDao.deleteBookFromUserWillReadList(currentUser.getId(), bookId);
 		    }
 		    
@@ -100,12 +100,13 @@ public class ReadingListController {
 	}
 	
 	
+	
 	@RequestMapping(path="/deleteFromBooksYouHaveRead")
 	public String deleteFromBooksYouHaveRead(HttpSession session, HttpServletRequest request) {
 		User currentUser = (User) session.getAttribute("currentUser");
 		Enumeration<String> enumeration = request.getParameterNames();
 		    while(enumeration.hasMoreElements()){
-		        long bookId = Long.parseLong((String) enumeration.nextElement());
+		    	long bookId = Long.parseLong((String) request.getParameter(enumeration.nextElement()));
 		        bookDao.deleteBookFromUserHasReadList(currentUser.getId(), bookId);
 		    }
 		    
