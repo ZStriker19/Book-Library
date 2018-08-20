@@ -67,6 +67,13 @@ public class JDBCBookDAO implements BookDAO{
 		String sqlGetLastCharacterId = "SELECT character_id FROM character ORDER BY character_id DESC LIMIT 1";
 		long characterId = 0;
 		
+		for (int i = 0; i <= characterFirstNames.size() - characterLastNames.size() + 1; i++) {
+			characterLastNames.add("");
+		}
+		
+		System.out.println(characterFirstNames);
+		System.out.println(characterLastNames);
+		
 		for (int i = 0; i < characterFirstNames.size(); i++) {
 			jdbcTemplate.update(sqlInsertCharacterFirstName, characterFirstNames.get(i).toLowerCase(), characterLastNames.get(i).toLowerCase());
 			
