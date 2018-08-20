@@ -6,21 +6,24 @@
 <div class="container t-3">
 
 <h1>Books to Read</h1>
-<form action="/addToBooksYouHaveRead">
+<form action="addToBooksYouHaveRead">
 	<table class="table">
 	  <tr>
 	    <th>Book Title</th>
 	    <th>Author</th>
 	    
 	    <th>
-	  <div class="dropdown">
-  <button onclick="booksRead()" class="dropbtn">Options</button>
-  <div id="booksRead" class="dropdown-content">
-  <input type="submit" value="addToBooksYouHaveRead">
-  
-  <input type="submit" value="Delete Books You Have Read" formaction="/deleteFromBooksYouHaveRead">
+	    
+ <div class="dropdown">
+	    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Options
+	    <span class="caret"></span></button>
+	    <ul class="dropdown-menu">
+	      <li><input class="dropdown-item formSubmitButton btn btn-primary" type="submit" value="addToBooksYouHaveRead"/> </li>
+	      <li><input class="dropdown-item formSubmitButton btn btn-primary" type="submit" value="Delete Books You Will Read" formaction="deleteFromBooksToRead"/></li>
+	    </ul>
   </div>
-</div>
+	    
+	    
 <script>
 
 function booksRead() {
@@ -60,21 +63,32 @@ window.onclick = function(event) {
 
 
 <h1>Books You've Read</h1>
-<form action="/addBooksToRead">
+<form action="addBooksToRead">
 <table class="table">
 	  <tr>
 	    <th>Book Title</th>
 	    <th>Author</th>
 	    <th>
-	  <div class="dropdown">
+	    
+	    <div class="dropdown">
+	    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Options
+	    <span class="caret"></span></button>
+	    <ul class="dropdown-menu">
+	      <li><input class="formSubmitButton btn btn-primary" type="submit" value="addBooksToRead"> </li>
+	      <li><input class="formSubmitButton btn btn-primary" type="submit" value="Delete Books You Have Read" formaction="deleteFromBooksYouHaveRead"></li>
+	    </ul>
+  </div>
+	    
+	    
+	<!--   <div class="dropdown">
   <button onclick="readBooks()" class="dropbtn">Options</button>
   <div id="readBooks" class="dropdown-content">
-    <input type="submit" value="addBooksToRead">
+    <input class="formSubmitButton btn btn-primary" type="submit" value="addBooksToRead">
   
-  <input type="submit" value="Delete Books You Have Read" formaction="/deleteFromBooksYouHaveRead">
+  	<input class="formSubmitButton btn btn-primary" type="submit" value="Delete Books You Have Read" formaction="deleteFromBooksYouHaveRead">
   
   </div>
-</div>
+</div> -->
 <script>
 
 function readBooks() {
