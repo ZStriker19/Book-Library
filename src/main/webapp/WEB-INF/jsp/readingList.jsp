@@ -16,7 +16,7 @@
 	  <div class="dropdown">
   <button onclick="booksRead()" class="dropbtn">Options</button>
   <div id="booksRead" class="dropdown-content">
-  <input type="submit" value="addToBooksYouHaveRead">
+  <input type="submit" value="Add To Books You Have Read">
   
   <input type="submit" value="Delete Books You Have Read" formaction="/deleteFromBooksYouHaveRead">
   </div>
@@ -69,7 +69,7 @@ window.onclick = function(event) {
 	  <div class="dropdown">
   <button onclick="readBooks()" class="dropbtn">Options</button>
   <div id="readBooks" class="dropdown-content">
-    <input type="submit" value="addBooksToRead">
+    <input type="submit" value="Add To Reading List">
   
   <input type="submit" value="Delete Books You Have Read" formaction="/deleteFromBooksYouHaveRead">
   
