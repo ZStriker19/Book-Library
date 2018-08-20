@@ -1,5 +1,7 @@
 package com.techelevator.controller;
 
+import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -30,6 +32,83 @@ public class ReadingListController {
 	@RequestMapping(path="/readingLists")
 	public String readingList(HttpSession session, HttpServletRequest request) {
 		User currentUser = (User) session.getAttribute("currentUser");
+		List<Book> booksToRead = bookDao.searchForBooksUserWillRead(currentUser.getId());
+		List<Book> booksHaveRead = bookDao.searchForBooksUserHasRead(currentUser.getId());
+		request.setAttribute("booksToRead", booksToRead);
+		request.setAttribute("booksHaveRead", booksHaveRead);
+		
+		return "readingList";
+		
+	}
+	
+	@RequestMapping(path="/addBooksToRead")
+	public String addBooksToRead(HttpSession session, HttpServletRequest request) {
+		User currentUser = (User) session.getAttribute("currentUser");
+		Enumeration<String> enumeration = request.getParameterNames();
+		    while(enumeration.hasMoreElements()){
+		        long bookId = Long.parseLong((String) enumeration.nextElement());
+		        bookDao.deleteBookFromUserHasReadList(currentUser.getId(), bookId);
+		        bookDao.saveBookUserWillReadList(currentUser.getId(), bookId);
+		        
+		    }
+		    
+		List<Book> booksToRead = bookDao.searchForBooksUserWillRead(currentUser.getId());
+		List<Book> booksHaveRead = bookDao.searchForBooksUserHasRead(currentUser.getId());
+		request.setAttribute("booksToRead", booksToRead);
+		request.setAttribute("booksHaveRead", booksHaveRead);
+		
+		return "readingList";
+		
+	}
+	
+	@RequestMapping(path="/addBooksYouHaveRead")
+	public String addBooksYouHaveRead(HttpSession session, HttpServletRequest request) {
+		User currentUser = (User) session.getAttribute("currentUser");
+		Enumeration<String> enumeration = request.getParameterNames();
+		    while(enumeration.hasMoreElements()){
+		        long bookId = Long.parseLong((String) enumeration.nextElement());
+		        bookDao.deleteBookFromUserWillReadList(currentUser.getId(), bookId);
+		        bookDao.saveBookUserHaveReadList(currentUser.getId(), bookId);
+		        
+		    }
+		    
+		List<Book> booksToRead = bookDao.searchForBooksUserWillRead(currentUser.getId());
+		List<Book> booksHaveRead = bookDao.searchForBooksUserHasRead(currentUser.getId());
+		request.setAttribute("booksToRead", booksToRead);
+		request.setAttribute("booksHaveRead", booksHaveRead);
+		
+		return "readingList";
+		
+	}
+	
+	@RequestMapping(path="/deleteFromBooksToRead")
+	public String deleteFromBooksToRead(HttpSession session, HttpServletRequest request) {
+		User currentUser = (User) session.getAttribute("currentUser");
+		Enumeration<String> enumeration = request.getParameterNames();
+		    while(enumeration.hasMoreElements()){
+		        long bookId = Long.parseLong((String) enumeration.nextElement());
+		        bookDao.deleteBookFromUserWillReadList(currentUser.getId(), bookId);
+		    }
+		    
+		List<Book> booksToRead = bookDao.searchForBooksUserWillRead(currentUser.getId());
+		List<Book> booksHaveRead = bookDao.searchForBooksUserHasRead(currentUser.getId());
+		request.setAttribute("booksToRead", booksToRead);
+		request.setAttribute("booksHaveRead", booksHaveRead);
+		
+		return "readingList";
+		
+	}
+	
+	
+	@RequestMapping(path="/deleteFromBooksYouHaveRead")
+	public String deleteFromBooksYouHaveRead(HttpSession session, HttpServletRequest request) {
+		User currentUser = (User) session.getAttribute("currentUser");
+		Enumeration<String> enumeration = request.getParameterNames();
+		    while(enumeration.hasMoreElements()){
+		        long bookId = Long.parseLong((String) enumeration.nextElement());
+		        bookDao.deleteBookFromUserHasReadList(currentUser.getId(), bookId);
+		    }
+		    
 		List<Book> booksToRead = bookDao.searchForBooksUserWillRead(currentUser.getId());
 		List<Book> booksHaveRead = bookDao.searchForBooksUserHasRead(currentUser.getId());
 		request.setAttribute("booksToRead", booksToRead);
