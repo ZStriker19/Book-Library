@@ -65,8 +65,8 @@ window.onclick = function(event) {
 	  <div class="dropdown">
   <button onclick="readBooks()" class="dropbtn">Options</button>
   <div id="readBooks" class="dropdown-content">
-    <a onclick="saveBookUserWillReadList()" class="booksread" href="#">Add to Books To Read</a>
-    <a onclick="saveBookUserHaveReadList()" class="booksread" href="#">Delete From Reading List</a>
+    <a class="booksread" href="#">Add to Books To Read</a>
+    <a class="booksread" href="#">Delete From Reading List</a>
   </div>
 </div>
 <script>
