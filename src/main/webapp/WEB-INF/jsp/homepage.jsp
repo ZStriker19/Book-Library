@@ -36,6 +36,8 @@
   <tr>
     <th>Book Title</th>
     <th>Author</th>
+    <th>Add to Reading List<th>
+    
   </tr>
   <c:forEach items="${books}" var="book">
   <tr>
@@ -44,8 +46,29 @@
    </td>
    <td>
      <c:out value="${book.getAuthorFullNames()}"></c:out>
-	 </td> 
-	
+	</td> 
+	<td>
+		<div class="form-check">
+    	<input type="checkbox" class="form-check-input" id="addToReadingListCheck">
+    	<label class="form-check-label" for="addToReadingList"></label>
+  		</div>
+    </td>
+    <td>
+		<div class="dropdown">
+  <button class="btn btn-default dropdown-toggle" type="button" id="readingListMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    Reading List Options
+    <span class="caret"></span>
+  </button>
+  <ul class="reading-list-menu" aria-labelledby="readingListMenu">
+    <li><a href="#">Add to Books to Read</a></li>
+    <li role="separator" class="divider"></li>
+    <li><a href="#">Add to Books I Have Read</a></li>
+    
+   
+  
+  </ul>
+</div>
+	</td>
   </tr>
   </c:forEach>
 </table>
