@@ -49,7 +49,7 @@ window.onclick = function(event) {
 	   <td>
 	     <c:out value="${book.getAuthorFullNames()}"></c:out>
 		 </td> 
-		<td> <input type="checkbox" name="checkbox" value="Checkbox">
+		<td> <input type="checkbox" name="checkbox" value="${book.bookId}">
 		</td>
 	  </tr>
 	  </c:forEach>
@@ -99,7 +99,7 @@ window.onclick = function(event) {
 	   <td>
 	     <c:out value="${book.getAuthorFullNames()}"></c:out>
 		 </td> 
-		<td> <input type="checkbox" name="checkbox" value="Checkbox">
+		<td> <input type="checkbox" name="checkbox" value="${book.bookId}">
 		</td>
 	  </tr>
 	  </c:forEach>
