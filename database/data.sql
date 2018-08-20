@@ -7,7 +7,7 @@ BEGIN;
 INSERT INTO app_user (app_user_id, user_name, password, role, salt) VALUES (1, 'system_admin', 'Password', true, '1');
 INSERT INTO app_user (app_user_id, user_name, password, role, salt) VALUES (2, 'user', 'Userpassword', false, '1');
 
-SELECT setval(pg_get_serial_sequence('app_user', 'app_user_id'), 1);
+SELECT setval(pg_get_serial_sequence('app_user', 'app_user_id'), 2);
 
 INSERT INTO book (book_id, title, date_added) VALUES (1, 'harry potter and the sorcerer''s stone', '8/13/18 11:30 AM');
 INSERT INTO book (book_id, title, date_added) VALUES (2, 'harry potter and the chamber of secrets', '8/13/18 11:31 AM');
@@ -146,8 +146,8 @@ INSERT INTO genre (genre_id, genre) VALUES (12, 'drama');
 
 SELECT setval(pg_get_serial_sequence('genre', 'genre_id'), 12);
 
-INSERT INTO author (author_id, f_name, l_name) VALUES (1, 'j.K.', 'rowling');
-INSERT INTO author (author_id, f_name, l_name) VALUES (2, 'f. Scott', 'fitzgerald');
+INSERT INTO author (author_id, f_name, l_name) VALUES (1, 'j.k.', 'rowling');
+INSERT INTO author (author_id, f_name, l_name) VALUES (2, 'f. scott', 'fitzgerald');
 INSERT INTO author (author_id, f_name, l_name) VALUES (3, 'sally', 'jenkins');
 INSERT INTO author (author_id, f_name, l_name) VALUES (4, 'lance', 'armstrong');
 INSERT INTO author (author_id, f_name, l_name) VALUES (5, 'robert', 'penn');
@@ -156,14 +156,14 @@ INSERT INTO author (author_id, f_name, l_name) VALUES (7, 'vladimir', 'nabokov')
 INSERT INTO author (author_id, f_name, l_name) VALUES (8, 'john', 'steinbeck');
 INSERT INTO author (author_id, f_name, l_name) VALUES (9, 'herman', 'melville');
 INSERT INTO author (author_id, f_name, l_name) VALUES (10, 'mark', 'twain');
-INSERT INTO author (author_id, f_name, l_name) VALUES (11, 'j.D.', 'salinger');
+INSERT INTO author (author_id, f_name, l_name) VALUES (11, 'j.d.', 'salinger');
 INSERT INTO author (author_id, f_name, l_name) VALUES (12, 'maurice', 'sendak');
-INSERT INTO author (author_id, f_name, l_name) VALUES (13, 'e.B.', 'white');
+INSERT INTO author (author_id, f_name, l_name) VALUES (13, 'e.b.', 'white');
 INSERT INTO author (author_id, f_name, l_name) VALUES (14, 'dr.', 'seuss');
-INSERT INTO author (author_id, f_name, l_name) VALUES (15, 'j.R.R', 'tolkien');
+INSERT INTO author (author_id, f_name, l_name) VALUES (15, 'j.r.r.', 'tolkien');
 INSERT INTO author (author_id, f_name, l_name) VALUES (16, 'walter', 'isaacson');
 INSERT INTO author (author_id, f_name, l_name) VALUES (17, 'orson', 'card');
-INSERT INTO author (author_id, f_name, l_name) VALUES (18, 'h.G.', 'wells');
+INSERT INTO author (author_id, f_name, l_name) VALUES (18, 'h.g.', 'wells');
 INSERT INTO author (author_id, f_name, l_name) VALUES (19, 'robert', 'heinlein');
 INSERT INTO author (author_id, f_name, l_name) VALUES (20, 'stieg', 'larsson');
 INSERT INTO author (author_id, f_name, l_name) VALUES (21, 'gillian', 'flynn');
@@ -182,6 +182,10 @@ INSERT INTO author (author_id, f_name, l_name) VALUES (33, 'john', 'higgins');
 INSERT INTO author (author_id, f_name, l_name) VALUES (34, 'william', 'shakespeare');
 
 SELECT setval(pg_get_serial_sequence('author', 'author_id'), 34);
+
+INSERT INTO forum_post (forum_post_id, app_user_id, subject, message, post_date) VALUES (1, 2, 'Test Forum', 'Great book!', '8/20/18 2:27 PM');
+
+SELECT setval(pg_get_serial_sequence('forum_post', 'forum_post_id'), 1);
 
 INSERT INTO book_character (book_id, character_id) VALUES (1, 1);
 INSERT INTO book_character (book_id, character_id) VALUES (1, 2);
