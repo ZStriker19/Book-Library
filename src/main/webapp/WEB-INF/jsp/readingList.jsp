@@ -6,6 +6,7 @@
 <div class="container t-3">
 
 <h1>Books to Read</h1>
+<form action="/addToBooksYouHaveRead">
 	<table class="table">
 	  <tr>
 	    <th>Book Title</th>
@@ -15,8 +16,9 @@
 	  <div class="dropdown">
   <button onclick="booksRead()" class="dropbtn">Options</button>
   <div id="booksRead" class="dropdown-content">
-    <a class="booksread" href="#">Add to Books You've Read</a>
-    <a class="booksread" href="#">Delete From Reading List</a>
+  <input type="submit" value="addToBooksYouHaveRead">
+  
+  <input type="submit" value="Delete Books You Have Read" formaction="/deleteFromBooksYouHaveRead">
   </div>
 </div>
 <script>
@@ -54,9 +56,11 @@ window.onclick = function(event) {
 	  </tr>
 	  </c:forEach>
 	</table>
+	</form>
 
 
 <h1>Books You've Read</h1>
+<form action="/addBooksToRead">
 <table class="table">
 	  <tr>
 	    <th>Book Title</th>
@@ -65,8 +69,10 @@ window.onclick = function(event) {
 	  <div class="dropdown">
   <button onclick="readBooks()" class="dropbtn">Options</button>
   <div id="readBooks" class="dropdown-content">
-    <a class="booksread" href="#">Add to Books To Read</a>
-    <a class="booksread" href="#">Delete From Reading List</a>
+    <input type="submit" value="addBooksToRead">
+  
+  <input type="submit" value="Delete Books You Have Read" formaction="/deleteFromBooksYouHaveRead">
+  
   </div>
 </div>
 <script>
@@ -104,6 +110,6 @@ window.onclick = function(event) {
 	  </tr>
 	  </c:forEach>
 	</table>
-
+</form>
 </div>
 <c:import url="/WEB-INF/jsp/footer.jsp"/>
