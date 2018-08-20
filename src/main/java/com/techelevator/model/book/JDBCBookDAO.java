@@ -1,4 +1,4 @@
-package com.techelevator.model;
+package com.techelevator.model.book;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

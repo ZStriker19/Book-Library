@@ -9,9 +9,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import com.techelevator.model.Book;
-import com.techelevator.model.BookDAO;
-import com.techelevator.model.JDBCBookDAO;
+import com.techelevator.model.book.Book;
+import com.techelevator.model.book.BookDAO;
+import com.techelevator.model.book.JDBCBookDAO;
 
 
 public class JDBCBookDAOTest extends DAOIntegrationTest {
