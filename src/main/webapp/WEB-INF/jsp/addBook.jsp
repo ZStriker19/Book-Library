@@ -2,6 +2,9 @@
 
 <c:import url="/WEB-INF/jsp/header.jsp"/>
 
+<c:url var="cssHref" value="/css/addBook.css" />
+		<link rel="stylesheet" type="text/css" href="${cssHref}">
+
 <script type="text/javascript">
 	$(document).ready(function () {
 	
@@ -38,27 +41,27 @@
 <form id="addBook" method="POST" action="${formAction}">
 
 	<div class="form-group row">
-  		<label for="new-book-title" class="col-2 col-form-label">Title</label>
-  		<div class="col-10">
+  		<label for="new-book-title" class="col-sm-2 col-form-label">Title</label>
+  		<div class="col-sm-12">
     		<input class="form-control" type="text" placeholder="Title" id="title" name="title">
   		</div>
   	</div>
   
     <div class="form-group row">
-  		<label for="new-book-location" class="col-2 col-form-label">Section</label>
-  		<div class="col-10">
+  		<label for="new-book-location" class="col-sm-2 col-form-label">Section</label>
+  		<div class="col-sm-12">
     		<input class="form-control" type="text" placeholder="Section in Library" id="section" name="section">
     	</div>
   	</div>
   
-  	<div class="form-group row" id="author1">
-  		<div class = "col-sm-6">
-  			<label for="new-book-first-name" class="col-2 col-form-label">Author's First Name</label>
-    		<input class="form-control" type="text" placeholder="Author 1 First Name" id="author-1-first-name" name="author-1-first-name">
+  	<div class="form-group row form-horizontal" id="author1">
+  		<div class = "col-sm-6 form-horizontal firstName">
+  			<label for="new-book-first-name form-horizontal" class="col-form-label form-horizontal firstName">Author's First Name</label>
+    		<input class="form-control form-horizontal firstName" type="text" placeholder="Author 1 First Name" id="author-1-first-name" name="author-1-first-name">
     	</div>
-    	<div class = "col-sm-6">
-  			<label for="new-book-last-name" class="col-2 col-form-label">Author's Last Name</label>
-    		<input class="form-control" type="text" placeholder="Author 1 Last Name" id="author-1-last-name" name="author-1-last-name">
+    	<div class = "col-sm-6 form-horizontal lastName">
+  			<label for="new-book-last-name" class="col-2 col-form-label form-horizontal lastName">Author's Last Name</label>
+    		<input class="form-control form-horizontal lastName" type="text" placeholder="Author 1 Last Name" id="author-1-last-name" name="author-1-last-name">
     	</div>
   	</div>
   	
@@ -177,16 +180,16 @@
   	
   	<div class="form-group row initiallyHidden"  id = "character6">
   		<div class = "col-sm-6">
-  			<label for="new-book-character-1-first-name" class="col-2 col-form-label">Character First Name</label>
+  			<label for="new-book-character-1-first-name" class="col-2 col-form-label form-horizontal first-name">Character First Name</label>
   			<div class="col-10">
-    			<input class="form-control" type="text" placeholder="Character 6 First Name" id="character-6-first-name" name="character-6-first-name">
+    			<input class="form-control form-horizontal" type="text" placeholder="Character 6 First Name" id="character-6-first-name" name="character-6-first-name">
     			
     		</div>
     	</div>
     	<div class = "col-sm-6">
-    		<label for="new-book-character-1-last-name" class="col-2 col-form-label">Character Last Name</label>
+    		<label for="new-book-character-1-last-name" class="col-2 col-form-label form-horizontal">Character Last Name</label>
   			<div class="col-10">
-    			<input class="form-control" type="text" placeholder="Character 6 Last Name" id="character-6-last-name" name="character-6-last-name">
+    			<input class="form-control form-horizontal" type="text" placeholder="Character 6 Last Name" id="character-6-last-name" name="character-6-last-name">
     			
     		</div>
 		</div>
@@ -195,8 +198,8 @@
   	<input type="button" name="add-another-character" id="add-another-character" class="btn btn-warning btn-file clone" value="Add Additional Character">
  
   	<div class="form-group row" id = "genre1">
-  		<label for="new-book-genres" class="col-2 col-form-label">Genre</label>
-  		<div class="col-10">
+  		<label for="new-book-genres" class="col-sm-2 col-form-label">Genre</label>
+  		<div class="col-sm-12">
     		<input class="form-control" type="text" placeholder="Genre 1" id="genre-1" name="genre-1">
     	</div>
     	
@@ -204,7 +207,7 @@
   	
   	<div class="form-group row initiallyHidden" id = "genre2">
   		<label for="new-book-genres" class="col-2 col-form-label">Genre</label>
-  		<div class="col-10">
+  		<div class="col-sm-12">
     		<input class="form-control" type="text" placeholder="Genre 2" id="genre-2" name="genre-2">
     	</div>
     	
@@ -212,7 +215,7 @@
   	
   	<div class="form-group row initiallyHidden" id = "genre3">
   		<label for="new-book-genres" class="col-2 col-form-label">Genre</label>
-  		<div class="col-10">
+  		<div class="col-sm-12">
     		<input class="form-control" type="text" placeholder="Genre 3" id="genre-3" name="genre-3">
     	</div>
   	</div>

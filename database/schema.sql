@@ -17,9 +17,7 @@ DROP TABLE IF EXISTS character;
 DROP TABLE IF EXISTS author;
 DROP TABLE IF EXISTS book;
 DROP TABLE IF EXISTS app_user;
-
-
-
+DROP TABLE IF EXISTS forum_post;
 
 CREATE TABLE app_user (
   app_user_id SERIAL PRIMARY KEY,
@@ -27,6 +25,16 @@ CREATE TABLE app_user (
   password varchar(32) NOT NULL,
   role boolean DEFAULT false NOT NULL,
   salt varchar(255) NOT NULL
+);
+
+CREATE TABLE forum_post (
+  forum_post_id SERIAL PRIMARY KEY,
+  app_user_id integer NOT NULL,
+  subject varchar(200) NOT NULL,
+  message TEXT NOT NULL,
+  post_date varchar(50) NOT NULL,
+
+  CONSTRAINT fk_forum_postApp_user_id foreign key (app_user_id) references app_user(app_user_id)
 );
 
 CREATE TABLE book (
