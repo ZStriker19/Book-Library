@@ -69,7 +69,6 @@ public class ReadingListController {
 		        long bookId = Long.parseLong((String) request.getParameter(enumeration.nextElement()));
 		        bookDao.deleteBookFromUserWillReadList(currentUser.getId(), bookId);
 		        bookDao.saveBookUserHaveReadList(currentUser.getId(), bookId);
-		        
 		    }
 		    
 		List<Book> booksToRead = bookDao.searchForBooksUserWillRead(currentUser.getId());
