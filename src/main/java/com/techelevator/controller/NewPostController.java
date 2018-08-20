@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import com.techelevator.model.BookDAO;
-import com.techelevator.model.User;
+import com.techelevator.model.book.BookDAO;
+import com.techelevator.model.user.User;
 
 @Controller
 @SessionAttributes("currentUser")
