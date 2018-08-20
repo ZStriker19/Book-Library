@@ -13,6 +13,7 @@
 	    <th>Author</th>
 	    
 	    <th>
+
 	    
  <div class="dropdown">
 	    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Options
@@ -21,6 +22,7 @@
 	      <li><input class="dropdown-item formSubmitButton btn btn-link" style="text-decoration:none" type="submit" value="Have Read"/> </li>
 	      <li><input class="dropdown-item formSubmitButton btn btn-link" style="text-decoration:none" type="submit" value="Delete From List" formaction="deleteFromBooksToRead"/></li>
 	    </ul>
+
   </div>
 	    
 	    
@@ -79,7 +81,24 @@ window.onclick = function(event) {
 	    </ul>
   </div>
 	    
+
+	    
+	<!--   <div class="dropdown">
+  <button onclick="readBooks()" class="dropbtn">Options</button>
+  <div id="readBooks" class="dropdown-content">
+<<<<<<< HEAD
+    <input type="submit" value="Add To Reading List">
+=======
+    <input class="formSubmitButton btn btn-primary" type="submit" value="addBooksToRead">
+>>>>>>> 43caaec2dcf801c0e463f15d33ada8bddf167b5c
+  
+  	<input class="formSubmitButton btn btn-primary" type="submit" value="Delete Books You Have Read" formaction="deleteFromBooksYouHaveRead">
+  
+  </div>
+</div> -->
+
 	   
+
 <script>
 
 function readBooks() {
