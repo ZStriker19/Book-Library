@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.techelevator.model.book.Book;
 import com.techelevator.model.book.BookDAO;
+import com.techelevator.model.forum.Forum;
+import com.techelevator.model.forum.ForumDAO;
 import com.techelevator.model.user.User;
 import com.techelevator.model.user.UserDAO;
 
@@ -24,10 +26,12 @@ public class ForumController {
 
 
 	@Autowired
-	private BookDAO bookDAO;
+	private ForumDAO forumDao;
 	
 	@RequestMapping(path="/users/forum")
 	public String displayForum(HttpSession session, HttpServletRequest request) {
+		List<Forum> posts = forumDao.getAllPosts();
+		request.setAttribute("posts", posts);
 		User currentUser = (User) session.getAttribute("currentUser");
 		
 		return "forum";

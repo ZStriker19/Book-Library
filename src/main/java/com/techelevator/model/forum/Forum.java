@@ -1,5 +1,7 @@
 package com.techelevator.model.forum;
 
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Forum {
@@ -8,6 +10,12 @@ public class Forum {
 	private String subject;
 	private String message;
 	private Date datePosted;
+	
+	public String getDatePostedStr() {
+		Format formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String datePostedStr = formatter.format(datePosted);
+		return datePostedStr;
+	}
 	
 	public Long getForumPostId() {
 		return forumPostId;

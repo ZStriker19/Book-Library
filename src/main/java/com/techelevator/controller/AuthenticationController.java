@@ -41,9 +41,7 @@ public class AuthenticationController {
 			if(destination != null && ! destination.isEmpty()) {
 				return "redirect:" + destination;
 			} else {
-				System.out.println("good");
-					redirectAttributes.addFlashAttribute("messageNoBooks", " Invalid username or password. Please try again!");
-					return "redirect:/login";
+					return "redirect:/";
 
 			}
 		} else {

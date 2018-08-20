@@ -11,7 +11,7 @@
 
 <div class="row">
 <h2>${post.subject}</h2>
-<p>by ${post.username} on ${post.datePosted.toLocalDate()} at ${post.datePosted.toLocalTime()}</p>
+<p>by ${post.username} on ${post.getDatePostedStr()}</p>
 <p>${post.message}</p>
 </div>
 
