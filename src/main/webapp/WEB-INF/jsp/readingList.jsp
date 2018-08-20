@@ -80,24 +80,6 @@ window.onclick = function(event) {
 	      <li><input class="formSubmitButton btn btn-link" type="submit" style="text-decoration:none" value="Delete From List" formaction="deleteFromBooksYouHaveRead"></li>
 	    </ul>
   </div>
-	    
-
-	    
-	<!--   <div class="dropdown">
-  <button onclick="readBooks()" class="dropbtn">Options</button>
-  <div id="readBooks" class="dropdown-content">
-<<<<<<< HEAD
-    <input type="submit" value="Add To Reading List">
-=======
-    <input class="formSubmitButton btn btn-primary" type="submit" value="addBooksToRead">
->>>>>>> 43caaec2dcf801c0e463f15d33ada8bddf167b5c
-  
-  	<input class="formSubmitButton btn btn-primary" type="submit" value="Delete Books You Have Read" formaction="deleteFromBooksYouHaveRead">
-  
-  </div>
-</div> -->
-
-	   
 
 <script>
 
