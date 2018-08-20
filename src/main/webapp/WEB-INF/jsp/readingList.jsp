@@ -14,13 +14,6 @@
 	    
 	    <th>
 
-	  <div class="dropdown">
-  <button onclick="booksRead()" class="dropbtn">Options</button>
-  <div id="booksRead" class="dropdown-content">
-  <input type="submit" value="Add To Books You Have Read">
-  
-  <input type="submit" value="Delete Books You Have Read" formaction="/deleteFromBooksYouHaveRead">
-
 	    
  <div class="dropdown">
 	    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Options
