@@ -128,12 +128,25 @@ public class JDBCBookDAO implements BookDAO{
 	}
 	
 	public void saveBookUserWillReadList(long appUserId, long bookId) {
+		List<Book> booksWillRead = searchForBooksUserWillRead(appUserId);
+		for (Book book : booksWillRead) {
+			if (book.getBookId() == bookId) {
+				return;
+			}
+		}
 		String sqlAddBookToWillRead = "INSERT INTO book_app_user_will_read (app_user_id, book_id) VALUES (?, ?)";
 		jdbcTemplate.update(sqlAddBookToWillRead, appUserId, bookId);
 		
 	}
 	
 	public void saveBookUserHaveReadList(long appUserId, long bookId) {
+		
+		List<Book> booksHasRead = searchForBooksUserHasRead(appUserId);
+		for (Book book : booksHasRead) {
+			if (book.getBookId() == bookId) {
+				return;
+			}
+		}
 		String sqlAddBookToHaveRead = "INSERT INTO book_app_user_have_read (app_user_id, book_id) VALUES (?, ?)";
 		jdbcTemplate.update(sqlAddBookToHaveRead, appUserId, bookId);
 	}

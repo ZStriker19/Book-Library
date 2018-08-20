@@ -38,6 +38,7 @@
   <tr>
     <th>Book Title</th>
     <th>Author</th>
+    <c:if test="${not empty currentUser}">
     <th>
      <div class="dropdown show">
 	    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Options
@@ -48,6 +49,7 @@
 	    </ul>
   </div>
 </th>
+</c:if>
     
   </tr>
   <c:forEach items="${books}" var="book">
@@ -58,10 +60,12 @@
    <td>
      <c:out value="${book.getAuthorFullNames()}"></c:out>
 	</td> 
+	<c:if test="${not empty currentUser}">
 	<td>
 		<td> <input type="checkbox" name="checkbox${book.bookId}" value="${book.bookId}">
 		</td>
     </td>
+    </c:if>
     
   </tr>
   </c:forEach>
