@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.techelevator.model.user.UserDAO;
 
@@ -32,16 +33,21 @@ public class AuthenticationController {
 	public String login(@RequestParam String userName, 
 						@RequestParam String password, 
 						@RequestParam(required=false) String destination,
-						HttpSession session) {
+						HttpSession session,
+						final RedirectAttributes redirectAttributes) {
 		if(userDAO.searchForUsernameAndPassword(userName, password)) {
 			session.setAttribute("currentUser", userDAO.getUserByUserName(userName));
 			
 			if(destination != null && ! destination.isEmpty()) {
 				return "redirect:" + destination;
 			} else {
-				return "redirect:/login";
+				System.out.println("good");
+					redirectAttributes.addFlashAttribute("messageNoBooks", " Invalid username or password. Please try again!");
+					return "redirect:/login";
+
 			}
 		} else {
+			redirectAttributes.addFlashAttribute("messageNoBooks", " Invalid username or password. Please try again!");
 			return "redirect:/login";
 		}
 	}
