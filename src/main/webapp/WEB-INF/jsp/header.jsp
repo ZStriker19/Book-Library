@@ -84,11 +84,6 @@
 						<li><a href="${readingLists}">Reading Lists</a></li>
 						
 						<c:url var="dashboardHref" value="/users/${currentUser}" />
-						<li><a href="${dashboardHref}">Private Messages</a></li>
-						<c:url var="newMessageHref" value="/users/${currentUser}/messages/new" />
-						<li><a href="${newMessageHref}">New Message</a></li>
-						<c:url var="sentMessagesHref" value="/users/${currentUser}/messages" />
-						<li><a href="${sentMessagesHref}">Sent Messages</a></li>
 						<c:url var="forumLink" value="/users/forum"/>
             			<li><a href="${forumLink}">Foxtrot Forum</a></li>    
 						<c:url var="changePasswordHref" value="/users/${currentUser}/changePassword" />
