@@ -46,7 +46,7 @@ public class JDBCBookDAOTest extends DAOIntegrationTest {
 		String queryString = "fantasy";
 		List<Book> books = bookDao.searchForBooksBasedOnGenre(queryString);
 		Assert.assertNotNull(books);
-		Assert.assertEquals(21, books.size());
+		Assert.assertEquals(24, books.size());
 	}
 	
 	@Test
@@ -54,7 +54,7 @@ public class JDBCBookDAOTest extends DAOIntegrationTest {
 		String queryString = "A3";
 		List<Book> books = bookDao.searchForBooksBasedOnPublishingLocation(queryString);
 		Assert.assertNotNull(books);
-		Assert.assertEquals(3, books.size());
+		Assert.assertEquals(4, books.size());
 	}
 	
 	@Test
@@ -69,9 +69,6 @@ public class JDBCBookDAOTest extends DAOIntegrationTest {
 	public void get_books_from_search_for_books() throws SQLException {
 		String queryString = "harry";
 		List<Book> books = bookDao.searchForBooks(queryString);
-		for (int i = 0; i < books.size(); i++) {
-			System.out.println("inside the test " + books.get(i).getCharacterFirstNames());
-		}
 		
 		Assert.assertNotNull(books);
 		Assert.assertEquals(7, books.size());
@@ -153,8 +150,6 @@ public class JDBCBookDAOTest extends DAOIntegrationTest {
 		bookDao.saveBookUserHaveReadList(appUserId, bookId);
 		
 		List<Book> booksAfterAdding = bookDao.searchForBooksUserHasRead(appUserId);
-		System.out.println(booksBeforeAdding.size());
-		System.out.println(booksAfterAdding.size());
 		
 		Assert.assertNotNull(booksAfterAdding);
 		Assert.assertTrue(booksBeforeAdding.size() + 1 == booksAfterAdding.size());

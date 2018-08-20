@@ -409,10 +409,10 @@ public class JDBCBookDAO implements BookDAO{
 		try {
 			dateAdded = format.parse(sqlRowSet.getString("date_added"));
 		} catch (InvalidResultSetAccessException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		book.setDateAdded(dateAdded);
