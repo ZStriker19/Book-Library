@@ -37,6 +37,16 @@
     <th>Book Title</th>
     <th>Author</th>
     <th>Add to Reading List<th>
+    <th><div class="btn-group">
+  <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Reading List Options
+  </button>
+  <div class="dropdown-menu">
+    <a class="dropdown-item" href="#">Add to Books to Read</a>
+    <a class="dropdown-item" href="#">Add to Books I Have Read</a>
+  </div>
+</div>
+</th>
     
   </tr>
   <c:forEach items="${books}" var="book">
@@ -53,20 +63,7 @@
     	<label class="form-check-label" for="addToReadingList"></label>
   		</div>
     </td>
-    <td>
-	<div class="btn-group">
-  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" 
-  aria-expanded="false">
-    Reading List Options
-  </button>
-  <div class="dropdown-menu">
-    <a class="dropdown-item" href="#">Add to Books to Read</a>
-    <div class="dropdown-divider"></div>
-    <a class="dropdown-item" href="#">Add to Books I Have Read</a>
-   
-  </div>
-</div>
-	</td>
+    
   </tr>
   </c:forEach>
 </table>
