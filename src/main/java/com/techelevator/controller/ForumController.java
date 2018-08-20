@@ -26,7 +26,7 @@ public class ForumController {
 	@Autowired
 	private BookDAO bookDAO;
 	
-	@RequestMapping(path="/forum")
+	@RequestMapping(path="/users/forum")
 	public String displayForum(HttpSession session, HttpServletRequest request) {
 		User currentUser = (User) session.getAttribute("currentUser");
 		
