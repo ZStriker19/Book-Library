@@ -6,8 +6,9 @@ BEGIN;
 
 INSERT INTO app_user (app_user_id, user_name, password, role, salt) VALUES (1, 'system_admin', 'Password', true, '1');
 INSERT INTO app_user (app_user_id, user_name, password, role, salt) VALUES (2, 'user', 'Userpassword', false, '1');
+INSERT INTO app_user (app_user_id, user_name, password, role, salt) VALUES (3, 'user2', 'Userpassword', false, '1');
 
-SELECT setval(pg_get_serial_sequence('app_user', 'app_user_id'), 2);
+SELECT setval(pg_get_serial_sequence('app_user', 'app_user_id'), 3);
 
 INSERT INTO book (book_id, title, date_added) VALUES (1, 'harry potter and the sorcerer''s stone', '8/13/18 11:30 AM');
 INSERT INTO book (book_id, title, date_added) VALUES (2, 'harry potter and the chamber of secrets', '8/13/18 11:31 AM');
@@ -184,8 +185,10 @@ INSERT INTO author (author_id, f_name, l_name) VALUES (34, 'william', 'shakespea
 SELECT setval(pg_get_serial_sequence('author', 'author_id'), 34);
 
 INSERT INTO forum_post (forum_post_id, app_user_id, subject, message, post_date) VALUES (1, 2, 'Test Forum', 'Great book!', '8/20/18 2:27 PM');
+INSERT INTO forum_post (forum_post_id, app_user_id, subject, message, post_date) VALUES (2, 1, 'I love books', 'This book changed my life!', '8/20/18 4:54 PM');
+INSERT INTO forum_post (forum_post_id, app_user_id, subject, message, post_date) VALUES (3, 3, 'It Review', 'I was so scared reading this book! 10/10', '8/20/18 4:55 PM');
 
-SELECT setval(pg_get_serial_sequence('forum_post', 'forum_post_id'), 1);
+SELECT setval(pg_get_serial_sequence('forum_post', 'forum_post_id'), 3);
 
 INSERT INTO book_character (book_id, character_id) VALUES (1, 1);
 INSERT INTO book_character (book_id, character_id) VALUES (1, 2);
