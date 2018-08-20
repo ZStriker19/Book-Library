@@ -49,7 +49,8 @@ window.onclick = function(event) {
 	   <td>
 	     <c:out value="${book.getAuthorFullNames()}"></c:out>
 		 </td> 
-		
+		<td> <input type="checkbox" name="checkbox" value="Checkbox">
+		</td>
 	  </tr>
 	  </c:forEach>
 	</table>
@@ -64,8 +65,8 @@ window.onclick = function(event) {
 	  <div class="dropdown">
   <button onclick="readBooks()" class="dropbtn">Options</button>
   <div id="readBooks" class="dropdown-content">
-    <a class="booksread" href="#">Add to Books You've Read</a>
-    <a class="booksread" href="#">Delete From Reading List</a>
+    <a onclick="saveBookUserWillReadList()" class="booksread" href="#">Add to Books To Read</a>
+    <a onclick="saveBookUserHaveReadList()" class="booksread" href="#">Delete From Reading List</a>
   </div>
 </div>
 <script>
@@ -98,7 +99,8 @@ window.onclick = function(event) {
 	   <td>
 	     <c:out value="${book.getAuthorFullNames()}"></c:out>
 		 </td> 
-		
+		<td> <input type="checkbox" name="checkbox" value="Checkbox">
+		</td>
 	  </tr>
 	  </c:forEach>
 	</table>
