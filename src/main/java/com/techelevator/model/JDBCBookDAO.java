@@ -71,9 +71,6 @@ public class JDBCBookDAO implements BookDAO{
 			characterLastNames.add("");
 		}
 		
-		System.out.println(characterFirstNames);
-		System.out.println(characterLastNames);
-		
 		for (int i = 0; i < characterFirstNames.size(); i++) {
 			jdbcTemplate.update(sqlInsertCharacterFirstName, characterFirstNames.get(i).toLowerCase(), characterLastNames.get(i).toLowerCase());
 			
@@ -139,6 +136,16 @@ public class JDBCBookDAO implements BookDAO{
 	public void saveBookUserHaveReadList(long appUserId, long bookId) {
 		String sqlAddBookToHaveRead = "INSERT INTO book_app_user_have_read (app_user_id, book_id) VALUES (?, ?)";
 		jdbcTemplate.update(sqlAddBookToHaveRead, appUserId, bookId);
+	}
+	
+	public void deleteBookFromUserWillReadList(long appUserId, long bookId) {
+		String sqlDeleteBookFromWillRead = "DELETE FROM book_app_user_will_read WHERE app_user_id = ? AND book_id = ?";
+		jdbcTemplate.update(sqlDeleteBookFromWillRead, appUserId, bookId);
+	}
+	
+	public void deleteBookFromUserHasReadList(long appUserId, long bookId) {
+		String sqlDeleteBookFromHaveRead = "DELETE FROM book_app_user_have_read WHERE app_user_id = ? AND book_id = ?";
+		jdbcTemplate.update(sqlDeleteBookFromHaveRead, appUserId, bookId);
 	}
 	
 	public List<Book> searchForBooksUserHasRead(long appUserId) {

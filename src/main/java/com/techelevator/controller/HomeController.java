@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -58,11 +59,21 @@ public class HomeController {
 			
 		}
 		
+		redirectAttributes.addFlashAttribute("books", books);
 		request.setAttribute("books", books);
 		
 		return "homepage"; //links to JSP page
-
-
+	}
+	
+	@RequestMapping(path=("/addBookToList"), method=RequestMethod.GET)
+	public String addBookToList(HttpServletRequest request, final RedirectAttributes redirectAttributes, Model model) {
+		
+		
+		List<Book> books = (ArrayList<Book>) model.asMap().get("books");
+		request.setAttribute("books", books);
+		
+		
+		return "redirect:/";
 	}
 	
 	

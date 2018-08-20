@@ -160,6 +160,35 @@ public class JDBCBookDAOTest extends DAOIntegrationTest {
 		Assert.assertTrue(booksBeforeAdding.size() + 1 == booksAfterAdding.size());
 	}
 	
+	@Test
+	public void delete_book_from_have_read_list() throws SQLException {
+		long appUserId = 1;
+		long bookId = 5;
+		List<Book> booksBeforeDeleting = bookDao.searchForBooksUserHasRead(appUserId);
+		
+		bookDao.deleteBookFromUserHasReadList(appUserId, bookId);
+		
+		List<Book> booksAfterDeleting = bookDao.searchForBooksUserHasRead(appUserId);
+		
+		Assert.assertTrue(booksBeforeDeleting.size() - 1 == booksAfterDeleting.size());
+		
+	}
+	
+	@Test
+	public void delete_book_from_will_read_list() throws SQLException {
+		long appUserId = 1;
+		long bookId = 2;
+		List<Book> booksBeforeDeleting = bookDao.searchForBooksUserWillRead(appUserId);
+		
+		bookDao.deleteBookFromUserWillReadList(appUserId, bookId);
+		
+		List<Book> booksAfterDeleting = bookDao.searchForBooksUserWillRead(appUserId);
+		
+		Assert.assertTrue(booksBeforeDeleting.size() - 1 == booksAfterDeleting.size());
+		
+	}
+	
+	
 	
 	
 	
