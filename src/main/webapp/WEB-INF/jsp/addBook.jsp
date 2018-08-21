@@ -100,7 +100,7 @@ $(document).ready(function () {
     	</div>
   	</div>
   	
-  	<input type="button" name="add-another-author" id="add-another-author" class="btn btn-warning btn-file clone" value="Add Additional Author">
+  	<input type="button" name="add-another-author" id="add-another-author" class="btn button btn-file clone" value="Add Additional Author">
   
   	<div class="form-group row" id = "character1">
   		<div class = "col-sm-6">
@@ -193,7 +193,7 @@ $(document).ready(function () {
 		</div>
   	</div>
   	
-  	<input type="button" name="add-another-character" id="add-another-character" class="btn btn-warning btn-file clone" value="Add Additional Character">
+  	<input type="button" name="add-another-character" id="add-another-character" class="btn button btn-file clone" value="Add Additional Character">
   	<div class="form-group row" id = "genre1">
   		<label for="new-book-genres" class="col-sm-2 col-form-label">Genre</label>
   		<div class="col-sm-12">
@@ -214,7 +214,7 @@ $(document).ready(function () {
     		<input class="form-control" type="text" placeholder="Genre 3" id="genre-3" name="genre-3">
     	</div>
   	</div>
-  	<input type="button" name="add-another-genre" id="add-another-genre" class="btn btn-warning btn-file clone" value="Add Additional Genre">
+  	<input type="button" name="add-another-genre" id="add-another-genre" class="btn button btn-file clone" value="Add Additional Genre">
     <br>
     <br>
    	<input class="formSubmitButton btn btn-primary" type="submit" value="Add Book" />

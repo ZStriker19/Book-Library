@@ -319,8 +319,8 @@ public class JDBCBookDAO implements BookDAO{
 				+" JOIN character ON book_character.character_id = character.character_id"
 				+" JOIN book_location ON book.book_id = book_location.book_id"
 				+" JOIN location ON location.location_id = book_location.location_id"
-				+" WHERE genre.genre = ?";
-		SqlRowSet  result = jdbcTemplate.queryForRowSet(sqlQueryForGenre, genre);
+				+" WHERE genre.genre LIKE ?";
+		SqlRowSet  result = jdbcTemplate.queryForRowSet(sqlQueryForGenre, genre + "%");
 		while(result.next()) {
 			Book book = createNewBook(result);
 			books.add(book);

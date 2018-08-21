@@ -7,13 +7,13 @@
 <c:url var="newPostURL" value="/forum/newPost"/>
 <link rel="buttonLink" href="${newPostURL}">
 <h1>Foxtrot Library Forum</h1>
-
-<a href="${newPostURL}"><button class="button">Post A Message</button></a>
-<div class="formPosts">
+<div class="button">
+<a href="${newPostURL}"><button class="button">Post A Message</button></a></div>
+<div class="formPosts formPosts2">
 
 <c:forEach var="post" items="${posts}">
-<div class="onePost">
-<h2>${post.subject}</h2>
+<div class="onePost twoPost">
+<h2 class="margin10px">${post.subject}</h2>
 
 <p><strong>By:</strong> ${post.username} on ${post.getDatePostedStr()}</p>
 <p>${post.message}</p>
