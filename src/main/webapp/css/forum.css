@@ -1,3 +1,4 @@
-.posts .post:nth-child(2n) {
+.formPosts:nth-child(1n) {
 	background-color: orange;
 }
+
