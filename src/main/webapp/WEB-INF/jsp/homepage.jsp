@@ -63,12 +63,9 @@
      <c:out value="${book.getAuthorFullNames()}"></c:out>
 	</td> 
 	<c:if test="${not empty currentUser}">
-	<td>
 		<td> <input type="checkbox" name="checkbox${book.bookId}" value="${book.bookId}">
 		</td>
-    </td>
     </c:if>
-    
   </tr>
   </c:forEach>
 </table>
