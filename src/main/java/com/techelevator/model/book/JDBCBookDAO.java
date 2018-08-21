@@ -219,16 +219,14 @@ public class JDBCBookDAO implements BookDAO{
 	
 	public List<Book> searchForBooks(String queryString) {
 		queryString = queryString.toLowerCase();
-		String[] querySplit = queryString.split(" ");
 		List<Book> allBooksFromQueries = new ArrayList<Book>();
 		
 		allBooksFromQueries.addAll(searchForBooksBasedOnAuthor(queryString));
 		allBooksFromQueries.addAll(searchForBooksBasedOnGenre(queryString));
 		allBooksFromQueries.addAll(searchForBooksBasedOnPublishingLocation(queryString));
 		
-		if (querySplit.length == 2) {
-			allBooksFromQueries.addAll(searchForBooksBasedOnCharacter(querySplit[0], querySplit[1]));
-			allBooksFromQueries.addAll(searchForBooksBasedOnAuthor(querySplit[0], querySplit[1]));
+		if (isSpaceInQuery(queryString)) {
+			allBooksFromQueries.addAll(searchWithMultipleQueries(queryString));
 			
 		}
 		allBooksFromQueries.addAll(searchForBooksBasedOnCharacter(queryString));
@@ -240,6 +238,22 @@ public class JDBCBookDAO implements BookDAO{
 		
 		
 		return booksWithoutDuplicates2;
+	}
+	
+	private boolean isSpaceInQuery(String queryString) {
+		String[] querySplit = queryString.split(" ");
+		return (querySplit.length == 2);
+	}
+	
+	private List<Book> searchWithMultipleQueries(String queryString){
+		String[] querySplit = queryString.split(" ");
+		List<Book> booksFromMultipleQueries = new ArrayList<Book>();
+		booksFromMultipleQueries.addAll(searchForBooksBasedOnCharacter(querySplit[0], querySplit[1]));
+		booksFromMultipleQueries.addAll(searchForBooksBasedOnAuthor(querySplit[0], querySplit[1]));
+		return booksFromMultipleQueries;
+		
+		
+		
 	}
 
 	

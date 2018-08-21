@@ -117,18 +117,18 @@ INSERT INTO character (character_id, f_name) VALUES (61, 'hamlet');
 
 SELECT setval(pg_get_serial_sequence('character', 'character_id'), 61);
 
-INSERT INTO location (location_id, section) VALUES (1, 'A1');
-INSERT INTO location (location_id, section) VALUES (2, 'A2');
-INSERT INTO location (location_id, section) VALUES (3, 'A3');
-INSERT INTO location (location_id, section) VALUES (4, 'A4');
-INSERT INTO location (location_id, section) VALUES (5, 'A5');
-INSERT INTO location (location_id, section) VALUES (6, 'A6');
-INSERT INTO location (location_id, section) VALUES (7, 'A7');
-INSERT INTO location (location_id, section) VALUES (8, 'A8');
-INSERT INTO location (location_id, section) VALUES (9, 'A9');
-INSERT INTO location (location_id, section) VALUES (10, 'A10');
-INSERT INTO location (location_id, section) VALUES (11, 'A11');
-INSERT INTO location (location_id, section) VALUES (12, 'A12');
+INSERT INTO location (location_id, section) VALUES (1, 'a1');
+INSERT INTO location (location_id, section) VALUES (2, 'a2');
+INSERT INTO location (location_id, section) VALUES (3, 'a3');
+INSERT INTO location (location_id, section) VALUES (4, 'a4');
+INSERT INTO location (location_id, section) VALUES (5, 'a5');
+INSERT INTO location (location_id, section) VALUES (6, 'a6');
+INSERT INTO location (location_id, section) VALUES (7, 'a7');
+INSERT INTO location (location_id, section) VALUES (8, 'a8');
+INSERT INTO location (location_id, section) VALUES (9, 'a9');
+INSERT INTO location (location_id, section) VALUES (10, 'a10');
+INSERT INTO location (location_id, section) VALUES (11, 'a11');
+INSERT INTO location (location_id, section) VALUES (12, 'a12');
 
 SELECT setval(pg_get_serial_sequence('location', 'location_id'), 12);
 

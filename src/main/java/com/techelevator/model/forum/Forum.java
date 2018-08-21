@@ -12,7 +12,8 @@ public class Forum {
 	private Date datePosted;
 	
 	public String getDatePostedStr() {
-		Format formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//		Format formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Format formatter = new SimpleDateFormat("MM/d/yyyy hh:mm aaa");
 		String datePostedStr = formatter.format(datePosted);
 		return datePostedStr;
 	}
