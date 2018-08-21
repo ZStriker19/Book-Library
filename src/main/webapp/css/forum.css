@@ -1,0 +1,3 @@
+.posts .post:nth-child(2n) {
+	background-color: orange;
+}
