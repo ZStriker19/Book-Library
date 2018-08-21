@@ -147,13 +147,6 @@ public class AddBookController {
 			book.setSection(section);
 			book.setTitle(title);
 			
-			for (String lName : characterLastNames) {
-				System.out.println("last names " + lName);
-			}
-			
-			for (String fName : characterFirstNames) {
-				System.out.println("first names " + fName);
-			}
 			
 			
 			return book;
