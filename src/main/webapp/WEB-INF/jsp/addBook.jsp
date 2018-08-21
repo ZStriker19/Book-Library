@@ -6,31 +6,31 @@
 		<link rel="stylesheet" type="text/css" href="${cssHref}">
 
 <script type="text/javascript">
-	$(document).ready(function () {
+$(document).ready(function () {
 	
-		$("#addBook").validate({
+	$("#addBook").validate({
 			
-			rules : {
-				title : {
-					required : true 
-				},
-				section : {
-					required : true,
-					maxlength : 2
-				}
+		rules : {
+			title : {
+				required : true 
 			},
-			messages : {		
-				title : {
-					required: "Book title is required"	
-				},
-				section : {
-					required: "Library section is required",
-					maxlength: "Section only contains 2 characters (e.g. A1, A2, A3, etc.)"	
-				}
+			section : {
+				required : true,
+				maxlength : 2
+			}
+		},
+		messages : {		
+			title : {
+				required: "Book title is required"	
 			},
-			errorClass : "error"
-		});
+			section : {
+				required: "Library section is required",
+				maxlength: "Section only contains 2 characters (e.g. A1, A2, A3, etc.)"	
+			}
+		},
+		errorClass : "error"
 	});
+});
 </script>
 
 <div class = "container">
@@ -183,26 +183,22 @@
   			<label for="new-book-character-1-first-name" class="col-2 col-form-label form-horizontal first-name">Character First Name</label>
   			<div class="col-10">
     			<input class="form-control form-horizontal" type="text" placeholder="Character 6 First Name" id="character-6-first-name" name="character-6-first-name">
-    			
     		</div>
     	</div>
     	<div class = "col-sm-6">
     		<label for="new-book-character-1-last-name" class="col-2 col-form-label form-horizontal">Character Last Name</label>
   			<div class="col-10">
-    			<input class="form-control form-horizontal" type="text" placeholder="Character 6 Last Name" id="character-6-last-name" name="character-6-last-name">
-    			
+    			<input class="form-control form-horizontal" type="text" placeholder="Character 6 Last Name" id="character-6-last-name" name="character-6-last-name">		
     		</div>
 		</div>
   	</div>
   	
   	<input type="button" name="add-another-character" id="add-another-character" class="btn btn-warning btn-file clone" value="Add Additional Character">
- 
   	<div class="form-group row" id = "genre1">
   		<label for="new-book-genres" class="col-sm-2 col-form-label">Genre</label>
   		<div class="col-sm-12">
     		<input class="form-control" type="text" placeholder="Genre 1" id="genre-1" name="genre-1">
     	</div>
-    	
   	</div>
   	
   	<div class="form-group row initiallyHidden" id = "genre2">
@@ -210,7 +206,6 @@
   		<div class="col-sm-12">
     		<input class="form-control" type="text" placeholder="Genre 2" id="genre-2" name="genre-2">
     	</div>
-    	
   	</div>
   	
   	<div class="form-group row initiallyHidden" id = "genre3">
