@@ -1,5 +1,7 @@
 package com.techelevator.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -36,4 +38,39 @@ public class ForumController {
 		
 		return "forum";
 	}
+	
+	
+	@RequestMapping(path="/forum/newPost")
+	public String createNewPost(HttpSession session, HttpServletRequest request) {
+		User currentUser = (User) session.getAttribute("currentUser");
+		
+		return "newPost";
+	}
+	
+	@RequestMapping(path="/forum/newPost", method=RequestMethod.POST)
+	public String displayNewPostOnForum(HttpSession session, HttpServletRequest request) {
+		User currentUser = (User) session.getAttribute("currentUser");
+		long  appUserId = currentUser.getId();
+		Forum post = createForumPost(request);
+		
+		
+		forumDao.save(post, appUserId);
+		return "redirect:/user/forum";
+	}
+	
+	private Forum createForumPost(HttpServletRequest request) {
+		Forum post = new Forum();
+		Date curDate = new Date();
+		String message = request.getParameter("message");
+		String subject = request.getParameter("subject");
+		
+		post.setDatePosted(curDate);
+		post.setMessage(message);
+		post.setSubject(subject);
+		
+		return post;
+		
+	}
+	
+
 }
