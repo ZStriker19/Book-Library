@@ -45,8 +45,8 @@
 	    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Options
 	    <span class="caret"></span></button>
 	    <ul class="dropdown-menu">
-	      <li><input class="formSubmitButton btn btn-link" type="submit" style="text-decoration:none" value="Add To Want To Read List"> </li>
-	      <li><input class="formSubmitButton btn btn-link" type="submit" style="text-decoration:none" value="Add To Have Read List" formaction="addToHaveReadList"></li>
+	      <li><input class="formSubmitButton btn btn-link" type="submit" style="text-decoration:none" value="Want to Read"> </li>
+	      <li><input class="formSubmitButton btn btn-link" type="submit" style="text-decoration:none" value="Have Read" formaction="addToHaveReadList"></li>
 	    </ul>
 	   
   </div>
