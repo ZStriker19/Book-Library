@@ -42,8 +42,6 @@ public class ForumController {
 	
 	@RequestMapping(path="/forum/newPost")
 	public String createNewPost(HttpSession session, HttpServletRequest request) {
-		User currentUser = (User) session.getAttribute("currentUser");
-		
 		return "newPost";
 	}
 	
@@ -52,11 +50,11 @@ public class ForumController {
 		User currentUser = (User) session.getAttribute("currentUser");
 		long  appUserId = currentUser.getId();
 		Forum post = createForumPost(request);
-		
-		
 		forumDao.save(post, appUserId);
-		return "redirect:/user/forum";
+		
+		return "redirect:/users/forum";
 	}
+	
 	
 	private Forum createForumPost(HttpServletRequest request) {
 		Forum post = new Forum();

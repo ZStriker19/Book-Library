@@ -42,7 +42,9 @@ public class JDBCForumDAO implements ForumDAO {
 	@Override
 	public void save(Forum post, Long user_id) {
 		String sqlInsertPost = "INSERT INTO forum_post(app_user_id, subject, message, post_date) VALUES (?,?,?,?)";
-		jdbcTemplate.update(sqlInsertPost, user_id, post.getSubject(), post.getMessage(), post.getDatePosted());
+		SimpleDateFormat format = new SimpleDateFormat();
+		String dateToStr = format.format(post.getDatePosted());
+		jdbcTemplate.update(sqlInsertPost, user_id, post.getSubject(), post.getMessage(), dateToStr);
 	}
 	
 	private Forum mapRowSetToForum(SqlRowSet results) {
