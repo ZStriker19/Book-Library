@@ -90,8 +90,6 @@
 						<c:url var="dashboardHref" value="/users/${currentUser}" />
 						<c:url var="forumLink" value="/users/forum"/>
             			<li><a href="${forumLink}">Foxtrot Forum</a></li>    
-						<c:url var="changePasswordHref" value="/users/${currentUser}/changePassword" />
-						<li><a href="${changePasswordHref}">Change Password</a></li>
 					</c:if>
 				</ul>
 				<ul class="nav nav-bar navbar-nav navbar-right">

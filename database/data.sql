@@ -72,7 +72,7 @@ INSERT INTO character (character_id, f_name, l_name) VALUES (16, 'holden', 'caul
 INSERT INTO character (character_id, f_name) VALUES (17, 'max');
 INSERT INTO character (character_id, f_name) VALUES (18, 'wilbur');
 INSERT INTO character (character_id, f_name) VALUES (19, 'charlotte');
-INSERT INTO character (character_id, f_name) VALUES (20, 'sam-I-Am');
+INSERT INTO character (character_id, f_name) VALUES (20, 'sam-i-am');
 INSERT INTO character (character_id, f_name) VALUES (21, 'sally');
 INSERT INTO character (character_id, f_name, l_name) VALUES (22, 'thing', 'one');
 INSERT INTO character (character_id, f_name, l_name) VALUES (23, 'thing', 'two');
