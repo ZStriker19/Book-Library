@@ -20,7 +20,7 @@
 
     <div class="form-check">
    		<input type="checkbox" class="form-check-input" id="newSearch" name="newSearch" value="checked">
-    <label class="form-check-label" for="newSearch">Search only books added since last search</label> 
+    <label class="form-check-label" for="newSearch">Search Only New Books</label> 
   </div>
   
     <input class="formSubmitButton btn btn-primary" type="submit" value="Search" />
