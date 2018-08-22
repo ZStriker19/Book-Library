@@ -7,7 +7,7 @@
 
 <h1>Want to Read</h1>
 <form action="addToBooksYouHaveRead">
-	<table class="table">
+	<table class="table" >
 	  <tr>
 	    <th>Book Title</th>
 	    <th>Author</th>
