@@ -72,7 +72,7 @@ public class AddBookController {
 			
 			
 			
-			String authorFName1 = (String) request.getParameter("author-1-first-name");
+			String authorFName1 = (String) request.getParameter("author1FirstName");
 			String authorLName1 = (String) request.getParameter("author-1-last-name");
 			
 			String authorFName2 = (String) request.getParameter("author-2-first-name");
