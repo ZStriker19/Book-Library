@@ -47,6 +47,9 @@
 	    <ul class="dropdown-menu">
 	      <li><input class="formSubmitButton btn btn-link" type="submit" style="text-decoration:none" value="Want to Read"> </li>
 	      <li><input class="formSubmitButton btn btn-link" type="submit" style="text-decoration:none" value="Have Read" formaction="addToHaveReadList"></li>
+	      <c:if test="${currentUser.role == true }">
+			<li><input class="formSubmitButton btn btn-link" type="submit" style="text-decoration:none" value="Delete Book" formaction="deleteBook"></li>
+		  </c:if>
 	    </ul>
 	   
   </div>
