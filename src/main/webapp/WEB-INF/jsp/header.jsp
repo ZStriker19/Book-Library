@@ -5,6 +5,8 @@
 
 	<head>
 		<title>Foxtrot Public Library</title>
+		<c:url var="cssHref" value="/css/site.css" />
+		<link rel="stylesheet" type="text/css" href="${cssHref}">
 		<!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> -->
 		<c:url var="bootstrapcss" value="/css/bootstrap.min.css"/>
 		<link rel="stylesheet" type="text/css" href="${bootstrapcss}">
@@ -19,9 +21,6 @@
     	
     	<c:url var="bootstrapjs" value="/js/bootstrap.min.js"/>
 		<script src="${bootstrapjs}"></script> 
-    	
-	    <c:url var="cssHref" value="/css/homepage.css" />
-		<link rel="stylesheet" type="text/css" href="${cssHref}">
 		
 		<c:url var="cssHref" value="/css/validation.css" />
 		<link rel="stylesheet" type="text/css" href="${cssHref}">
