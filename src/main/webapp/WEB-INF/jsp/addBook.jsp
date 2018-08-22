@@ -2,8 +2,6 @@
 
 <c:import url="/WEB-INF/jsp/header.jsp"/>
 
-<c:url var="cssHref" value="/css/addBook.css" />
-		<link rel="stylesheet" type="text/css" href="${cssHref}">
 
 <script type="text/javascript">
 $(document).ready(function () {

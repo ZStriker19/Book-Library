@@ -53,7 +53,7 @@
 				<label for="password">Password: </label>
 				<input type="password" id="password" name="password" placeHolder="Password" class="form-control" />
 			</div>
-			<button type="submit" class="btn btn-default">Login</button>
+			<button class="formSubmitButton btn btn-default" type="submit">Login</button>
 		</form>
 	</div>
 	<div class="col-sm-4"></div>

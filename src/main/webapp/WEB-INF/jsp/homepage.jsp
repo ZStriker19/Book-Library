@@ -2,6 +2,7 @@
 
 <c:import url="/WEB-INF/jsp/header.jsp"/>
 
+		
 <div class = "container">
 <c:if test="${message != null}">
 	<div class="alert alert-success alert-dismissible" role="alert">
