@@ -1,5 +1,6 @@
 package com.techelevator.model.book;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -78,9 +79,7 @@ public class Book {
 		this.authorFirstNames = authorFirstNames;
 	}
 	public List<String> getAuthorLastNames() {
-		for(int i = 0; i < authorLastNames.size(); i++) {
-	        authorLastNames.set(i, WordUtils.capitalize(authorLastNames.get(i)));
-	      }
+	        
 		return authorLastNames;
 	}
 	public void setAuthorLastNames(List<String> authorLastNames) {
@@ -90,27 +89,22 @@ public class Book {
 	public String getAuthorFullNames() {
 		String authors = "";
 		for (int i = 0; i < authorFirstNames.size(); i++) {
-			authors += WordUtils.capitalize(authorFirstNames.get(i)) + " " + WordUtils.capitalize(authorLastNames.get(i));
+			if (authorFirstNames.get(i) == null) {
+				authors += "";
+			} else {
+				authors += WordUtils.capitalize(authorFirstNames.get(i)) + " ";
+			}
+			if (authorLastNames.get(i) == null) {
+				authors += "";
+			} else {
+				authors += WordUtils.capitalize(authorLastNames.get(i));
+			}
 			if (i != authorFirstNames.size() -1) {
 				authors += ", ";
 			}
 		}
 		return authors;
 	}
-	
-//	public boolean equals(Book otherBook) {
-//		
-//		if (otherBook.getBookId() == this.bookId) {
-//			return true;
-//		} 
-//		return false;
-//	}
-//	
-//	
-//	public int hashCode() {
-//		int bookIdInt = (int) this.bookId;
-//        return bookIdInt;
-//    }
 	
 	
 }
