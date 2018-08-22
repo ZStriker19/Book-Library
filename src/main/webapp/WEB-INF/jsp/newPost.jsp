@@ -1,7 +1,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <c:import url="/WEB-INF/jsp/header.jsp"/>
-
+<c:url var="cssHref" value="/css/forum.css" />
+		<link rel="stylesheet" type="text/css" href="${cssHref}">
 
 <div class="forum">
 
@@ -15,14 +16,17 @@
 </div>
 <div>
 	<label for="subject">Subject:</label>
-	<input type="text" id="subject" name="subject" /><br />
+	<input type="text" id="subject" name="subject"/>
 	</div>
+	
 	<div>
-	<label for="message">Message: </label>
-	<input type="text" id="message" name="message" /><br />
+	<div>
+	<label for="message">Message: </label></div>
+	<textarea  id="message" name="message"></textarea>
 	</div>
+	
 	<div>
-	<input type="submit" value="submit" />
+	 <input class="formSubmitButton btn btn-primary" type="submit" value="Post" />
 </div>
 </form>	
 
