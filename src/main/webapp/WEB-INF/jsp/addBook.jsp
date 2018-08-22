@@ -16,7 +16,13 @@ $(document).ready(function () {
 			},
 			section : {
 				required : true,
-				maxlength : 2
+				maxlength : 3
+			},
+			author1FirstName : {
+				required : true
+			},
+			author1LastName : {
+				required : true
 			}
 		},
 		messages : {		
@@ -25,7 +31,13 @@ $(document).ready(function () {
 			},
 			section : {
 				required: "Library section is required",
-				maxlength: "Section only contains 2 characters (e.g. A1, A2, A3, etc.)"	
+				maxlength: "Section can only contain up to 3 characters (e.g. A1, A2, A10, etc.)"	
+			},
+			author1FirstName : {
+				required: "Author's first name is required"
+			},
+			author1LastName : {
+				required: "Author's last name is required"
 			}
 		},
 		errorClass : "error"
@@ -57,11 +69,11 @@ $(document).ready(function () {
   	<div class="form-group row form-horizontal" id="author1">
   		<div class = "col-sm-6 form-horizontal firstName">
   			<label for="new-book-first-name form-horizontal" class="col-form-label form-horizontal firstName">Author's First Name</label>
-    		<input class="form-control form-horizontal firstName" type="text" placeholder="Author 1 First Name" id="author-1-first-name" name="author-1-first-name">
+    		<input class="form-control form-horizontal firstName" type="text" placeholder="Author 1 First Name" id="author1FirstName" name="author1FirstName">
     	</div>
     	<div class = "col-sm-6 form-horizontal lastName">
   			<label for="new-book-last-name" class="col-2 col-form-label form-horizontal lastName">Author's Last Name</label>
-    		<input class="form-control form-horizontal lastName" type="text" placeholder="Author 1 Last Name" id="author-1-last-name" name="author-1-last-name">
+    		<input class="form-control form-horizontal lastName" type="text" placeholder="Author 1 Last Name" id="author1LastName" name="author1LastName">
     	</div>
   	</div>
   	
