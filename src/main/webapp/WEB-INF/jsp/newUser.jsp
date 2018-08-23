@@ -1,41 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <c:import url="/WEB-INF/jsp/header.jsp" />
-
-<script type="text/javascript">
-	$(document).ready(function () {
-		$.validator.addMethod('capitals', function(thing){
-			return thing.match(/[A-Z]/);
-		});
-		$("#newUser").validate({
-			
-			rules : {
-				userName : {
-					required : true
-				},
-				password : {
-					required : true,
-					minlength: 8,
-					capitals: true,
-				},
-				confirmPassword : {
-					required : true,		
-					equalTo : "#password"  
-				}
-			},
-			messages : {			
-				password: {
-					minlength: "Password too short, make it at least 8 characters",
-					capitals: "Field must contain a capital letter",
-				},
-				confirmPassword : {
-					equalTo : "Passwords do not match"
-				}
-			},
-			errorClass : "error"
-		});
-	});
-</script>
+ <script src="../js/newUserValidation.js"></script>
 
 <c:url var="formAction" value="/users" />
 <form id="newUser" method="POST" action="${formAction}">

@@ -25,25 +25,10 @@
 		<c:url var="cssHref" value="/css/validation.css" />
 		<link rel="stylesheet" type="text/css" href="${cssHref}">
 		
+		 <script src=../js/highlightNavBarButton.js> </script>
 		
 		<c:url var="formVal" value="/js/formValidation.js"/> 
 		<script src="${formVal}"></script> 
-		
-		<script type="text/javascript">
-			$(document).ready(function() {
-				$("time.timeago").timeago();
-				
-				$("#logoutLink").click(function(event){
-					$("#logoutForm").submit();
-				});
-				
-				var pathname = window.location.pathname;
-				$("nav a[href='"+pathname+"']").parent().addClass("active");
-				
-			});
-			
-			
-		</script>
 		
 	</head>
 	<body>

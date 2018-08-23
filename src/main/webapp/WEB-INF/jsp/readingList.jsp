@@ -26,26 +26,7 @@
   </div>
 	    
 	    
-<script>
 
-function booksRead() {
-    document.getElementById("booksRead").classList.toggle("show");
-}
-
-window.onclick = function(event) {
-  if (!event.target.matches('.dropbtn')) {
-
-    var dropdowns = document.getElementsByClassName("dropdown-content");
-    var i;
-    for (i = 0; i < dropdowns.length; i++) {
-      var openDropdown = dropdowns[i];
-      if (openDropdown.classList.contains('show')) {
-        openDropdown.classList.remove('show');
-      }
-    }
-  }
-}
-</script>
 </th>
 	  </tr>
 	  <c:forEach items="${booksToRead}" var="book">
@@ -81,26 +62,7 @@ window.onclick = function(event) {
 	    </ul>
   </div>
 
-<script>
 
-function readBooks() {
-    document.getElementById("readBooks").classList.toggle("show");
-}
-
-window.onclick = function(event) {
-  if (!event.target.matches('.dropbtn')) {
-
-    var dropdowns = document.getElementsByClassName("dropdown-content");
-    var i;
-    for (i = 0; i < dropdowns.length; i++) {
-      var openDropdown = dropdowns[i];
-      if (openDropdown.classList.contains('show')) {
-        openDropdown.classList.remove('show');
-      }
-    }
-  }
-}
-</script>
 </th>
 	  </tr>
 	  <c:forEach items="${booksHaveRead}" var="book">

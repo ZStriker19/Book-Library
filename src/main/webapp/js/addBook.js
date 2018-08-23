@@ -15,5 +15,5 @@ $(document).ready(function(){
 	$('#add-another-genre').on('click', (event) => {
 		$('#genre' + genreCounter.toString()).show('slow');
 		genreCounter++;
-	})
-})
+	});
+});

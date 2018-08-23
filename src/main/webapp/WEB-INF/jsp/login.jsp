@@ -2,34 +2,7 @@
 
 <c:import url="/WEB-INF/jsp/header.jsp" />
 
-<script type="text/javascript">
-	$(document).ready(function () {
-	
-		$("#userLogin").validate({
-			
-			rules : {
-				userName : {
-					required : true, 
-				},
-				password : {
-					required : true,
-				}
-			},
-			messages : {		
-				userName: {
-					required: "Username is required",
-				},
-				password: {
-					required: "Password is required",
-				},
-				confirmPassword : {
-					equalTo : "Passwords do not match"
-				}
-			},
-			errorClass : "error"
-		});
-	});
-</script>
+<script type="../js/loginValidation.js"></script>
 
 <c:if test="${message != null}">
 	<div class="alert alert-success alert-dismissible" role="alert">
