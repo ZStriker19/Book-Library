@@ -48,7 +48,7 @@ public class HomeController {
 		String bookQuery = request.getParameter("queryString");
 		List<Book> books = bookDao.searchForBooks(bookQuery);
 		
-		if (!(request.getParameter("newSearch") == null)) {
+		if (request.getParameter("newSearch") != null) {
 			books = books.stream().filter(book -> (book.getDateAdded().compareTo((Date) map.get("dateLastSearched"))) > 0).collect(Collectors.toList());
 		} 
 		
