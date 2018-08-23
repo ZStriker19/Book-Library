@@ -8,16 +8,6 @@ public interface BookDAO {
 
 	public List<Book> searchForBooks(String queryString);
 	
-	public List<Book> searchForBooksBasedOnAuthor(String author);
-	
-	public List<Book> searchForBooksBasedOnGenre(String genre);
-	
-	public List<Book> searchForBooksBasedOnPublishingLocation(String location);
-	
-	public List<Book> searchForBooksBasedOnCharacter(String character);
-	
-	public List<Book> searchForBooksBasedOnTitle(String title);
-	
 	public List<Book> searchForBooksUserHasRead(long appUserId);
 	
 	public List<Book> searchForBooksUserWillRead(long appUserId);

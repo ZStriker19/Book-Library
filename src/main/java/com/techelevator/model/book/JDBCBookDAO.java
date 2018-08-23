@@ -256,7 +256,7 @@ public class JDBCBookDAO implements BookDAO{
 	}
 
 	
-	public List<Book> searchForBooksBasedOnAuthor(String author) {
+	private List<Book> searchForBooksBasedOnAuthor(String author) {
 		List<Book> books = new ArrayList<Book>();
 		String sqlQueryForAuthor = "SELECT book.book_id, book.date_added, book.title, author.f_name AS author_first_name, author.l_name AS author_last_name,"
 				+ " character.f_name AS character_first_name, character.l_name AS character_last_name, location.section, genre.genre" 
@@ -280,7 +280,7 @@ public class JDBCBookDAO implements BookDAO{
 		return books;
 	}
 	
-	public List<Book> searchForBooksBasedOnAuthor(String authorFirstName, String authorLastName) {
+	private List<Book> searchForBooksBasedOnAuthor(String authorFirstName, String authorLastName) {
 		List<Book> books = new ArrayList<Book>();
 		String sqlQueryForAuthor = "SELECT book.book_id, book.date_added, book.title, author.f_name AS author_first_name, author.l_name AS author_last_name,"
 				+ " character.f_name AS character_first_name, character.l_name AS character_last_name, location.section, genre.genre" 
@@ -304,8 +304,8 @@ public class JDBCBookDAO implements BookDAO{
 		return books;
 	}
 	
-	//good
-	public List<Book> searchForBooksBasedOnCharacter(String character) {
+	
+	private List<Book> searchForBooksBasedOnCharacter(String character) {
 		String sqlQueryForCharacter = "SELECT book.book_id, book.title, book.date_added, author.f_name AS author_first_name, author.l_name AS author_last_name,"
 				+ " character.f_name AS character_first_name, character.l_name AS character_last_name, location.section, genre.genre" 
 				+" FROM character"
@@ -328,7 +328,7 @@ public class JDBCBookDAO implements BookDAO{
 	}
 
 	
-	public List<Book> searchForBooksBasedOnGenre(String genre) {
+	private List<Book> searchForBooksBasedOnGenre(String genre) {
 		List<Book> books = new ArrayList<Book>();
 		String sqlQueryForGenre = "SELECT book.book_id, book.title, book.date_added, author.f_name AS author_first_name, author.l_name AS author_last_name,"
 				+ " character.f_name AS character_first_name, character.l_name AS character_last_name, location.section, genre.genre" 
@@ -351,7 +351,7 @@ public class JDBCBookDAO implements BookDAO{
 	}
 
 	
-	public List<Book> searchForBooksBasedOnPublishingLocation(String location) {
+	private List<Book> searchForBooksBasedOnPublishingLocation(String location) {
 		List<Book> books = new ArrayList<Book>();
 		String sqlQueryForLocation = "SELECT book.book_id, book.title, book.date_added, author.f_name AS author_first_name, author.l_name AS author_last_name,"
 				+ " character.f_name AS character_first_name, character.l_name AS character_last_name, location.section, genre.genre" 
@@ -376,7 +376,7 @@ public class JDBCBookDAO implements BookDAO{
 
 	
 	
-	public List<Book> searchForBooksBasedOnCharacter(String characterFirstName, String characterLastName) {
+	private List<Book> searchForBooksBasedOnCharacter(String characterFirstName, String characterLastName) {
 		String sqlQueryForCharacter = "SELECT book.book_id, book.title, book.date_added, author.f_name AS author_first_name, author.l_name AS author_last_name,"
 				+ " character.f_name AS character_first_name, character.l_name AS character_last_name, location.section, genre.genre" 
 				+" FROM character"
@@ -399,7 +399,7 @@ public class JDBCBookDAO implements BookDAO{
 	}
 
 	
-	public List<Book> searchForBooksBasedOnTitle(String title) {
+	private List<Book> searchForBooksBasedOnTitle(String title) {
 		String sqlQueryForTitle = "SELECT book.book_id, book.title, book.date_added, author.f_name AS author_first_name, author.l_name AS author_last_name,"
 				+ " character.f_name AS character_first_name, character.l_name AS character_last_name, location.section, genre.genre" 
 				+" FROM book"
