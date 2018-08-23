@@ -67,8 +67,11 @@ INSERT INTO book (book_id, title, date_added) VALUES (54, 'american gods', '8/21
 INSERT INTO book (book_id, title, date_added) VALUES (55, 'the lightning thief', '8/21/18 1:12 PM');
 INSERT INTO book (book_id, title, date_added) VALUES (56, 'the diary of a young girl', '8/21/18 1:16 PM');
 INSERT INTO book (book_id, title, date_added) VALUES (57, 'born standing up: a comic''s life', '8/21/18 1:18 PM');
+INSERT INTO book (book_id, title, date_added) VALUES (58, 'fahrenheit 451', '8/23/18 10:33 AM');
+INSERT INTO book (book_id, title, date_added) VALUES (59, 'frankenstein', '8/23/18 10:41 AM');
+INSERT INTO book (book_id, title, date_added) VALUES (60, 'the handmaid''s tale', '8/23/18 10:56 AM');
 
-SELECT setval(pg_get_serial_sequence('book', 'book_id'), 57);
+SELECT setval(pg_get_serial_sequence('book', 'book_id'), 60);
 
 INSERT INTO character (character_id, f_name, l_name) VALUES (1, 'harry', 'potter');
 INSERT INTO character (character_id, f_name, l_name) VALUES (2, 'hermione', 'granger');
@@ -140,8 +143,12 @@ INSERT INTO character (character_id, f_name, l_name) VALUES (67, 'laura', 'moon'
 INSERT INTO character (character_id, f_name, l_name) VALUES (68, 'percy', 'jackson');
 INSERT INTO character (character_id, f_name, l_name) VALUES (69, 'anne', 'frank');
 INSERT INTO character (character_id, f_name, l_name) VALUES (70, 'steve', 'martin');
+INSERT INTO character (character_id, f_name, l_name) VALUES (71, 'guy', 'montag');
+INSERT INTO character (character_id, f_name, l_name) VALUES (72, 'victor', 'frankenstein');
+INSERT INTO character (character_id, f_name) VALUES (73, 'offred');
 
-SELECT setval(pg_get_serial_sequence('character', 'character_id'), 70);
+
+SELECT setval(pg_get_serial_sequence('character', 'character_id'), 73);
 
 INSERT INTO location (location_id, section) VALUES (1, 'a1');
 INSERT INTO location (location_id, section) VALUES (2, 'a2');
@@ -155,8 +162,10 @@ INSERT INTO location (location_id, section) VALUES (9, 'a9');
 INSERT INTO location (location_id, section) VALUES (10, 'a10');
 INSERT INTO location (location_id, section) VALUES (11, 'a11');
 INSERT INTO location (location_id, section) VALUES (12, 'a12');
+INSERT INTO location (location_id, section) VALUES (13, 'a13');
 
-SELECT setval(pg_get_serial_sequence('location', 'location_id'), 12);
+
+SELECT setval(pg_get_serial_sequence('location', 'location_id'), 13);
 
 INSERT INTO genre (genre_id, genre) VALUES (1, 'fantasy');
 INSERT INTO genre (genre_id, genre) VALUES (2, 'fiction');
@@ -170,8 +179,9 @@ INSERT INTO genre (genre_id, genre) VALUES (9, 'romance');
 INSERT INTO genre (genre_id, genre) VALUES (10, 'comic books');
 INSERT INTO genre (genre_id, genre) VALUES (11, 'novel');
 INSERT INTO genre (genre_id, genre) VALUES (12, 'drama');
+INSERT INTO genre (genre_id, genre) VALUES (13, 'dystopian');
 
-SELECT setval(pg_get_serial_sequence('genre', 'genre_id'), 12);
+SELECT setval(pg_get_serial_sequence('genre', 'genre_id'), 13);
 
 INSERT INTO author (author_id, f_name, l_name) VALUES (1, 'j.k.', 'rowling');
 INSERT INTO author (author_id, f_name, l_name) VALUES (2, 'f. scott', 'fitzgerald');
@@ -212,8 +222,12 @@ INSERT INTO author (author_id, f_name, l_name) VALUES (36, 'neil', 'gaiman');
 INSERT INTO author (author_id, f_name, l_name) VALUES (37, 'rick', 'riordan');
 INSERT INTO author (author_id, f_name, l_name) VALUES (38, 'anne', 'frank');
 INSERT INTO author (author_id, f_name, l_name) VALUES (39, 'steve', 'martin');
+INSERT INTO author (author_id, f_name, l_name) VALUES (40, 'ray', 'bradbury');
+INSERT INTO author (author_id, f_name, l_name) VALUES (41, 'mary', 'shelley');
+INSERT INTO author (author_id, f_name, l_name) VALUES (42, 'margaret', 'atwood');
 
-SELECT setval(pg_get_serial_sequence('author', 'author_id'), 39);
+
+SELECT setval(pg_get_serial_sequence('author', 'author_id'), 42);
 
 INSERT INTO forum_post (forum_post_id, app_user_id, subject, message, post_date) VALUES (1, 2, 'Test Forum', 'Great book!', '8/20/18 2:27 PM');
 INSERT INTO forum_post (forum_post_id, app_user_id, subject, message, post_date) VALUES (2, 1, 'I love books', 'This book changed my life!', '8/20/18 4:54 PM');
@@ -357,6 +371,10 @@ INSERT INTO book_character (book_id, character_id) VALUES (54, 67);
 INSERT INTO book_character (book_id, character_id) VALUES (55, 68);
 INSERT INTO book_character (book_id, character_id) VALUES (56, 69);
 INSERT INTO book_character (book_id, character_id) VALUES (57, 70);
+INSERT INTO book_character (book_id, character_id) VALUES (58, 71);
+INSERT INTO book_character (book_id, character_id) VALUES (59, 72);
+INSERT INTO book_character (book_id, character_id) VALUES (60, 73);
+
 
 INSERT INTO book_location (book_id, location_id) VALUES (1, 1);
 INSERT INTO book_location (book_id, location_id) VALUES (2, 1);
@@ -415,6 +433,12 @@ INSERT INTO book_location (book_id, location_id) VALUES (54, 1);
 INSERT INTO book_location (book_id, location_id) VALUES (55, 1);
 INSERT INTO book_location (book_id, location_id) VALUES (56, 3);
 INSERT INTO book_location (book_id, location_id) VALUES (57, 3);
+INSERT INTO book_location (book_id, location_id) VALUES (58, 4);
+INSERT INTO book_location (book_id, location_id) VALUES (59, 8);
+INSERT INTO book_location (book_id, location_id) VALUES (60, 13);
+
+
+
 
 INSERT INTO book_genre (book_id, genre_id) VALUES (1, 1);
 INSERT INTO book_genre (book_id, genre_id) VALUES (2, 1);
@@ -488,6 +512,10 @@ INSERT INTO book_genre (book_id, genre_id) VALUES (54, 1);
 INSERT INTO book_genre (book_id, genre_id) VALUES (55, 1);
 INSERT INTO book_genre (book_id, genre_id) VALUES (56, 3);
 INSERT INTO book_genre (book_id, genre_id) VALUES (57, 3);
+INSERT INTO book_genre (book_id, genre_id) VALUES (58, 4);
+INSERT INTO book_genre (book_id, genre_id) VALUES (59, 8);
+INSERT INTO book_genre (book_id, genre_id) VALUES (60, 13);
+
 
 INSERT INTO book_author (book_id, author_id) VALUES (1, 1);
 INSERT INTO book_author (book_id, author_id) VALUES (2, 1);
@@ -549,6 +577,10 @@ INSERT INTO book_author (book_id, author_id) VALUES (54, 36);
 INSERT INTO book_author (book_id, author_id) VALUES (55, 37);
 INSERT INTO book_author (book_id, author_id) VALUES (56, 38);
 INSERT INTO book_author (book_id, author_id) VALUES (57, 39);
+INSERT INTO book_author (book_id, author_id) VALUES (58, 40);
+INSERT INTO book_author (book_id, author_id) VALUES (59, 41);
+INSERT INTO book_author (book_id, author_id) VALUES (60, 42);
+
 
 INSERT INTO book_app_user_will_read (app_user_id, book_id) VALUES (1, 1);
 INSERT INTO book_app_user_will_read (app_user_id, book_id) VALUES (1, 2);
