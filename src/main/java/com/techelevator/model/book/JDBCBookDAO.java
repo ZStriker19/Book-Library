@@ -27,6 +27,16 @@ public class JDBCBookDAO implements BookDAO{
 	}
 	
 	
+	public void deleteBook(long bookId) {
+		jdbcTemplate.update("DELETE FROM book_character WHERE book_id = ?", bookId);
+		jdbcTemplate.update("DELETE FROM book_genre WHERE book_id = ?", bookId);
+		jdbcTemplate.update("DELETE FROM book_location WHERE book_id = ?", bookId);
+		jdbcTemplate.update("DELETE FROM book_author WHERE book_id = ?", bookId);
+		jdbcTemplate.update("DELETE FROM book_app_user_will_read WHERE book_id = ?", bookId);
+		jdbcTemplate.update("DELETE FROM book_app_user_have_read WHERE book_id = ?", bookId);
+		jdbcTemplate.update("DELETE FROM book WHERE book_id = ?", bookId);
+	}
+	
 	public void saveBook(Book book) {
 		saveToBook(book.getTitle().toLowerCase());
 		long bookId = getLastBookId();
@@ -181,7 +191,9 @@ public class JDBCBookDAO implements BookDAO{
 		
 		while(results.next()) {
 			Book book = createNewBook(results);
-			books.add(book);
+			if (isBookFilled(book)) {
+				books.add(book);
+			}
 		}
 		
 		books = deleteDuplicateBooks(books);
@@ -208,7 +220,9 @@ public class JDBCBookDAO implements BookDAO{
 		
 		while(results.next()) {
 			Book book = createNewBook(results);
-			books.add(book);
+			if (isBookFilled(book)) {
+				books.add(book);
+			}
 		}
 		
 		books = deleteDuplicateBooks(books);
@@ -275,7 +289,9 @@ public class JDBCBookDAO implements BookDAO{
 		
 		while(results.next()) {
 			Book book = createNewBook(results);
-			books.add(book);
+			if (isBookFilled(book)) {
+				books.add(book);
+			}
 		}
 		return books;
 	}
@@ -299,7 +315,9 @@ public class JDBCBookDAO implements BookDAO{
 		
 		while(results.next()) {
 			Book book = createNewBook(results);
-			books.add(book);
+			if (isBookFilled(book)) {
+				books.add(book);
+			}
 		}
 		return books;
 	}
@@ -322,7 +340,9 @@ public class JDBCBookDAO implements BookDAO{
 		SqlRowSet  result = jdbcTemplate.queryForRowSet(sqlQueryForCharacter, character + "%", character + "%");
 		while(result.next()) {
 			Book book = createNewBook(result);
-			books.add(book);
+			if (isBookFilled(book)) {
+				books.add(book);
+			}
 		}
 		return books;
 	}
@@ -345,7 +365,9 @@ public class JDBCBookDAO implements BookDAO{
 		SqlRowSet  result = jdbcTemplate.queryForRowSet(sqlQueryForGenre, genre + "%");
 		while(result.next()) {
 			Book book = createNewBook(result);
-			books.add(book);
+			if (isBookFilled(book)) {
+				books.add(book);
+			}
 		}
 		return books;
 	}
@@ -369,7 +391,9 @@ public class JDBCBookDAO implements BookDAO{
 		SqlRowSet  result = jdbcTemplate.queryForRowSet(sqlQueryForLocation, location);
 		while(result.next()) {
 			Book book = createNewBook(result);
-			books.add(book);
+			if (isBookFilled(book)) {
+				books.add(book);
+			}
 		}
 		return books;
 	}
@@ -393,7 +417,9 @@ public class JDBCBookDAO implements BookDAO{
 		SqlRowSet  result = jdbcTemplate.queryForRowSet(sqlQueryForCharacter, characterFirstName + "%", characterLastName + "%");
 		while(result.next()) {
 			Book book = createNewBook(result);
-			books.add(book);
+			if (isBookFilled(book)) {
+				books.add(book);
+			}
 		}
 		return books;
 	}
@@ -416,7 +442,9 @@ public class JDBCBookDAO implements BookDAO{
 		SqlRowSet  result = jdbcTemplate.queryForRowSet(sqlQueryForTitle, "%" + title + "%", title);
 		while(result.next()) {
 			Book book = createNewBook(result);
-			books.add(book);
+			if (isBookFilled(book)) {
+				books.add(book);
+			}
 		}
 		return books;
 	}
@@ -468,22 +496,26 @@ public class JDBCBookDAO implements BookDAO{
 	
 	
 	
-	
-	
 	private Book createNewBook(SqlRowSet sqlRowSet) {
 		Book book = new Book();
+		book.setBook_id(sqlRowSet.getLong("book_id"));
+		if (sqlRowSet.getString("book_id") == null) {
+			
+		}
+		
 		book.setAuthorFirstNames(createAuthorFirstNames(sqlRowSet));
 		book.setAuthorLastNames(createAuthorLastNames(sqlRowSet));
 		book.setCharacterFirstNames(createCharacterFirstNames(sqlRowSet));
 		book.setCharacterLastNames(createCharacterLastNames(sqlRowSet));
 		book.setGenres(createGenres(sqlRowSet));
-		book.setBook_id(sqlRowSet.getLong("book_id"));
 		book.setTitle(sqlRowSet.getString("title"));
 		book.setSection(sqlRowSet.getString("section"));
 		SimpleDateFormat format = new SimpleDateFormat();
 		Date dateAdded = null;
 		try {
-			dateAdded = format.parse(sqlRowSet.getString("date_added"));
+			if (sqlRowSet.getString("date_added") != null) {
+				dateAdded = format.parse(sqlRowSet.getString("date_added"));
+			}
 		} catch (InvalidResultSetAccessException e) {
 			
 			e.printStackTrace();
@@ -551,5 +583,10 @@ public class JDBCBookDAO implements BookDAO{
 		return false;
 	}
 	
+	private boolean isBookFilled(Book book) {
+		return (book.getDateAdded() != null);
+	}
+
+
 	
 }

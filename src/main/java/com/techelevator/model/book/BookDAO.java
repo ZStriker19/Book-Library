@@ -20,5 +20,7 @@ public interface BookDAO {
 	
 	public void deleteBookFromUserHasReadList(long appUserId, long bookId);
 	
+	public void deleteBook(long bookId);
+	
 	
 }

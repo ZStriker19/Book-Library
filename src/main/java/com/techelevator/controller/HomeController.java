@@ -96,6 +96,19 @@ public class HomeController {
 		return "redirect:/readingLists";
 	}
 	
+	@RequestMapping(path=("/deleteBook"), method=RequestMethod.POST)
+	public String deleteBook(HttpServletRequest request, RedirectAttributes redirectAttributes, Model model, HttpSession session) {
+		
+		Enumeration<String> enumeration = request.getParameterNames();
+		    while(enumeration.hasMoreElements()){
+		    	long bookId = Long.parseLong((String) request.getParameter(enumeration.nextElement()));
+		    	bookDao.deleteBook(bookId);
+		    }
+		    
+		
+		return "redirect:/";
+	}
+	
 	
 	
 }

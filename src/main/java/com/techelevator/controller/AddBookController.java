@@ -73,7 +73,7 @@ public class AddBookController {
 			
 			
 			String authorFName1 = (String) request.getParameter("author1FirstName");
-			String authorLName1 = (String) request.getParameter("author-1-last-name");
+			String authorLName1 = (String) request.getParameter("author1LastName");
 			
 			String authorFName2 = (String) request.getParameter("author-2-first-name");
 			String authorLName2 = (String) request.getParameter("author-2-last-name");
@@ -130,6 +130,8 @@ public class AddBookController {
 			characterLastNames.add(characterLName4);
 			characterLastNames.add(characterLName5);
 			characterLastNames.add(characterLName6);
+			
+			
 			
 			
 			authorFirstNames = authorFirstNames.stream().filter(item-> !item.equals("")).collect(Collectors.toList());
