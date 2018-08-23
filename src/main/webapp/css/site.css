@@ -46,8 +46,11 @@ border-color: #2e6da4;
 
 .table {
 	padding-top: 25px;
+	
 }
-
+.table td:nth-of-type(1) {
+	width: 50%;
+}
 #queryString-error {
 	color: red;
 }
